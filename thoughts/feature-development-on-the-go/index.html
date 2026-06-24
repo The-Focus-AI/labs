@@ -1,0 +1,116 @@
+<!DOCTYPE html><html lang="en" data-theme="ledger"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Astro v5.18.2"><meta name="description" content="What happens when you challenge Google Jules, OpenAI Codex, and Cursor to build a PWA—using just your phone? Find out which agent delivered."><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;900&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet"><title>Feature Development on the go · TheFocus.AI Labs</title><link rel="stylesheet" href="/_astro/_slug_.CZnP_JuE.css">
+<style>.article-page[data-astro-cid-zm77yjld]{padding:var(--section-y) 0 4rem}.article-shell[data-astro-cid-zm77yjld]{max-width:720px;margin:0 auto;padding:0 var(--gutter)}.article-back[data-astro-cid-zm77yjld]{display:inline-block;margin-bottom:1.5rem;text-decoration:none;color:var(--signal)}.article-back[data-astro-cid-zm77yjld]:hover{color:var(--text-strong)}.article-header[data-astro-cid-zm77yjld]{margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}.article-title[data-astro-cid-zm77yjld]{font-size:clamp(2rem,5vw,2.75rem);font-weight:600;line-height:1.1;letter-spacing:-.03em;color:var(--text-strong);margin:.75rem 0 1rem}.article-lead[data-astro-cid-zm77yjld]{font-size:20px;line-height:1.5;color:var(--text-2);margin:0}.article-meta[data-astro-cid-zm77yjld]{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;margin-top:1.25rem}.article-tags[data-astro-cid-zm77yjld]{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;margin:0;padding:0}.article-hero[data-astro-cid-zm77yjld]{margin:0 0 2rem;border:1px solid var(--border);background:var(--surface)}.article-hero[data-astro-cid-zm77yjld] img[data-astro-cid-zm77yjld]{display:block;width:100%;height:auto}.article-prose[data-astro-cid-zm77yjld] h2{font-size:1.5rem;font-weight:600;margin:2.5rem 0 1rem;color:var(--text-strong)}.article-prose[data-astro-cid-zm77yjld] h3{font-size:1.15rem;font-weight:600;margin:2rem 0 .75rem;color:var(--text-strong)}.article-prose[data-astro-cid-zm77yjld] p,.article-prose[data-astro-cid-zm77yjld] li{font-size:15px;line-height:1.6;color:var(--text)}.article-prose[data-astro-cid-zm77yjld] a{color:var(--text-strong);text-decoration:underline;text-underline-offset:3px}.article-prose[data-astro-cid-zm77yjld] a:hover{color:var(--signal)}.article-prose[data-astro-cid-zm77yjld] pre{background:var(--surface);border:1px solid var(--border);padding:1rem;overflow-x:auto;font-family:var(--font-mono);font-size:13px;line-height:1.5}.article-prose[data-astro-cid-zm77yjld] code{font-family:var(--font-mono);font-size:.9em}.article-prose[data-astro-cid-zm77yjld] blockquote{margin:1.5rem 0;padding-left:1rem;border-left:2px solid var(--signal);color:var(--text-2)}.article-prose[data-astro-cid-zm77yjld] img{max-width:100%;height:auto;border:1px solid var(--border)}.article-prose[data-astro-cid-zm77yjld] table{width:100%;border-collapse:collapse;font-size:14px;margin:1.5rem 0;border:1px solid var(--border)}.article-prose[data-astro-cid-zm77yjld] th,.article-prose[data-astro-cid-zm77yjld] td{border:1px solid var(--border);padding:.5rem .75rem;text-align:left}.article-prose[data-astro-cid-zm77yjld] th{background:var(--surface);color:var(--text-strong);font-family:var(--font-mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+.adjacent[data-astro-cid-qxcpqxea]{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)}.adjacent-link[data-astro-cid-qxcpqxea]{display:flex;flex-direction:column;gap:.35rem;text-decoration:none;color:var(--text);padding:1rem;border:1px solid var(--border);background:var(--surface)}.adjacent-link--next[data-astro-cid-qxcpqxea]{text-align:right}.adjacent-link[data-astro-cid-qxcpqxea]:hover{color:var(--text-strong);background:color-mix(in srgb,var(--surface) 90%,white)}@media(max-width:640px){.adjacent[data-astro-cid-qxcpqxea]{grid-template-columns:1fr}.adjacent-link--next[data-astro-cid-qxcpqxea]{text-align:left}}
+.np-root[data-astro-cid-7ixr6fiy]{position:fixed;inset:0;z-index:100}.np-root[data-astro-cid-7ixr6fiy][hidden]{display:none}.np-backdrop[data-astro-cid-7ixr6fiy]{position:absolute;inset:0;background:#141310b3;backdrop-filter:blur(4px)}.np-modal-wrap[data-astro-cid-7ixr6fiy]{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:1rem}.np-modal[data-astro-cid-7ixr6fiy]{position:relative;background:var(--paper);border:4px solid var(--void);box-shadow:8px 8px 0 0 var(--void);max-width:460px;width:100%;padding:2.5rem 2rem 2rem;text-align:center;animation:np-pop .2s cubic-bezier(.22,1,.36,1)}@keyframes np-pop{0%{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.np-close[data-astro-cid-7ixr6fiy]{position:absolute;top:.5rem;right:.75rem;background:none;border:0;font-size:28px;line-height:1;color:var(--void);cursor:pointer;padding:.25rem .5rem;transition:color .15s ease}.np-close[data-astro-cid-7ixr6fiy]:hover{color:var(--alert-red)}.np-eyebrow[data-astro-cid-7ixr6fiy]{font-family:var(--mono, "Courier Prime", monospace);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#1a1a1a8c;margin-bottom:.75rem}.np-heading[data-astro-cid-7ixr6fiy]{font-family:Inter,system-ui,sans-serif;font-weight:900;font-size:1.75rem;line-height:1.05;letter-spacing:-.02em;margin:0 0 .75rem;color:var(--void);text-transform:none}.np-blurb[data-astro-cid-7ixr6fiy]{font-size:14px;line-height:1.5;color:#1a1a1ab3;margin:0 0 1.5rem}.np-form[data-astro-cid-7ixr6fiy]{display:flex;flex-direction:column;gap:.5rem}.np-input[data-astro-cid-7ixr6fiy]{font-family:inherit;font-size:15px;padding:.75rem 1rem;border:1px solid var(--void);background:#fff;border-radius:0;color:var(--void)}.np-input[data-astro-cid-7ixr6fiy]:focus{outline:2px solid var(--rand-blue, #0055aa);outline-offset:1px}.np-button[data-astro-cid-7ixr6fiy]{font-family:var(--mono, "Courier Prime", monospace);font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.85rem 1.5rem;background:var(--void);color:var(--paper);border:1px solid var(--void);cursor:pointer;transition:background .15s ease,border-color .15s ease}.np-button[data-astro-cid-7ixr6fiy]:hover{background:var(--rand-blue, #0055aa);border-color:var(--rand-blue, #0055aa)}.np-dismiss[data-astro-cid-7ixr6fiy]{margin-top:1rem;background:none;border:0;font-family:var(--mono, "Courier Prime", monospace);font-size:11px;letter-spacing:.12em;color:#1a1a1a73;cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:.5rem}.np-dismiss[data-astro-cid-7ixr6fiy]:hover{color:var(--void)}@media print{.np-root[data-astro-cid-7ixr6fiy]{display:none!important}}
+</style></head> <body> <header class="site-header"> <div class="site-header-inner"> <a href="/" class="wordmark" aria-label="TheFocus.AI Labs">  <span class="wordmark-glyph" aria-hidden="true"></span> <span class="wordmark-text">TheFocus</span> <span class="wordmark-sub">Labs</span>  </a> <nav class="site-nav" aria-label="Primary">  <a href="/thoughts/">Thoughts</a> <a href="/reports/">Reports</a> <a href="/recipes/">Recipes</a> <a href="/issues/">Issues</a>  </nav> </div> </header> <main>  <article class="article-page" data-astro-cid-zm77yjld> <div class="article-shell" data-astro-cid-zm77yjld> <header class="article-header" data-astro-cid-zm77yjld> <a class="article-back mono-label" href="/thoughts/" data-astro-cid-zm77yjld>← Thoughts</a> <p class="section-label" data-astro-cid-zm77yjld>Thoughts</p> <h1 class="article-title" data-astro-cid-zm77yjld>Feature Development on the go</h1> <p class="article-lead" data-astro-cid-zm77yjld>What happens when you challenge Google Jules, OpenAI Codex, and Cursor to build a PWA—using just your phone? Find out which agent delivered.</p> <div class="article-meta" data-astro-cid-zm77yjld> <time class="mono-label" data-astro-cid-zm77yjld>June 8, 2025</time> <ul class="article-tags" data-astro-cid-zm77yjld> <li class="mono-label" data-astro-cid-zm77yjld>essay</li><li class="mono-label" data-astro-cid-zm77yjld>agents</li> </ul> </div> </header> <figure class="article-hero" data-astro-cid-zm77yjld> <img src="/_astro/dev_on_the_go_wide.B9zy2xxt.png" alt="" loading="eager" data-astro-cid-zm77yjld> </figure> <div class="article-prose" data-astro-cid-zm77yjld>  <p>I had some time to kill while I was out and about with the kids.  They were occupied with Important Stuff, and I didn’t want to break out the laptop, so I tried to see what I could get done with the phone.</p>
+<p>I ended up with <a href="https://the-focus-ai.github.io/prompt-library/pwa/">front-end for my prompt library</a> that works offline, and can be installed as an app on my phone.</p>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="912" height="2048" src="/_astro/mobile_screen_shot.rweR4n4v_23dnVE.jpeg" ></p>
+<h1 id="create-the-spec">Create the spec</h1>
+<p>First, I copied the <a href="https://github.com/The-Focus-AI/prompt-library/blob/main/planning/project-brief-maker.md">Product Brief Maker</a> into the ChatGPT app on my phone, and then turned on voice chat, and then said</p>
+<blockquote>
+<p>I want to build progressive webapp that works off line, that caches prompts from a prompt library stored on GitHub, that I can use to easily copy and paste prompts into apps on my phone like chatgpt or Claude or mid journey</p>
+</blockquote>
+<p>Then it kept asking me questions, and I made up answers, and eventually I asked it to spit out the spec and it did.</p>
+<p>Then we tried out agents.</p>
+<h1 id="agents">Agents</h1>
+<h2 id="jules-from-google">Jules from Google</h2>
+<p>Signup for <a href="https://jules.google.com/">Jules</a> which is currently free, 60 tasks per day.  Connected it to github, selected my repo, and let it rip.  It thought for a little, then asked me to confirm the plan, and then it went off.</p>
+<h2 id="openai-codex-agent">OpenAI Codex Agent</h2>
+<p>Same thing.</p>
+<p><a href="https://chatgpt.com/codex">Sign into Codex</a>, connect to GitHub, select the repo, copy in the PRD, and let ‘er rip.</p>
+<h2 id="cursor-background-agent">Cursor Background Agent</h2>
+<p><em>i had do to this from my laptop</em></p>
+<p>Open un cursor, <code>CMD-E</code>, paste in the PRD, and connect the background agent to GitHub.</p>
+<h1 id="results">Results</h1>
+<p>All of them were done in under 10 minutes.</p>
+<h2 id="pwa-testing">PWA testing</h2>
+<p>Since this is a PWA thing there are a bunch of security things to test out, so we’ll need to deploy it on localhost intially to test it.  Each of the agents eventually pushed a branch of code into the repo, so I pulled it down locally and tested things.</p>
+<p>e.g.</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6CB6FF">cd</span><span style="color:#ADBAC7"> $(</span><span style="color:#F69D50">mktemp</span><span style="color:#6CB6FF"> -d</span><span style="color:#ADBAC7">)</span></span>
+<span class="line"><span style="color:#F69D50">git</span><span style="color:#96D0FF"> clone</span><span style="color:#96D0FF"> https://github.com/The-Focus-AI/prompt-library</span></span>
+<span class="line"><span style="color:#6CB6FF">cd</span><span style="color:#96D0FF"> prompt-library</span></span>
+<span class="line"><span style="color:#F69D50">git</span><span style="color:#96D0FF"> branch</span><span style="color:#6CB6FF"> -r</span></span>
+<span class="line"><span style="color:#F69D50">git</span><span style="color:#96D0FF"> checkout</span><span style="color:#96D0FF"> origin/jules_wip_3727620125818400111</span><span style="color:#ADBAC7"> </span></span></code></pre>
+<h2 id="jules">Jules</h2>
+<p>This is what it looks like as a local application.
+<img  loading="lazy" decoding="async" fetchpriority="auto" width="1988" height="1746" src="/_astro/jules_1.k4bysaha_10Q2cE.png" ></p>
+<h3 id="followup">Followup</h3>
+<blockquote>
+<p>its not caching the directory entries for when you search, though it seems like the original ones are cached</p>
+</blockquote>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="664" height="652" src="/_astro/jules_2.DAmHAotA_14Ds9S.png" ></p>
+<p>Yikes, so I can’t make changes.  Lets see if it can make the changes in the branch that it used.</p>
+<p>I press new, select the previous branch that it worked on, and copied in what it told me. and off it goes.</p>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="1276" height="1120" src="/_astro/jules_3.DygMzfUm_ZJRU2t.png" ></p>
+<p>I’m deliberately being dumb about this — just copy and pasting, not really explaining anything clearly — just to see what it will do.</p>
+<h2 id="openai-codex-agent-1">OpenAI Codex Agent</h2>
+<p>When i first started it up, I got a “failed to load prompts” error.</p>
+<p>So I enter:</p>
+<blockquote>
+<p>when i update the repo to The-Focus-AI/prompt-library I get an error that it fails to load prompts. It doesn’t seem to be looking at the directory structure or the md files</p>
+</blockquote>
+<p>And it is able to update the PR, so big win over Jules.</p>
+<p>Updated the branch, pulled it down</p>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="1384" height="1736" src="/_astro/codex_1._N1QJTCQ_Z1hf2bQ.png" >
+We were able to read the prompts, though it didn’t get copy and paste setup correct.</p>
+<h2 id="cursor-background-agent-1">Cursor Background Agent</h2>
+<p>This is slightly cheating since I can’t (afaik) get this going on the phone, but it’s very cool.</p>
+<p>Once it was done, I checked it out locally and this is what it showed me:
+<img  loading="lazy" decoding="async" fetchpriority="auto" width="1382" height="1564" src="/_astro/cursor_1.NGd-A6o-_ZtBHs9.png" >
+Only problem was, it doesn’t handle clicking on the directory.</p>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="1382" height="1564" src="/_astro/cursor_2.Byk3AjCZ_ZjAB1Q.png" >
+I went back to Cursor and reopened the agent.  I say “when I click on a directory, it shows me this” and attached the above screenshot.  And off it went.</p>
+<p>Final view:</p>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="1418" height="1598" src="/_astro/cursor_3.s4DhNHwd_Z1jpNxV.png" ></p>
+<h1 id="winner">Winner</h1>
+<p><strong>Cursor Background Agent</strong>.  Jules and Codex aren’t there yet, but they are close.</p>
+<p>Being able to fire these things off and close the computer is a big win — there is something in the agent’s code that makes it push forward more on it’s own, that’s different than the <a href="https://thefocus.ai/posts/agentic-yolo-with-warp-cursor-and-claude/">Agentic YOLOing</a> we looked at way back in Mar 2025, a mere 3 months in normal time but a full generation in AI-time.</p> <nav class="adjacent" data-astro-cid-qxcpqxea> <a class="adjacent-link" href="/thoughts/dagger/" data-astro-cid-qxcpqxea> <span class="mono-label" data-astro-cid-qxcpqxea>Older</span> <span data-astro-cid-qxcpqxea>Dagger</span> </a> <a class="adjacent-link adjacent-link--next" href="/thoughts/june-2025-coding-agents-report/" data-astro-cid-qxcpqxea> <span class="mono-label" data-astro-cid-qxcpqxea>Newer</span> <span data-astro-cid-qxcpqxea>June 2025 Coding Agent Report</span> </a> </nav> </div> </div> </article>  </main> <footer class="site-footer"> <div class="site-footer-inner"> <span>Published by <a href="https://thefocus.ai">TheFocus.AI</a></span> <span> <a href="https://courses.thefocus.ai">Courses</a>
+·
+<a href="https://standards.thefocus.ai">Standards</a>
+·
+<a href="https://github.com/The-Focus-AI/labs">Source</a> </span> </div> </footer> <div id="newsletter-popup" class="np-root" hidden data-astro-cid-7ixr6fiy> <div class="np-backdrop" id="np-backdrop" data-astro-cid-7ixr6fiy></div> <div class="np-modal-wrap" data-astro-cid-7ixr6fiy> <div class="np-modal" role="dialog" aria-modal="true" aria-labelledby="np-heading" data-astro-cid-7ixr6fiy> <button id="np-close" class="np-close" aria-label="Close" data-astro-cid-7ixr6fiy>×</button> <div class="np-eyebrow" data-astro-cid-7ixr6fiy>Don't miss out</div> <h3 id="np-heading" class="np-heading" data-astro-cid-7ixr6fiy>Stay ahead of the curve.</h3> <p class="np-blurb" data-astro-cid-7ixr6fiy>
+Field reports from AI engineering — what's shipping, what's
+        breaking, what's about to change. One email per issue.
+</p> <form action="https://buttondown.com/api/emails/embed-subscribe/thefocusai" method="post" class="np-form" data-astro-cid-7ixr6fiy> <input type="email" name="email" id="np-email" required placeholder="you@domain.com" class="np-input" data-astro-cid-7ixr6fiy> <button type="submit" class="np-button" data-astro-cid-7ixr6fiy>Subscribe →</button> </form> <button id="np-dismiss" class="np-dismiss" data-astro-cid-7ixr6fiy>No thanks, I'll pass</button> </div> </div> </div>  <script>
+  (function () {
+    const KEY = 'focus_newsletter_dismissed';
+    if (typeof window === 'undefined') return;
+
+    function init() {
+      const root = document.getElementById('newsletter-popup');
+      const closeBtn = document.getElementById('np-close');
+      const dismissBtn = document.getElementById('np-dismiss');
+      const backdrop = document.getElementById('np-backdrop');
+      if (!root) return;
+      if (localStorage.getItem(KEY)) return;
+
+      function show() {
+        root.hidden = false;
+        document.body.style.overflow = 'hidden';
+      }
+      function hide(persist) {
+        root.hidden = true;
+        document.body.style.overflow = '';
+        if (persist) {
+          try { localStorage.setItem(KEY, 'true'); } catch (_) {}
+        }
+      }
+
+      const t = setTimeout(show, 30000);
+
+      closeBtn && closeBtn.addEventListener('click', () => hide(true));
+      dismissBtn && dismissBtn.addEventListener('click', () => hide(true));
+      backdrop && backdrop.addEventListener('click', () => hide(false));
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !root.hidden) hide(false);
+      });
+      window.addEventListener('beforeunload', () => clearTimeout(t));
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script> </body></html>  

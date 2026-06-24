@@ -1,0 +1,264 @@
+<!DOCTYPE html><html lang="en" data-theme="ledger"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Astro v5.18.2"><meta name="description" content="The real power of Claude Code isn't writing software—it's orchestrating skills for research, newsletters, browser automation, and turning one-off requests into repeatable workflows."><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;900&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet"><title>Claude Code, not Code · TheFocus.AI Labs</title><link rel="stylesheet" href="/_astro/_slug_.CZnP_JuE.css">
+<style>.article-page[data-astro-cid-zm77yjld]{padding:var(--section-y) 0 4rem}.article-shell[data-astro-cid-zm77yjld]{max-width:720px;margin:0 auto;padding:0 var(--gutter)}.article-back[data-astro-cid-zm77yjld]{display:inline-block;margin-bottom:1.5rem;text-decoration:none;color:var(--signal)}.article-back[data-astro-cid-zm77yjld]:hover{color:var(--text-strong)}.article-header[data-astro-cid-zm77yjld]{margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}.article-title[data-astro-cid-zm77yjld]{font-size:clamp(2rem,5vw,2.75rem);font-weight:600;line-height:1.1;letter-spacing:-.03em;color:var(--text-strong);margin:.75rem 0 1rem}.article-lead[data-astro-cid-zm77yjld]{font-size:20px;line-height:1.5;color:var(--text-2);margin:0}.article-meta[data-astro-cid-zm77yjld]{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;margin-top:1.25rem}.article-tags[data-astro-cid-zm77yjld]{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;margin:0;padding:0}.article-hero[data-astro-cid-zm77yjld]{margin:0 0 2rem;border:1px solid var(--border);background:var(--surface)}.article-hero[data-astro-cid-zm77yjld] img[data-astro-cid-zm77yjld]{display:block;width:100%;height:auto}.article-prose[data-astro-cid-zm77yjld] h2{font-size:1.5rem;font-weight:600;margin:2.5rem 0 1rem;color:var(--text-strong)}.article-prose[data-astro-cid-zm77yjld] h3{font-size:1.15rem;font-weight:600;margin:2rem 0 .75rem;color:var(--text-strong)}.article-prose[data-astro-cid-zm77yjld] p,.article-prose[data-astro-cid-zm77yjld] li{font-size:15px;line-height:1.6;color:var(--text)}.article-prose[data-astro-cid-zm77yjld] a{color:var(--text-strong);text-decoration:underline;text-underline-offset:3px}.article-prose[data-astro-cid-zm77yjld] a:hover{color:var(--signal)}.article-prose[data-astro-cid-zm77yjld] pre{background:var(--surface);border:1px solid var(--border);padding:1rem;overflow-x:auto;font-family:var(--font-mono);font-size:13px;line-height:1.5}.article-prose[data-astro-cid-zm77yjld] code{font-family:var(--font-mono);font-size:.9em}.article-prose[data-astro-cid-zm77yjld] blockquote{margin:1.5rem 0;padding-left:1rem;border-left:2px solid var(--signal);color:var(--text-2)}.article-prose[data-astro-cid-zm77yjld] img{max-width:100%;height:auto;border:1px solid var(--border)}.article-prose[data-astro-cid-zm77yjld] table{width:100%;border-collapse:collapse;font-size:14px;margin:1.5rem 0;border:1px solid var(--border)}.article-prose[data-astro-cid-zm77yjld] th,.article-prose[data-astro-cid-zm77yjld] td{border:1px solid var(--border);padding:.5rem .75rem;text-align:left}.article-prose[data-astro-cid-zm77yjld] th{background:var(--surface);color:var(--text-strong);font-family:var(--font-mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+.adjacent[data-astro-cid-qxcpqxea]{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)}.adjacent-link[data-astro-cid-qxcpqxea]{display:flex;flex-direction:column;gap:.35rem;text-decoration:none;color:var(--text);padding:1rem;border:1px solid var(--border);background:var(--surface)}.adjacent-link--next[data-astro-cid-qxcpqxea]{text-align:right}.adjacent-link[data-astro-cid-qxcpqxea]:hover{color:var(--text-strong);background:color-mix(in srgb,var(--surface) 90%,white)}@media(max-width:640px){.adjacent[data-astro-cid-qxcpqxea]{grid-template-columns:1fr}.adjacent-link--next[data-astro-cid-qxcpqxea]{text-align:left}}
+.np-root[data-astro-cid-7ixr6fiy]{position:fixed;inset:0;z-index:100}.np-root[data-astro-cid-7ixr6fiy][hidden]{display:none}.np-backdrop[data-astro-cid-7ixr6fiy]{position:absolute;inset:0;background:#141310b3;backdrop-filter:blur(4px)}.np-modal-wrap[data-astro-cid-7ixr6fiy]{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:1rem}.np-modal[data-astro-cid-7ixr6fiy]{position:relative;background:var(--paper);border:4px solid var(--void);box-shadow:8px 8px 0 0 var(--void);max-width:460px;width:100%;padding:2.5rem 2rem 2rem;text-align:center;animation:np-pop .2s cubic-bezier(.22,1,.36,1)}@keyframes np-pop{0%{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.np-close[data-astro-cid-7ixr6fiy]{position:absolute;top:.5rem;right:.75rem;background:none;border:0;font-size:28px;line-height:1;color:var(--void);cursor:pointer;padding:.25rem .5rem;transition:color .15s ease}.np-close[data-astro-cid-7ixr6fiy]:hover{color:var(--alert-red)}.np-eyebrow[data-astro-cid-7ixr6fiy]{font-family:var(--mono, "Courier Prime", monospace);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#1a1a1a8c;margin-bottom:.75rem}.np-heading[data-astro-cid-7ixr6fiy]{font-family:Inter,system-ui,sans-serif;font-weight:900;font-size:1.75rem;line-height:1.05;letter-spacing:-.02em;margin:0 0 .75rem;color:var(--void);text-transform:none}.np-blurb[data-astro-cid-7ixr6fiy]{font-size:14px;line-height:1.5;color:#1a1a1ab3;margin:0 0 1.5rem}.np-form[data-astro-cid-7ixr6fiy]{display:flex;flex-direction:column;gap:.5rem}.np-input[data-astro-cid-7ixr6fiy]{font-family:inherit;font-size:15px;padding:.75rem 1rem;border:1px solid var(--void);background:#fff;border-radius:0;color:var(--void)}.np-input[data-astro-cid-7ixr6fiy]:focus{outline:2px solid var(--rand-blue, #0055aa);outline-offset:1px}.np-button[data-astro-cid-7ixr6fiy]{font-family:var(--mono, "Courier Prime", monospace);font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.85rem 1.5rem;background:var(--void);color:var(--paper);border:1px solid var(--void);cursor:pointer;transition:background .15s ease,border-color .15s ease}.np-button[data-astro-cid-7ixr6fiy]:hover{background:var(--rand-blue, #0055aa);border-color:var(--rand-blue, #0055aa)}.np-dismiss[data-astro-cid-7ixr6fiy]{margin-top:1rem;background:none;border:0;font-family:var(--mono, "Courier Prime", monospace);font-size:11px;letter-spacing:.12em;color:#1a1a1a73;cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:.5rem}.np-dismiss[data-astro-cid-7ixr6fiy]:hover{color:var(--void)}@media print{.np-root[data-astro-cid-7ixr6fiy]{display:none!important}}
+</style></head> <body> <header class="site-header"> <div class="site-header-inner"> <a href="/" class="wordmark" aria-label="TheFocus.AI Labs">  <span class="wordmark-glyph" aria-hidden="true"></span> <span class="wordmark-text">TheFocus</span> <span class="wordmark-sub">Labs</span>  </a> <nav class="site-nav" aria-label="Primary">  <a href="/thoughts/">Thoughts</a> <a href="/reports/">Reports</a> <a href="/recipes/">Recipes</a> <a href="/issues/">Issues</a>  </nav> </div> </header> <main>  <article class="article-page" data-astro-cid-zm77yjld> <div class="article-shell" data-astro-cid-zm77yjld> <header class="article-header" data-astro-cid-zm77yjld> <a class="article-back mono-label" href="/thoughts/" data-astro-cid-zm77yjld>← Thoughts</a> <p class="section-label" data-astro-cid-zm77yjld>Thoughts</p> <h1 class="article-title" data-astro-cid-zm77yjld>Claude Code, not Code</h1> <p class="article-lead" data-astro-cid-zm77yjld>The real power of Claude Code isn&#39;t writing software—it&#39;s orchestrating skills for research, newsletters, browser automation, and turning one-off requests into repeatable workflows.</p> <div class="article-meta" data-astro-cid-zm77yjld> <time class="mono-label" data-astro-cid-zm77yjld>January 14, 2026</time> <ul class="article-tags" data-astro-cid-zm77yjld> <li class="mono-label" data-astro-cid-zm77yjld>essay</li><li class="mono-label" data-astro-cid-zm77yjld>agents</li><li class="mono-label" data-astro-cid-zm77yjld>workflow</li><li class="mono-label" data-astro-cid-zm77yjld>process</li> </ul> </div> </header> <figure class="article-hero" data-astro-cid-zm77yjld> <img src="/_astro/claude-code-not-code.BBUqDLHJ.png" alt="" loading="eager" data-astro-cid-zm77yjld> </figure> <div class="article-prose" data-astro-cid-zm77yjld>  <p>Here’s what I’ve used Claude Code for this month:</p>
+<ul>
+<li>Pulled down emails and extracted key information from them</li>
+<li>Researched candidates for a job posting, ranked them, drafted personalized follow-up emails</li>
+<li>Built a grocery list from a meal plan, compared prices across stores, added items to cart and scheduled delivery</li>
+<li>Feeding it scopes and invoices and then pointed it at source repos to see what our progress is</li>
+<li>Generated daily infographics for social media with my health stats</li>
+<li>Wrote and scheduled newsletters based on research reports</li>
+<li>Extracted bloodwork data from a web app that wouldn’t export</li>
+<li>Planned a 5-hour meal prep session across two ovens, a slow cooker, and an air fryer</li>
+</ul>
+<p>None of that is coding, I asked for what I wanted and it made it happen.  In the past I would either a) not do it, b) do these things manually and poorly or c) wrote an annoying little script to do it.  And it’s possible that Claude actually <em>wrote</em> some code along the way—a bash script here, some JSON there—but I don’t know and I don’t care. I described what I wanted in plain English and Claude figured out how to make it happen.</p>
+<p>It’s called Claude Code. I use it for everything except code.</p>
+<h2 id="the-core-pattern-conversation--repeatable-workflow">The Core Pattern: Conversation → Repeatable Workflow</h2>
+<p>The magic happens when you turn ad-hoc requests into documented workflows.  You can store this in CLAUDE.md (which every session gets access to) or another file that you reference, like review-applications.md.  I was fasting, and I wanted something to bring in all my information in one place so I could track it.  This is how it happened:</p>
+<p>Here’s the loop:</p>
+<ol>
+<li><strong>Ask Claude to do something once</strong> - “Get me my Oura sleep data”</li>
+<li><strong>It figures out how</strong> - Writes a script, calls an API, whatever</li>
+<li><strong>Ask it to make that repeatable</strong> - “Now add instructions to CLAUDE.md so you can do this every morning when I give you my weight”</li>
+</ol>
+<p>By the end of my fast, CLAUDE.md was 300+ lines of structured instructions:</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#6CB6FF;font-weight:bold"># Fasting Tracker - Claude Instructions</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6CB6FF;font-weight:bold">## Daily Update Workflow</span></span>
+<span class="line"><span style="color:#ADBAC7">When the user provides their morning weight (e.g., "my weight is 90.7"):</span></span>
+<span class="line"><span style="color:#F69D50">1.</span><span style="color:#ADBAC7"> Run </span><span style="color:#6CB6FF">`./track.sh`</span><span style="color:#ADBAC7"> to sync Oura data</span></span>
+<span class="line"><span style="color:#F69D50">2.</span><span style="color:#ADBAC7"> Update weight in data.json</span></span>
+<span class="line"><span style="color:#F69D50">3.</span><span style="color:#ADBAC7"> Add daily log entry</span></span>
+<span class="line"><span style="color:#F69D50">4.</span><span style="color:#ADBAC7"> Generate infographic for social media</span></span></code></pre>
+<p>Each morning I’d say “my weight is 90.7” and Claude knew exactly what to do. No re-explaining. The project had taught Claude how to work on it.</p>
+<p>And “Get me my Oura sleep data”?  That went off and searched the web, figured out how to call the api, gave me instructions on how to setup the oura access token, and boom just did it.  (I did end up asking it to make changes to that script over time, but you get the idea.)</p>
+<p><strong>The key insight</strong>: Don’t just ask Claude to do things. Ask it to document how it did them so it can do them again.</p>
+<h2 id="the-skills-ecosystem">The Skills Ecosystem</h2>
+<p>Claude Code becomes powerful when you add skills—plugins that extend what it can do. Here’s the stack I use for non-coding work:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Skill</th><th>What it does</th></tr></thead><tbody><tr><td><strong>tech-researcher</strong></td><td>Web research with 10+ sources, produces academic-style reports with citations</td></tr><tr><td><strong>nano-banana</strong></td><td>Image and video generation via Google Gemini</td></tr><tr><td><strong>chrome-driver</strong></td><td>Browser automation with session isolation</td></tr><tr><td><strong>focus-ai-brand</strong></td><td>Applies consistent brand guidelines to any output</td></tr><tr><td><strong>buttondown-skill</strong></td><td>Newsletter drafts, scheduling, and analytics</td></tr><tr><td><strong>gmail-skill</strong></td><td>Reading and sending emails, scheduling calendar events</td></tr></tbody></table>
+<p>These skills talk to each other. Research produces a report → the report feeds an infographic prompt → nano-banana generates the image → focus-ai-brand ensures it matches your visual identity. Or: research a topic → draft a newsletter about it → schedule it for Friday.</p>
+<p>Installing skills is just pointing Claude at a GitHub repo. No package managers, no npm—it figures out the structure and loads what it needs.</p>
+<p>These are all available at <a href="https://github.com/The-Focus-AI/claude-marketplace">https://github.com/The-Focus-AI/claude-marketplace</a></p>
+<h2 id="research--reports--infographics">Research → Reports → Infographics</h2>
+<p>I wanted reference materials about what happens during extended fasting—the metabolic phases, mental changes, refeeding protocols. The research skill produced three outputs:</p>
+<ol>
+<li><strong>Research report</strong> - A markdown document with findings and source citations</li>
+<li><strong>Structured summary</strong> - Key points organized for reference</li>
+<li><strong>Infographic prompt</strong> - A detailed prompt for image generation</li>
+</ol>
+<p>The research report is the part people miss. When Claude does web research, it can produce a proper report with references:</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#6CB6FF;font-weight:bold">## Metabolic Phases of Extended Fasting</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6CB6FF;font-weight:bold">### Glycogen Depletion (Days 1-2)</span></span>
+<span class="line"><span style="color:#ADBAC7">The body first depletes liver glycogen stores, typically exhausted</span></span>
+<span class="line"><span style="color:#ADBAC7">within 24-48 hours [</span><span style="color:#96D0FF">1</span><span style="color:#ADBAC7">]. Blood glucose drops, triggering gluconeogenesis.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6CB6FF;font-weight:bold">### Ketosis (Days 2-4)</span></span>
+<span class="line"><span style="color:#ADBAC7">Ketone bodies (beta-hydroxybutyrate, acetoacetate) become the primary</span></span>
+<span class="line"><span style="color:#ADBAC7">fuel source for the brain [</span><span style="color:#96D0FF">2</span><span style="color:#ADBAC7">]. Many report mental clarity during this phase.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADBAC7">...</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6CB6FF;font-weight:bold">## References</span></span>
+<span class="line"><span style="color:#ADBAC7">[</span><span style="color:#96D0FF">1</span><span style="color:#ADBAC7">] Cahill GF Jr. "Fuel metabolism in starvation." Annu Rev Nutr. 2006</span></span>
+<span class="line"><span style="color:#ADBAC7">[</span><span style="color:#96D0FF">2</span><span style="color:#ADBAC7">] Owen OE, et al. "Brain metabolism during fasting." J Clin Invest. 1967</span></span></code></pre>
+<p>Then Claude synthesizes this into an infographic prompt and uses image generation (I use nano-banana, which wraps Gemini) to create the visual. The research backs up what’s in the image.</p>
+<p>I ended up with a library of reference infographics—metabolic changes day by day, mental/emotional journey, the fast-refeed-fast cycle protocol, a 7-day refeeding meal plan. These are evergreen reference materials. Here’s one about refeeding:</p>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="1376" height="768" src="/_astro/refeeding-recovery-infographic.Bagi0zmC_2sqRrW.png" ></p>
+<p><strong>Style guidance matters.</strong> Without explicit instructions like “NO neon colors, NO glowing effects,” AI image generators default to garish tech-startup aesthetics. My template prompt:</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Create a 16:9 landscape infographic for Day {N} of a 10-day water fast.</span></span>
+<span class="line"><span>Use Edward Tufte-inspired design: cream/off-white background, black text,</span></span>
+<span class="line"><span>thin hairline rules, serif font (Times/Georgia style), NO neon colors,</span></span>
+<span class="line"><span>NO glowing effects, NO gradients. Scientific paper figure aesthetic.</span></span></code></pre>
+<p>Specifying “Edward Tufte-inspired” and “scientific paper figure” got clean, readable results. I also generated daily infographics with my actual stats—each morning: update weight → sync data → generate infographic. Ten days, ten infographics documenting the journey.</p>
+<h2 id="researching-people-and-hiring">Researching People and Hiring</h2>
+<p>Before a sales call, meeting, or evaluating a job candidate, I have Claude research the person:</p>
+<blockquote>
+<p>Research [Name] at [Company]. What’s their background? What has the company announced recently? What might they care about?</p>
+</blockquote>
+<p>The research skill goes deep—LinkedIn, press releases, blog posts, podcast appearances, conference talks. It produces a briefing doc with career trajectory, recent news, topics they’ve written about, potential conversation hooks, and source links for everything.</p>
+<p>For developers, it goes to GitHub and actually pulls down the code. One example: I was hiring for a front-end developer role, and Claude said a candidate wasn’t a good fit even though on first glance it made sense. I said “are you sure?” and it responded that even though the repositories looked front-end heavy, if you actually looked at the code it turned out the person was more of a Python ML developer and most of the front end was just Streamlit. Probably not a good fit for this role.</p>
+<p>That research pattern scales to sales calls, hiring, understanding competitors—any situation where you need to quickly understand a person or organization.</p>
+<p><strong>The full hiring pipeline:</strong></p>
+<p>I’m just throwing everything at Claude by the way, and seeing what works. Frankly quite a lot of it does. For a recent project hire, Claude handled most of the process:</p>
+<ol>
+<li>
+<p><strong>Job description</strong> - Claude looked at the SOW to understand the project scope, then read through the git repo—code patterns, open issues, tech stack. From that, it figured out what skills we actually needed (not just what I thought we needed) and wrote the job description.</p>
+</li>
+<li>
+<p><strong>Candidate evaluation</strong> - When applications came in, I’d drop the candidate’s email into Claude. It researches them, looks at their actual code, and ranks them against the job requirements with specific reasoning.</p>
+</li>
+<li>
+<p><strong>Follow-up emails</strong> - Based on the evaluation, Claude drafts the appropriate response: strong fit gets a call scheduled with specific things from their background mentioned, maybes get requests for more information, and rejections get polite declines with genuine reasons.</p>
+</li>
+</ol>
+<p>I review and send, but the drafts are usually 90% there. The personalization is real because it’s based on actual research, not templates.</p>
+<p>The whole pipeline: SOW → code analysis → job description → candidate research → ranking → personalized emails. Claude orchestrates all of it, and I make the final calls.</p>
+<h2 id="sending-newsletters">Sending Newsletters</h2>
+<p>The buttondown-skill connects Claude to my newsletter platform. The workflow:</p>
+<ol>
+<li><strong>Draft from research</strong> - “Write a newsletter about [topic], based on what we learned from that research report”</li>
+<li><strong>Review in Claude</strong> - Edit the draft conversationally (“make the intro punchier”, “add a section about X”)</li>
+<li><strong>Then hand rewrite everything because “its not this it’s that”</strong></li>
+<li><strong>Schedule</strong> - “Schedule this for Friday at 9am”</li>
+</ol>
+<p>I can also ask “show me analytics for the last 5 newsletters” and get open rates, click patterns, what’s resonating.</p>
+<p>The key is the handoff between skills. Research produces the content. The brand skill ensures consistent voice and formatting. Buttondown handles delivery. Claude orchestrates all of it.</p>
+<h2 id="extracting-data-from-hostile-sources">Extracting Data from Hostile Sources</h2>
+<p>I had bloodwork results from Function Health, but they were locked in a complex React web app with no export option. Classic.</p>
+<p>The trick: “Save Page As” in Chrome. This creates a massive HTML file (mine was 696KB) with all the embedded JavaScript and CSS. It’s a mess, but all the data is in there somewhere.</p>
+<p>Claude read through the garbage and extracted what mattered:</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#6CB6FF;font-weight:bold">## Areas of Concern</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADBAC7">| Marker | Value | Status | Notes |</span></span>
+<span class="line"><span style="color:#ADBAC7">|--------|-------|--------|-------|</span></span>
+<span class="line"><span style="color:#ADBAC7">| Apolipoprotein B (ApoB) | 153 mg/dL | </span><span style="color:#ADBAC7;font-weight:bold">**Above Range**</span><span style="color:#ADBAC7"> | Cardiovascular risk |</span></span>
+<span class="line"><span style="color:#ADBAC7">| LDL Cholesterol | 188 mg/dL | </span><span style="color:#ADBAC7;font-weight:bold">**Above Range**</span><span style="color:#ADBAC7"> | |</span></span>
+<span class="line"><span style="color:#ADBAC7">| Triglycerides | 157 mg/dL | </span><span style="color:#ADBAC7;font-weight:bold">**Above Range**</span><span style="color:#ADBAC7"> | |</span></span>
+<span class="line"><span style="color:#ADBAC7">| Glucose (fasting) | 102 mg/dL | </span><span style="color:#ADBAC7;font-weight:bold">**Above Range**</span><span style="color:#ADBAC7"> | Borderline pre-diabetic |</span></span></code></pre>
+<p>This connected my fasting goals to actual health markers. Visceral fat reduction should improve these metabolic numbers. Now I have clean data I can track over time.</p>
+<p>This pattern works for any app that won’t export: health dashboards, financial statements, analytics tools. Save the page — or even screenshot — and let Claude extract the structure.</p>
+<h2 id="meal-planning-as-workflow-orchestration">Meal Planning as Workflow Orchestration</h2>
+<p>Breaking a fast requires careful refeeding. Claude helped design a 7-day meal plan, but the interesting part was the <strong>cooking system</strong>.</p>
+<p>I have two ovens, a slow cooker, an air fryer, and limited time. Claude created a time-boxed Sunday meal prep workflow:</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#ADBAC7">{</span></span>
+<span class="line"><span style="color:#8DDB8C">  "overview"</span><span style="color:#ADBAC7">: {</span></span>
+<span class="line"><span style="color:#8DDB8C">    "total_time"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"4.75 hours (12:00pm - 4:45pm)"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#8DDB8C">    "equipment"</span><span style="color:#ADBAC7">: {</span></span>
+<span class="line"><span style="color:#8DDB8C">      "oven1"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"Pork braise at 300°F"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#8DDB8C">      "oven2"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"Chicken, then vegetables at 400°F"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#8DDB8C">      "slow_cooker"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"Beef stew on HIGH"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#8DDB8C">      "air_fryer"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"Bacon"</span></span>
+<span class="line"><span style="color:#ADBAC7">    }</span></span>
+<span class="line"><span style="color:#ADBAC7">  },</span></span>
+<span class="line"><span style="color:#8DDB8C">  "steps"</span><span style="color:#ADBAC7">: [</span></span>
+<span class="line"><span style="color:#ADBAC7">    {</span></span>
+<span class="line"><span style="color:#8DDB8C">      "time"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"12:00"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#8DDB8C">      "title"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"START - Big Proteins Go In"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#8DDB8C">      "do"</span><span style="color:#ADBAC7">: [</span><span style="color:#96D0FF">"Preheat OVEN #1 to 300°F"</span><span style="color:#ADBAC7">, </span><span style="color:#96D0FF">"Season pork, into dutch oven"</span><span style="color:#ADBAC7">, </span><span style="color:#96D0FF">"Beef into slow cooker"</span><span style="color:#ADBAC7">],</span></span>
+<span class="line"><span style="color:#8DDB8C">      "status_after"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"Pork braising, Beef cooking, Chicken prepped"</span></span>
+<span class="line"><span style="color:#ADBAC7">    }</span></span>
+<span class="line"><span style="color:#ADBAC7">  ]</span></span>
+<span class="line"><span style="color:#ADBAC7">}</span></span></code></pre>
+<p>Every 15-30 minutes there’s a step. It tells you exactly which appliance to use and what should be running. The result: 5 proteins and all sides prepped in under 5 hours.</p>
+<p>This isn’t code—it’s orchestration documentation. Claude turns “I need to meal prep for the week” into a time-boxed workflow you can actually execute.</p>
+<h2 id="browser-automation-with-session-isolation">Browser Automation with Session Isolation</h2>
+<p>I was going to try one of these AI browsers and it asks me to log into email and whatever else and I’m like “NO WAY” and I deleted it.  Maybe they are great but I don’t trust these things at all.  But writing <a href="https://github.com/The-Focus-AI/chrome-driver">chrome-driver</a> I realized that it’s fairly easy to specify a different context for each of the sessions, so that you can limit access to just the specific service you are interested in.  In other words: sandboxing.</p>
+<p>The chrome-driver plugin lets Claude control a browser. The security pattern:</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#ADBAC7">--user-data</span><span style="color:#F47067">=</span><span style="color:#96D0FF">/Users/me/.chrome-instacart</span></span></code></pre>
+<p>Each service gets its own cookie universe. Claude can log into Instacart and manage my cart, but it has NO access to my main Chrome profile—no banking, no email, nothing.</p>
+<p>I had Claude build two grocery carts at different stores from my meal plan. Market 32: $317. Stop &#x26; Shop: $361. Same olive oil was $46 at one store, $10 at the other. Claude spotted it and swapped.</p>
+<p>The session persists between runs (stays logged in), and you can watch what it’s doing (<code>--no-headless</code>). It’s browser automation without the security nightmare.</p>
+<h2 id="the-meta-pattern">The Meta-Pattern</h2>
+<p>The most powerful insight isn’t any single feature. It’s that <strong>every discovery gets documented back into the system</strong>.</p>
+<ul>
+<li>Learned how to sync Oura data? It goes in CLAUDE.md</li>
+<li>Figured out Instacart’s button patterns? Document them</li>
+<li>Found a good infographic style? Save the template prompt</li>
+</ul>
+<p>Future sessions inherit all previous learnings. The project teaches Claude how to work on it.</p>
+<h2 id="when-this-works">When This Works</h2>
+<ul>
+<li><strong>Research and briefings</strong> - People, companies, topics—with citations</li>
+<li><strong>Hiring pipelines</strong> - Job descriptions, candidate evaluation, follow-up emails</li>
+<li><strong>Content pipelines</strong> - Research → draft → newsletter → schedule</li>
+<li><strong>Personal dashboards</strong> - Health, finances, habits</li>
+<li><strong>Data extraction</strong> - Pulling structure from hostile web apps</li>
+<li><strong>Browser automation</strong> - Shopping, form filling, data entry</li>
+<li><strong>Workflow orchestration</strong> - Meal prep, project plans, schedules</li>
+</ul>
+<h2 id="when-it-doesnt">When It Doesn’t</h2>
+<ul>
+<li><strong>Real-time interaction</strong> - Claude works in request/response cycles</li>
+<li><strong>High-stakes decisions</strong> - Don’t automate financial transactions</li>
+<li><strong>100% reliability needs</strong> - Browser automation can be flaky</li>
+</ul>
+<h2 id="ai-in-the-computer">AI IN THE COMPUTER</h2>
+<p>Claude Code isn’t just for writing software. It’s for orchestrating capabilities.</p>
+<p>The fasting tracker started as “help me track my weight” and ended up with API integrations, research reports, infographics, meal planning, and automated grocery shopping. Each piece built on the last, with Claude remembering context and patterns across sessions.</p>
+<p>The skills make it modular. Need research? There’s a skill. Need images? There’s a skill. Need to send a newsletter or automate a browser? Skills. They compose together, and Claude figures out how to chain them.</p>
+<p>The conversation-to-workflow loop is the key. Don’t just ask Claude to do things. Ask it to teach itself how to do them again. And when you find yourself doing something repeatedly, there’s probably a skill for that—or you can build one.</p> <nav class="adjacent" data-astro-cid-qxcpqxea> <a class="adjacent-link" href="/thoughts/how-i-use-ai-jan-2026/" data-astro-cid-qxcpqxea> <span class="mono-label" data-astro-cid-qxcpqxea>Older</span> <span data-astro-cid-qxcpqxea>How I Use AI in Jan 2026</span> </a> <a class="adjacent-link adjacent-link--next" href="/thoughts/data-flywheel-pattern/" data-astro-cid-qxcpqxea> <span class="mono-label" data-astro-cid-qxcpqxea>Newer</span> <span data-astro-cid-qxcpqxea>The Data Flywheel Pattern</span> </a> </nav> </div> </div> </article>  </main> <footer class="site-footer"> <div class="site-footer-inner"> <span>Published by <a href="https://thefocus.ai">TheFocus.AI</a></span> <span> <a href="https://courses.thefocus.ai">Courses</a>
+·
+<a href="https://standards.thefocus.ai">Standards</a>
+·
+<a href="https://github.com/The-Focus-AI/labs">Source</a> </span> </div> </footer> <div id="newsletter-popup" class="np-root" hidden data-astro-cid-7ixr6fiy> <div class="np-backdrop" id="np-backdrop" data-astro-cid-7ixr6fiy></div> <div class="np-modal-wrap" data-astro-cid-7ixr6fiy> <div class="np-modal" role="dialog" aria-modal="true" aria-labelledby="np-heading" data-astro-cid-7ixr6fiy> <button id="np-close" class="np-close" aria-label="Close" data-astro-cid-7ixr6fiy>×</button> <div class="np-eyebrow" data-astro-cid-7ixr6fiy>Don't miss out</div> <h3 id="np-heading" class="np-heading" data-astro-cid-7ixr6fiy>Stay ahead of the curve.</h3> <p class="np-blurb" data-astro-cid-7ixr6fiy>
+Field reports from AI engineering — what's shipping, what's
+        breaking, what's about to change. One email per issue.
+</p> <form action="https://buttondown.com/api/emails/embed-subscribe/thefocusai" method="post" class="np-form" data-astro-cid-7ixr6fiy> <input type="email" name="email" id="np-email" required placeholder="you@domain.com" class="np-input" data-astro-cid-7ixr6fiy> <button type="submit" class="np-button" data-astro-cid-7ixr6fiy>Subscribe →</button> </form> <button id="np-dismiss" class="np-dismiss" data-astro-cid-7ixr6fiy>No thanks, I'll pass</button> </div> </div> </div>  <script>
+  (function () {
+    const KEY = 'focus_newsletter_dismissed';
+    if (typeof window === 'undefined') return;
+
+    function init() {
+      const root = document.getElementById('newsletter-popup');
+      const closeBtn = document.getElementById('np-close');
+      const dismissBtn = document.getElementById('np-dismiss');
+      const backdrop = document.getElementById('np-backdrop');
+      if (!root) return;
+      if (localStorage.getItem(KEY)) return;
+
+      function show() {
+        root.hidden = false;
+        document.body.style.overflow = 'hidden';
+      }
+      function hide(persist) {
+        root.hidden = true;
+        document.body.style.overflow = '';
+        if (persist) {
+          try { localStorage.setItem(KEY, 'true'); } catch (_) {}
+        }
+      }
+
+      const t = setTimeout(show, 30000);
+
+      closeBtn && closeBtn.addEventListener('click', () => hide(true));
+      dismissBtn && dismissBtn.addEventListener('click', () => hide(true));
+      backdrop && backdrop.addEventListener('click', () => hide(false));
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !root.hidden) hide(false);
+      });
+      window.addEventListener('beforeunload', () => clearTimeout(t));
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script> </body></html>  

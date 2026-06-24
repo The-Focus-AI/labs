@@ -1,0 +1,249 @@
+<!DOCTYPE html><html lang="en" data-theme="ledger"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Astro v5.18.2"><meta name="description" content="Build applications by dropping in data and letting AI handle parsing, structuring, and synthesis. Three case studies."><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;900&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet"><title>The Data Flywheel Pattern · TheFocus.AI Labs</title><link rel="stylesheet" href="/_astro/_slug_.CZnP_JuE.css">
+<style>.article-page[data-astro-cid-zm77yjld]{padding:var(--section-y) 0 4rem}.article-shell[data-astro-cid-zm77yjld]{max-width:720px;margin:0 auto;padding:0 var(--gutter)}.article-back[data-astro-cid-zm77yjld]{display:inline-block;margin-bottom:1.5rem;text-decoration:none;color:var(--signal)}.article-back[data-astro-cid-zm77yjld]:hover{color:var(--text-strong)}.article-header[data-astro-cid-zm77yjld]{margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}.article-title[data-astro-cid-zm77yjld]{font-size:clamp(2rem,5vw,2.75rem);font-weight:600;line-height:1.1;letter-spacing:-.03em;color:var(--text-strong);margin:.75rem 0 1rem}.article-lead[data-astro-cid-zm77yjld]{font-size:20px;line-height:1.5;color:var(--text-2);margin:0}.article-meta[data-astro-cid-zm77yjld]{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;margin-top:1.25rem}.article-tags[data-astro-cid-zm77yjld]{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;margin:0;padding:0}.article-hero[data-astro-cid-zm77yjld]{margin:0 0 2rem;border:1px solid var(--border);background:var(--surface)}.article-hero[data-astro-cid-zm77yjld] img[data-astro-cid-zm77yjld]{display:block;width:100%;height:auto}.article-prose[data-astro-cid-zm77yjld] h2{font-size:1.5rem;font-weight:600;margin:2.5rem 0 1rem;color:var(--text-strong)}.article-prose[data-astro-cid-zm77yjld] h3{font-size:1.15rem;font-weight:600;margin:2rem 0 .75rem;color:var(--text-strong)}.article-prose[data-astro-cid-zm77yjld] p,.article-prose[data-astro-cid-zm77yjld] li{font-size:15px;line-height:1.6;color:var(--text)}.article-prose[data-astro-cid-zm77yjld] a{color:var(--text-strong);text-decoration:underline;text-underline-offset:3px}.article-prose[data-astro-cid-zm77yjld] a:hover{color:var(--signal)}.article-prose[data-astro-cid-zm77yjld] pre{background:var(--surface);border:1px solid var(--border);padding:1rem;overflow-x:auto;font-family:var(--font-mono);font-size:13px;line-height:1.5}.article-prose[data-astro-cid-zm77yjld] code{font-family:var(--font-mono);font-size:.9em}.article-prose[data-astro-cid-zm77yjld] blockquote{margin:1.5rem 0;padding-left:1rem;border-left:2px solid var(--signal);color:var(--text-2)}.article-prose[data-astro-cid-zm77yjld] img{max-width:100%;height:auto;border:1px solid var(--border)}.article-prose[data-astro-cid-zm77yjld] table{width:100%;border-collapse:collapse;font-size:14px;margin:1.5rem 0;border:1px solid var(--border)}.article-prose[data-astro-cid-zm77yjld] th,.article-prose[data-astro-cid-zm77yjld] td{border:1px solid var(--border);padding:.5rem .75rem;text-align:left}.article-prose[data-astro-cid-zm77yjld] th{background:var(--surface);color:var(--text-strong);font-family:var(--font-mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+.adjacent[data-astro-cid-qxcpqxea]{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)}.adjacent-link[data-astro-cid-qxcpqxea]{display:flex;flex-direction:column;gap:.35rem;text-decoration:none;color:var(--text);padding:1rem;border:1px solid var(--border);background:var(--surface)}.adjacent-link--next[data-astro-cid-qxcpqxea]{text-align:right}.adjacent-link[data-astro-cid-qxcpqxea]:hover{color:var(--text-strong);background:color-mix(in srgb,var(--surface) 90%,white)}@media(max-width:640px){.adjacent[data-astro-cid-qxcpqxea]{grid-template-columns:1fr}.adjacent-link--next[data-astro-cid-qxcpqxea]{text-align:left}}
+.np-root[data-astro-cid-7ixr6fiy]{position:fixed;inset:0;z-index:100}.np-root[data-astro-cid-7ixr6fiy][hidden]{display:none}.np-backdrop[data-astro-cid-7ixr6fiy]{position:absolute;inset:0;background:#141310b3;backdrop-filter:blur(4px)}.np-modal-wrap[data-astro-cid-7ixr6fiy]{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:1rem}.np-modal[data-astro-cid-7ixr6fiy]{position:relative;background:var(--paper);border:4px solid var(--void);box-shadow:8px 8px 0 0 var(--void);max-width:460px;width:100%;padding:2.5rem 2rem 2rem;text-align:center;animation:np-pop .2s cubic-bezier(.22,1,.36,1)}@keyframes np-pop{0%{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.np-close[data-astro-cid-7ixr6fiy]{position:absolute;top:.5rem;right:.75rem;background:none;border:0;font-size:28px;line-height:1;color:var(--void);cursor:pointer;padding:.25rem .5rem;transition:color .15s ease}.np-close[data-astro-cid-7ixr6fiy]:hover{color:var(--alert-red)}.np-eyebrow[data-astro-cid-7ixr6fiy]{font-family:var(--mono, "Courier Prime", monospace);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#1a1a1a8c;margin-bottom:.75rem}.np-heading[data-astro-cid-7ixr6fiy]{font-family:Inter,system-ui,sans-serif;font-weight:900;font-size:1.75rem;line-height:1.05;letter-spacing:-.02em;margin:0 0 .75rem;color:var(--void);text-transform:none}.np-blurb[data-astro-cid-7ixr6fiy]{font-size:14px;line-height:1.5;color:#1a1a1ab3;margin:0 0 1.5rem}.np-form[data-astro-cid-7ixr6fiy]{display:flex;flex-direction:column;gap:.5rem}.np-input[data-astro-cid-7ixr6fiy]{font-family:inherit;font-size:15px;padding:.75rem 1rem;border:1px solid var(--void);background:#fff;border-radius:0;color:var(--void)}.np-input[data-astro-cid-7ixr6fiy]:focus{outline:2px solid var(--rand-blue, #0055aa);outline-offset:1px}.np-button[data-astro-cid-7ixr6fiy]{font-family:var(--mono, "Courier Prime", monospace);font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.85rem 1.5rem;background:var(--void);color:var(--paper);border:1px solid var(--void);cursor:pointer;transition:background .15s ease,border-color .15s ease}.np-button[data-astro-cid-7ixr6fiy]:hover{background:var(--rand-blue, #0055aa);border-color:var(--rand-blue, #0055aa)}.np-dismiss[data-astro-cid-7ixr6fiy]{margin-top:1rem;background:none;border:0;font-family:var(--mono, "Courier Prime", monospace);font-size:11px;letter-spacing:.12em;color:#1a1a1a73;cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:.5rem}.np-dismiss[data-astro-cid-7ixr6fiy]:hover{color:var(--void)}@media print{.np-root[data-astro-cid-7ixr6fiy]{display:none!important}}
+</style></head> <body> <header class="site-header"> <div class="site-header-inner"> <a href="/" class="wordmark" aria-label="TheFocus.AI Labs">  <span class="wordmark-glyph" aria-hidden="true"></span> <span class="wordmark-text">TheFocus</span> <span class="wordmark-sub">Labs</span>  </a> <nav class="site-nav" aria-label="Primary">  <a href="/thoughts/">Thoughts</a> <a href="/reports/">Reports</a> <a href="/recipes/">Recipes</a> <a href="/issues/">Issues</a>  </nav> </div> </header> <main>  <article class="article-page" data-astro-cid-zm77yjld> <div class="article-shell" data-astro-cid-zm77yjld> <header class="article-header" data-astro-cid-zm77yjld> <a class="article-back mono-label" href="/thoughts/" data-astro-cid-zm77yjld>← Thoughts</a> <p class="section-label" data-astro-cid-zm77yjld>Thoughts</p> <h1 class="article-title" data-astro-cid-zm77yjld>The Data Flywheel Pattern</h1> <p class="article-lead" data-astro-cid-zm77yjld>Build applications by dropping in data and letting AI handle parsing, structuring, and synthesis. Three case studies.</p> <div class="article-meta" data-astro-cid-zm77yjld> <time class="mono-label" data-astro-cid-zm77yjld>January 22, 2026</time> <ul class="article-tags" data-astro-cid-zm77yjld> <li class="mono-label" data-astro-cid-zm77yjld>essay</li><li class="mono-label" data-astro-cid-zm77yjld>agents</li><li class="mono-label" data-astro-cid-zm77yjld>workflow</li><li class="mono-label" data-astro-cid-zm77yjld>process</li> </ul> </div> </header> <figure class="article-hero" data-astro-cid-zm77yjld> <img src="/_astro/data-flywheel-pattern.C3_hXTH4.png" alt="" loading="eager" data-astro-cid-zm77yjld> </figure> <div class="article-prose" data-astro-cid-zm77yjld>  <p>Claude Code — and the others like Gemini CLI or Codex or Cursor — is way more than vibe-coding.  There’s a new style of application or systems that I’ve been building over the last few weeks, all using a similar, LLM at the heart of the flow, pattern.  One manages company operations, client projects, hiring pipelines, and invoices. One tracks a 11-day water fast (and the weeks after of refeeding) with body composition analysis and meal planning. One synthesizes content from Twitter, YouTube, and newsletters into weekly digests.</p>
+<p>They look nothing alike, but they work the same way: data flows in, gets processed by an organically grown set of prompts and skills, and flows out transformed. I’m calling it <strong>the data flywheel</strong>.</p>
+<p>The pattern: drop data into a folder. Let Claude parse it. Build views on top. The outputs become inputs for the next cycle.</p>
+<h2 id="the-operations-tracker">The Operations Tracker</h2>
+<p><img alt="The Operations Tracker" loading="lazy" decoding="async" fetchpriority="auto" width="1376" height="768" src="/_astro/data-flywheel-operations.Cn5B3qXP_Z8VlLg.png" ></p>
+<p>November 2025. I needed to track consulting projects across multiple clients, a hiring pipeline, and invoices. The first approach was simple: tell Claude “I need to track my consulting projects” and let it scaffold the structure.</p>
+<p>The result: 35 files organized into <code>projects/clients/</code>, <code>projects/labs/</code>, <code>hiring/</code>, with Claude Code commands to operate on them. No database. No API. Just markdown files and prompts.</p>
+<p>The first real automation was <code>/sync-with-github</code>. I explained to Claude what I was looking for, and it figured out how to do that with the tools that it has available — and the prompt it ended up with uses standard <code>gh</code> CLI tools—nothing custom:</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#ADBAC7">For each project with recent activity (pushed in last 14 days):</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADBAC7;font-weight:bold">**Spin up a sub-agent**</span><span style="color:#ADBAC7"> to:</span></span>
+<span class="line"><span style="color:#F69D50">1.</span><span style="color:#ADBAC7"> Fetch git commit messages:</span></span>
+<span class="line"><span style="color:#ADBAC7">   gh api repos/The-Focus-AI/{repo}/commits --jq '.[</span><span style="color:#96D0FF">0:20</span><span style="color:#ADBAC7">] | .[] | .commit.message'</span></span>
+<span class="line"><span style="color:#F69D50">2.</span><span style="color:#ADBAC7"> Summarize what changed, current status, any blockers</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADBAC7;font-weight:bold">**Store the analysis**</span><span style="color:#ADBAC7"> in the project's folder:</span></span>
+<span class="line"><span style="color:#F69D50">-</span><span style="color:#ADBAC7"> File name: </span><span style="color:#6CB6FF">`{YYYY}-W{week-number}.md`</span></span></code></pre>
+<p>Running <code>/sync-with-github</code> pulls commits from every repo in the organization, maps them to projects, and generates weekly reports. The Arcline client folder now has <code>2025-W46.md</code>, <code>2025-W49.md</code>, <code>2025-W52.md</code>, <code>2026-W02.md</code>, <code>2026-W03.md</code>—each auto-generated from actual git activity.</p>
+<p>Here’s what a weekly report looks like:</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#6CB6FF;font-weight:bold"># Arcline - Week 02 (Jan 6-10, 2026)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6CB6FF;font-weight:bold">## Activity Summary</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6CB6FF;font-weight:bold">### arcline-core (main branch) - 10 commits this week</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADBAC7;font-weight:bold">**Jan 10**</span></span>
+<span class="line"><span style="color:#F69D50">-</span><span style="color:#ADBAC7"> Add LLM prompt coverage tests (8 new tests, 42 gemini tests passing)</span></span>
+<span class="line"><span style="color:#F69D50">-</span><span style="color:#ADBAC7"> Add backfill enhancements with comprehensive error handling tests</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADBAC7;font-weight:bold">**Jan 9**</span></span>
+<span class="line"><span style="color:#F69D50">-</span><span style="color:#ADBAC7"> Add job heartbeat and staleness detection system</span></span>
+<span class="line"><span style="color:#F69D50">-</span><span style="color:#ADBAC7"> Fixed gaps in event pipeline</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6CB6FF;font-weight:bold">## Status</span></span>
+<span class="line"><span style="color:#ADBAC7;font-weight:bold">**Highly Active**</span><span style="color:#ADBAC7"> - Major infrastructure improvements in production.</span></span></code></pre>
+<p>That’s not written by hand. Claude reads the commits and synthesizes them.</p>
+<p>Then I started dropping in other data sources.</p>
+<p><strong>PDF scopes</strong>: Client contracts go in <code>scopes/</code>. I dropped in <code>Arcline 25_08_13.pdf</code>, <code>Vetted Network 25-06-16.pdf</code>, <code>Ridgeline Assessment.pdf</code>. Claude reads these and extracts architecture, phases, pricing, deliverables. The main project files get enriched automatically — including project milestones, invoice schedules, all of it.</p>
+<p><strong>Email applications</strong>: When I posted a junior developer job, I quickly got too many replies.  So I plugged in our custom <a href="https://github.com/The-Focus-AI/google-skill">google-skill</a> (more on that later) and let it pull down the EML files of the applications directory.  I dropped them into <code>hiring/applications/</code>. Claude reads each email, researches the candidate (LinkedIn, GitHub, portfolio), evaluates them against the requirements, and generates a structured assessment. 48 candidates processed this way. Each <code>.eml</code> becomes a <code>.md</code> with skills matrix, strengths, concerns, and a yes/no recommendation.</p>
+<p><strong>The dashboard</strong>: I realized I was running <code>/sync-with-github</code> and then manually checking files to understand status. So Claude built an aggregation layer. <code>README.md</code> became a dashboard—generated from all the underlying markdown files. The <code>/update-status</code> command regenerates it:</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#6CB6FF;font-weight:bold">### 1. Gather Data</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADBAC7">Read these files:</span></span>
+<span class="line"><span style="color:#F69D50">-</span><span style="color:#6CB6FF"> `invoices.md`</span><span style="color:#ADBAC7"> - Outstanding and paid invoices</span></span>
+<span class="line"><span style="color:#F69D50">-</span><span style="color:#6CB6FF"> `projects/clients/*.md`</span><span style="color:#ADBAC7"> - All client project files</span></span>
+<span class="line"><span style="color:#F69D50">-</span><span style="color:#6CB6FF"> `tasks.md`</span><span style="color:#ADBAC7"> - Current tasks</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADBAC7;font-weight:bold">**Weekly activity reports:**</span></span>
+<span class="line"><span style="color:#F69D50">-</span><span style="color:#6CB6FF"> `projects/clients/*/YYYY-W*.md`</span><span style="color:#ADBAC7"> - Most recent weekly report per client</span></span></code></pre>
+<p>Now when I open the repo, I see current status immediately—generated from underlying data.  Or I have it mailed to me each moring.</p>
+<p><strong>Adding Gmail</strong>: As needs grew, I added the <code>google-skill</code> plugin for email automation. <code>/email-status</code> sends a weekly digest with inline infographics. <code>/client-update</code> creates Gmail drafts for each client with branded HTML:</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F69D50">npx</span><span style="color:#96D0FF"> tsx</span><span style="color:#96D0FF"> scripts/gmail.ts</span><span style="color:#96D0FF"> draft</span><span style="color:#F47067"> \</span></span>
+<span class="line"><span style="color:#6CB6FF">  --to=</span><span style="color:#96D0FF">"{contact_email}"</span><span style="color:#F47067"> \</span></span>
+<span class="line"><span style="color:#6CB6FF">  --subject=</span><span style="color:#96D0FF">"{Client Name} Weekly Status - Week of {dates}"</span><span style="color:#F47067"> \</span></span>
+<span class="line"><span style="color:#6CB6FF">  --html=</span><span style="color:#96D0FF">"$(</span><span style="color:#F69D50">cat</span><span style="color:#96D0FF"> .claude/tmp/{client}-status-email.html)"</span></span></code></pre>
+<p>The trajectory: <strong>structure → import commands → dashboard aggregation → communication automation</strong>. By January there were 10 commands. The data flywheel: GitHub commits flow in, get synthesized into weekly reports, aggregate into dashboards, flow out as client emails.</p>
+<h2 id="the-fasting-tracker">The Fasting Tracker</h2>
+<p><img alt="The Fasting Tracker" loading="lazy" decoding="async" fetchpriority="auto" width="1376" height="768" src="/_astro/data-flywheel-fasting.CO3_ijKS_1EYNic.png" ></p>
+<p>January 3rd, 4:49 PM. I started a 11-day water fast and wanted to track it, look up various health related questions, and plan how to properly to a refeed. Different domain, same pattern—but this one shows what happens when Claude builds custom integrations.</p>
+<p>The first commit was just a README. Nine minutes later, the second commit added <code>track.sh</code>—a 424-line bash script that Claude wrote to pull from the Oura API. It authenticates via 1Password, hits six endpoints (sleep summary, sleep detail, readiness, activity, stress), and writes everything into <code>data.json</code>.</p>
+<p>18 minutes after that, there’s an HTML dashboard. By 6:11 PM—90 minutes from first commit—I had weight charts, Oura metrics as line graphs, a 10-day phase guide, and auto-refresh.</p>
+<p>The app grew by dropping in data:</p>
+<p><strong>DEXA scans</strong>: I dropped in body composition images. Claude extracted the data and highlighted visceral fat as the key metric to track.</p>
+<p><strong>Bloodwork</strong>: I dropped in HTML exports from Function Health. Claude parsed the mess and pulled out relevant markers.</p>
+<p><strong>Research</strong>: I wanted to understand what I’d done to my body. Claude produced four scientific reports with 15+ citations each—metabolic changes, mental journey, fast-refeed cycles, refeeding protocols. The reports cite Cahill, Owen, and actual studies:</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#6CB6FF;font-weight:bold"># The Science of Metabolic Changes During Extended Water Fasting</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADBAC7;font-style:italic">*Sources: 15+*</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6CB6FF;font-weight:bold">## Phase 1: Glycogen Depletion (Hours 0-24)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADBAC7">The infographic claims ~100g liver glycogen. Research confirms:</span></span>
+<span class="line"><span style="color:#ADBAC7">"Liver glycogen provides 700-900 calories of glucose or energy,</span></span>
+<span class="line"><span style="color:#ADBAC7">an amount that will last 10-14 hours in individuals who are</span></span>
+<span class="line"><span style="color:#ADBAC7">not exercising" [</span><span style="color:#96D0FF">1</span><span style="color:#ADBAC7">].</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6CB6FF;font-weight:bold">### Water Binding Ratio</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADBAC7">The claim of 3-4g water per gram glycogen is supported by the</span></span>
+<span class="line"><span style="color:#ADBAC7">classic Olsson &#x26; Saltin 1970 study: "Body weight increased 2.4 kg</span></span>
+<span class="line"><span style="color:#ADBAC7">during this period... **3-4 g of water is bound with each gram of</span></span>
+<span class="line"><span style="color:#ADBAC7">glycogen**" [</span><span style="color:#96D0FF">3</span><span style="color:#ADBAC7">].</span></span></code></pre>
+<p><img alt="Metabolic Changes During Extended Fasting" loading="lazy" decoding="async" fetchpriority="auto" width="1376" height="768" src="/_astro/metabolic-changes-infographic.CSBRl267_Z1rfmhD.png" ></p>
+<p><strong>Meal planning</strong>: The fast was ending. I dropped in my goals (90kg → 80kg by May, 1800 cal/day, 150g protein). Claude generated 27 recipes, shopping lists, and Sunday prep checklists. A single commit added 3,800 lines.</p>
+<p>By day 12: 5,544 lines of HTML across 5 pages, 10 research reports, 27 recipes, daily infographics, and a meal prep system that schedules two ovens, a slow cooker, and an air fryer.</p>
+<p>The trajectory: <strong>custom API integration → data visualization → research synthesis → action planning</strong>. Claude didn’t just orchestrate existing tools—it wrote the Oura integration, parsed proprietary formats, and generated cited research.</p>
+<h2 id="the-media-distill">The Media Distill</h2>
+<p><img alt="The Media Distill" loading="lazy" decoding="async" fetchpriority="auto" width="1376" height="768" src="/_astro/data-flywheel-media.DzXWmj4W_Z13zUPc.png" ></p>
+<p>The third system applies the pattern to content aggregation at scale. Multiple feeds—Twitter, YouTube, newsletters—each pulling from different sources, all converging on synthesized reports.</p>
+<p><strong>Twitter</strong> shows the model as intelligent rate limiter. The feed tracks two curated lists: AI Engineers (41 accounts) and AI Influencers (38 accounts). The interesting part isn’t the API calls—it’s how Claude handles constraints.</p>
+<p>Twitter’s API has aggressive rate limits. Rather than coding retry logic, the prompts make Claude the decision-maker:</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#6CB6FF;font-weight:bold">## Rate Limit Strategy</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F69D50">-</span><span style="color:#ADBAC7"> Run 4-5 parallel searches</span></span>
+<span class="line"><span style="color:#F69D50">-</span><span style="color:#ADBAC7"> Monitor remaining quota in responses</span></span>
+<span class="line"><span style="color:#F69D50">-</span><span style="color:#ADBAC7"> When limit drops below 10, pause and process what you have</span></span>
+<span class="line"><span style="color:#F69D50">-</span><span style="color:#ADBAC7"> Prioritize high-engagement tweets first to maximize value within limits</span></span></code></pre>
+<p>The model reads API responses, decides when to pause, what to prioritize, when to continue. Pagination isn’t a loop—it’s a conversation. The shell scripts handle saving; the intelligence is in the prompts.</p>
+<p>Analysis is also prompt-driven. <code>prompts/analyze-today.md</code> declares what to load and how to synthesize:</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#F69D50">1.</span><span style="color:#ADBAC7"> Load all tweet JSON files from </span><span style="color:#6CB6FF">`tweets/*/`</span><span style="color:#ADBAC7"> directories</span></span>
+<span class="line"><span style="color:#F69D50">2.</span><span style="color:#ADBAC7"> Load reply data from </span><span style="color:#6CB6FF">`tweets/{username}/{tweet_id}/replies.json`</span></span>
+<span class="line"><span style="color:#F69D50">3.</span><span style="color:#ADBAC7"> Filter to tweets with </span><span style="color:#6CB6FF">`created_at`</span><span style="color:#ADBAC7"> within the last 24 hours</span></span>
+<span class="line"><span style="color:#F69D50">4.</span><span style="color:#ADBAC7"> Cluster tweets into thematic groups</span></span>
+<span class="line"><span style="color:#F69D50">5.</span><span style="color:#ADBAC7"> Extract key points, debates, engagement metrics</span></span></code></pre>
+<p>The output: daily and weekly digests with clustered themes, quoted tweets, engagement metrics, and proper attribution.</p>
+<p><strong>YouTube</strong> uses <code>yt-dlp</code> to download transcripts without authentication. Each video becomes a markdown file with metadata and full transcript. Channel indexes aggregate everything. The model turns hours of video into scannable summaries — and also be able to pull out interesting quotes.</p>
+<p><strong>Newsletters</strong> pulls from Gmail’s “Newsletters” label. TypeScript scripts fetch emails; Claude agents process them in parallel by category (tech-ai, business, culture). Weekly synthesis reports link back to original sources.</p>
+<p>All three feeds follow the same architecture:</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>raw/           # Untransformed API responses</span></span>
+<span class="line"><span>  {partition}/</span></span>
+<span class="line"><span>    {id}.json</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>content/       # Normalized markdown</span></span>
+<span class="line"><span>  {category}/</span></span>
+<span class="line"><span>    {source}/</span></span>
+<span class="line"><span>      {date}-{slug}.md</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>reports/       # Generated synthesis</span></span>
+<span class="line"><span>  {date}-{type}.md</span></span></code></pre>
+<p>The trajectory: <strong>API integration → normalization → synthesis → distribution</strong>. Each feed is a flywheel: content flows in from APIs, gets structured into markdown, gets synthesized into reports, flows out as email digests.</p>
+<h2 id="the-data-flywheel">The Data Flywheel</h2>
+<p><img alt="The Data Flywheel" loading="lazy" decoding="async" fetchpriority="auto" width="1376" height="768" src="/_astro/data-flywheel-pattern-main.DfYPO6QB_ZcQaMi.png" ></p>
+<p>All three systems work the same way:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th></th><th>Operations</th><th>Fasting</th><th>Media Distill</th></tr></thead><tbody><tr><td><strong>Input</strong></td><td>GitHub API, PDFs, emails</td><td>Oura API, DEXA, bloodwork</td><td>Twitter API, YouTube, Gmail</td></tr><tr><td><strong>Processing</strong></td><td>Prompts + CLI tools</td><td>Custom integration + research</td><td>Skills + AI rate limiting</td></tr><tr><td><strong>Storage</strong></td><td>Markdown files</td><td>JSON + HTML</td><td>JSON + markdown</td></tr><tr><td><strong>Output</strong></td><td>Dashboard, client emails</td><td>Infographics, meal plans</td><td>Daily/weekly digests</td></tr></tbody></table>
+<p>The human provides data sources. The AI handles parsing, structuring, synthesis. The outputs become context for the next cycle.</p>
+<p><strong>Operations flywheel:</strong></p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>GitHub commits → weekly reports → dashboard → client emails</span></span>
+<span class="line"><span>      ↑                                            ↓</span></span>
+<span class="line"><span>      └──────── feedback from clients ─────────────┘</span></span></code></pre>
+<p><strong>Fasting flywheel:</strong></p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Oura API → daily metrics → trends → research → meal adjustments</span></span>
+<span class="line"><span>    ↑                                               ↓</span></span>
+<span class="line"><span>    └────────── body responds to meals ─────────────┘</span></span></code></pre>
+<p><strong>Media flywheel:</strong></p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>APIs → raw content → synthesis → weekly digest → reading decisions</span></span>
+<span class="line"><span>  ↑                                                    ↓</span></span>
+<span class="line"><span>  └──────── curate sources based on value ─────────────┘</span></span></code></pre>
+<p>Each spin of the flywheel improves the system. Sources get curated. Synthesis gets sharper. Outputs get more useful.</p>
+<h2 id="why-this-works">Why This Works</h2>
+<p><img alt="Why This Works" loading="lazy" decoding="async" fetchpriority="auto" width="1376" height="768" src="/_astro/data-flywheel-why.BDyb3BEf_1uVLiL.png" ></p>
+<p>Traditional app development: design database schema, build CRUD operations, create UI, maintain consistency between layers.</p>
+<p>Import-driven development: drop files in folders, tell Claude what they mean, let it figure out the structure.</p>
+<p>The 424-line Oura script wasn’t designed. I said “get my Oura data” and Claude wrote it. When I wanted sleep log entries, Claude added 80 more lines. Features accrete.</p>
+<p>There’s no database migration. No ORM. No API versioning. The data lives in JSON and markdown files. The views are static HTML or generated markdown. When the structure needs to change, Claude changes it.</p>
+<p>The AI handles three hard problems:</p>
+<ol>
+<li><strong>Parsing</strong> - PDFs, HTML dumps, API responses, email formats</li>
+<li><strong>Synthesis</strong> - Turning raw data into summaries, reports, research</li>
+<li><strong>Judgment</strong> - Rate limiting decisions, prioritization, what matters</li>
+</ol>
+<p>You provide the data sources and the intent. The flywheel spins.</p>
+<h2 id="starting-your-own">Starting Your Own</h2>
+<p>Pick something you want to track. Find a data source. Tell Claude to import it.</p>
+<p>“I want to track my workouts using my Garmin data.”
+“I want to track my reading using Goodreads exports.”
+“I want to synthesize industry news from my RSS feeds.”
+“I want to track my projects using GitHub activity.”</p>
+<p>The first import creates the structure. The second import reveals what’s missing. By the fifth import, you have a system.</p>
+<p>Document the import process in CLAUDE.md so future sessions know how to do it. Build commands that automate the imports. Add views as you need them.</p>
+<p>The app emerges from the data. You don’t design it. You grow it.</p>
+<p>The flywheel starts slow. Each spin adds momentum.</p> <nav class="adjacent" data-astro-cid-qxcpqxea> <a class="adjacent-link" href="/thoughts/claude-code-non-coding/" data-astro-cid-qxcpqxea> <span class="mono-label" data-astro-cid-qxcpqxea>Older</span> <span data-astro-cid-qxcpqxea>Claude Code, not Code</span> </a> <a class="adjacent-link adjacent-link--next" href="/thoughts/agent-habitat/" data-astro-cid-qxcpqxea> <span class="mono-label" data-astro-cid-qxcpqxea>Newer</span> <span data-astro-cid-qxcpqxea>The Agent Habitat</span> </a> </nav> </div> </div> </article>  </main> <footer class="site-footer"> <div class="site-footer-inner"> <span>Published by <a href="https://thefocus.ai">TheFocus.AI</a></span> <span> <a href="https://courses.thefocus.ai">Courses</a>
+·
+<a href="https://standards.thefocus.ai">Standards</a>
+·
+<a href="https://github.com/The-Focus-AI/labs">Source</a> </span> </div> </footer> <div id="newsletter-popup" class="np-root" hidden data-astro-cid-7ixr6fiy> <div class="np-backdrop" id="np-backdrop" data-astro-cid-7ixr6fiy></div> <div class="np-modal-wrap" data-astro-cid-7ixr6fiy> <div class="np-modal" role="dialog" aria-modal="true" aria-labelledby="np-heading" data-astro-cid-7ixr6fiy> <button id="np-close" class="np-close" aria-label="Close" data-astro-cid-7ixr6fiy>×</button> <div class="np-eyebrow" data-astro-cid-7ixr6fiy>Don't miss out</div> <h3 id="np-heading" class="np-heading" data-astro-cid-7ixr6fiy>Stay ahead of the curve.</h3> <p class="np-blurb" data-astro-cid-7ixr6fiy>
+Field reports from AI engineering — what's shipping, what's
+        breaking, what's about to change. One email per issue.
+</p> <form action="https://buttondown.com/api/emails/embed-subscribe/thefocusai" method="post" class="np-form" data-astro-cid-7ixr6fiy> <input type="email" name="email" id="np-email" required placeholder="you@domain.com" class="np-input" data-astro-cid-7ixr6fiy> <button type="submit" class="np-button" data-astro-cid-7ixr6fiy>Subscribe →</button> </form> <button id="np-dismiss" class="np-dismiss" data-astro-cid-7ixr6fiy>No thanks, I'll pass</button> </div> </div> </div>  <script>
+  (function () {
+    const KEY = 'focus_newsletter_dismissed';
+    if (typeof window === 'undefined') return;
+
+    function init() {
+      const root = document.getElementById('newsletter-popup');
+      const closeBtn = document.getElementById('np-close');
+      const dismissBtn = document.getElementById('np-dismiss');
+      const backdrop = document.getElementById('np-backdrop');
+      if (!root) return;
+      if (localStorage.getItem(KEY)) return;
+
+      function show() {
+        root.hidden = false;
+        document.body.style.overflow = 'hidden';
+      }
+      function hide(persist) {
+        root.hidden = true;
+        document.body.style.overflow = '';
+        if (persist) {
+          try { localStorage.setItem(KEY, 'true'); } catch (_) {}
+        }
+      }
+
+      const t = setTimeout(show, 30000);
+
+      closeBtn && closeBtn.addEventListener('click', () => hide(true));
+      dismissBtn && dismissBtn.addEventListener('click', () => hide(true));
+      backdrop && backdrop.addEventListener('click', () => hide(false));
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !root.hidden) hide(false);
+      });
+      window.addEventListener('beforeunload', () => clearTimeout(t));
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script> </body></html>  

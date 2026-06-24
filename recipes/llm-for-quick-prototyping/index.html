@@ -1,0 +1,145 @@
+<!DOCTYPE html><html lang="en" data-theme="ledger"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Astro v5.18.2"><meta name="description" content="Transform your workflow with a command-line tool that brings AI capabilities directly to your terminal, no complex setup required. See how to parse websites, analyze transcripts, and extract meaningful data using the llm CLI with popular models like Gemini and Claude."><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;900&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet"><title>Use the llm cli for quick prototyping · TheFocus.AI Labs</title><link rel="stylesheet" href="/_astro/_slug_.CZnP_JuE.css">
+<style>.article-page[data-astro-cid-zm77yjld]{padding:var(--section-y) 0 4rem}.article-shell[data-astro-cid-zm77yjld]{max-width:720px;margin:0 auto;padding:0 var(--gutter)}.article-back[data-astro-cid-zm77yjld]{display:inline-block;margin-bottom:1.5rem;text-decoration:none;color:var(--signal)}.article-back[data-astro-cid-zm77yjld]:hover{color:var(--text-strong)}.article-header[data-astro-cid-zm77yjld]{margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}.article-title[data-astro-cid-zm77yjld]{font-size:clamp(2rem,5vw,2.75rem);font-weight:600;line-height:1.1;letter-spacing:-.03em;color:var(--text-strong);margin:.75rem 0 1rem}.article-lead[data-astro-cid-zm77yjld]{font-size:20px;line-height:1.5;color:var(--text-2);margin:0}.article-meta[data-astro-cid-zm77yjld]{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;margin-top:1.25rem}.article-tags[data-astro-cid-zm77yjld]{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;margin:0;padding:0}.article-hero[data-astro-cid-zm77yjld]{margin:0 0 2rem;border:1px solid var(--border);background:var(--surface)}.article-hero[data-astro-cid-zm77yjld] img[data-astro-cid-zm77yjld]{display:block;width:100%;height:auto}.article-prose[data-astro-cid-zm77yjld] h2{font-size:1.5rem;font-weight:600;margin:2.5rem 0 1rem;color:var(--text-strong)}.article-prose[data-astro-cid-zm77yjld] h3{font-size:1.15rem;font-weight:600;margin:2rem 0 .75rem;color:var(--text-strong)}.article-prose[data-astro-cid-zm77yjld] p,.article-prose[data-astro-cid-zm77yjld] li{font-size:15px;line-height:1.6;color:var(--text)}.article-prose[data-astro-cid-zm77yjld] a{color:var(--text-strong);text-decoration:underline;text-underline-offset:3px}.article-prose[data-astro-cid-zm77yjld] a:hover{color:var(--signal)}.article-prose[data-astro-cid-zm77yjld] pre{background:var(--surface);border:1px solid var(--border);padding:1rem;overflow-x:auto;font-family:var(--font-mono);font-size:13px;line-height:1.5}.article-prose[data-astro-cid-zm77yjld] code{font-family:var(--font-mono);font-size:.9em}.article-prose[data-astro-cid-zm77yjld] blockquote{margin:1.5rem 0;padding-left:1rem;border-left:2px solid var(--signal);color:var(--text-2)}.article-prose[data-astro-cid-zm77yjld] img{max-width:100%;height:auto;border:1px solid var(--border)}.article-prose[data-astro-cid-zm77yjld] table{width:100%;border-collapse:collapse;font-size:14px;margin:1.5rem 0;border:1px solid var(--border)}.article-prose[data-astro-cid-zm77yjld] th,.article-prose[data-astro-cid-zm77yjld] td{border:1px solid var(--border);padding:.5rem .75rem;text-align:left}.article-prose[data-astro-cid-zm77yjld] th{background:var(--surface);color:var(--text-strong);font-family:var(--font-mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+.related[data-astro-cid-z3wdsy7t]{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)}.related[data-astro-cid-z3wdsy7t] ul[data-astro-cid-z3wdsy7t]{list-style:none;margin:1rem 0 0;padding:0;display:grid;gap:.75rem}.related[data-astro-cid-z3wdsy7t] a[data-astro-cid-z3wdsy7t]{color:var(--text-strong);text-decoration:none;font-size:15px}.related[data-astro-cid-z3wdsy7t] a[data-astro-cid-z3wdsy7t]:hover{color:var(--signal)}
+.np-root[data-astro-cid-7ixr6fiy]{position:fixed;inset:0;z-index:100}.np-root[data-astro-cid-7ixr6fiy][hidden]{display:none}.np-backdrop[data-astro-cid-7ixr6fiy]{position:absolute;inset:0;background:#141310b3;backdrop-filter:blur(4px)}.np-modal-wrap[data-astro-cid-7ixr6fiy]{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:1rem}.np-modal[data-astro-cid-7ixr6fiy]{position:relative;background:var(--paper);border:4px solid var(--void);box-shadow:8px 8px 0 0 var(--void);max-width:460px;width:100%;padding:2.5rem 2rem 2rem;text-align:center;animation:np-pop .2s cubic-bezier(.22,1,.36,1)}@keyframes np-pop{0%{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.np-close[data-astro-cid-7ixr6fiy]{position:absolute;top:.5rem;right:.75rem;background:none;border:0;font-size:28px;line-height:1;color:var(--void);cursor:pointer;padding:.25rem .5rem;transition:color .15s ease}.np-close[data-astro-cid-7ixr6fiy]:hover{color:var(--alert-red)}.np-eyebrow[data-astro-cid-7ixr6fiy]{font-family:var(--mono, "Courier Prime", monospace);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#1a1a1a8c;margin-bottom:.75rem}.np-heading[data-astro-cid-7ixr6fiy]{font-family:Inter,system-ui,sans-serif;font-weight:900;font-size:1.75rem;line-height:1.05;letter-spacing:-.02em;margin:0 0 .75rem;color:var(--void);text-transform:none}.np-blurb[data-astro-cid-7ixr6fiy]{font-size:14px;line-height:1.5;color:#1a1a1ab3;margin:0 0 1.5rem}.np-form[data-astro-cid-7ixr6fiy]{display:flex;flex-direction:column;gap:.5rem}.np-input[data-astro-cid-7ixr6fiy]{font-family:inherit;font-size:15px;padding:.75rem 1rem;border:1px solid var(--void);background:#fff;border-radius:0;color:var(--void)}.np-input[data-astro-cid-7ixr6fiy]:focus{outline:2px solid var(--rand-blue, #0055aa);outline-offset:1px}.np-button[data-astro-cid-7ixr6fiy]{font-family:var(--mono, "Courier Prime", monospace);font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.85rem 1.5rem;background:var(--void);color:var(--paper);border:1px solid var(--void);cursor:pointer;transition:background .15s ease,border-color .15s ease}.np-button[data-astro-cid-7ixr6fiy]:hover{background:var(--rand-blue, #0055aa);border-color:var(--rand-blue, #0055aa)}.np-dismiss[data-astro-cid-7ixr6fiy]{margin-top:1rem;background:none;border:0;font-family:var(--mono, "Courier Prime", monospace);font-size:11px;letter-spacing:.12em;color:#1a1a1a73;cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:.5rem}.np-dismiss[data-astro-cid-7ixr6fiy]:hover{color:var(--void)}@media print{.np-root[data-astro-cid-7ixr6fiy]{display:none!important}}
+</style></head> <body> <header class="site-header"> <div class="site-header-inner"> <a href="/" class="wordmark" aria-label="TheFocus.AI Labs">  <span class="wordmark-glyph" aria-hidden="true"></span> <span class="wordmark-text">TheFocus</span> <span class="wordmark-sub">Labs</span>  </a> <nav class="site-nav" aria-label="Primary">  <a href="/thoughts/">Thoughts</a> <a href="/reports/">Reports</a> <a href="/recipes/">Recipes</a> <a href="/issues/">Issues</a>  </nav> </div> </header> <main>  <article class="article-page" data-astro-cid-zm77yjld> <div class="article-shell" data-astro-cid-zm77yjld> <header class="article-header" data-astro-cid-zm77yjld> <a class="article-back mono-label" href="/recipes/" data-astro-cid-zm77yjld>← Recipes</a> <p class="section-label" data-astro-cid-zm77yjld>Recipes</p> <h1 class="article-title" data-astro-cid-zm77yjld>Use the llm cli for quick prototyping</h1> <p class="article-lead" data-astro-cid-zm77yjld>Transform your workflow with a command-line tool that brings AI capabilities directly to your terminal, no complex setup required. See how to parse websites, analyze transcripts, and extract meaningful data using the llm CLI with popular models like Gemini and Claude.</p> <div class="article-meta" data-astro-cid-zm77yjld> <time class="mono-label" data-astro-cid-zm77yjld>April 3, 2025</time> <ul class="article-tags" data-astro-cid-zm77yjld> <li class="mono-label" data-astro-cid-zm77yjld>prompts</li> </ul> </div> </header> <figure class="article-hero" data-astro-cid-zm77yjld> <img src="/_astro/llm-for-quick-prototyping.BKT2WFas.png" alt="" loading="eager" data-astro-cid-zm77yjld> </figure> <div class="article-prose" data-astro-cid-zm77yjld>  <p>Installation info on <a href="https://willschenk.com/labnotes/2025/llm_cli_tool/">my other site</a></p>
+<p>But the short answer is:</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F69D50">brew</span><span style="color:#96D0FF"> install</span><span style="color:#96D0FF"> llm</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#768390"># Paste your OpenAI API key into this</span></span>
+<span class="line"><span style="color:#F69D50">llm</span><span style="color:#96D0FF"> keys</span><span style="color:#96D0FF"> set</span><span style="color:#96D0FF"> openai</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F69D50">llm</span><span style="color:#96D0FF"> install</span><span style="color:#96D0FF"> llm-gemini</span></span>
+<span class="line"><span style="color:#F69D50">llm</span><span style="color:#96D0FF"> keys</span><span style="color:#96D0FF"> set</span><span style="color:#96D0FF"> gemini</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F69D50">llm</span><span style="color:#96D0FF"> install</span><span style="color:#96D0FF"> llm-anthropic</span></span>
+<span class="line"><span style="color:#F69D50">llm</span><span style="color:#96D0FF"> keys</span><span style="color:#96D0FF"> set</span><span style="color:#96D0FF"> anthropic</span></span></code></pre>
+<p>Links</p>
+<ul>
+<li><a href="https://llm.datasette.io/en/stable/setup.html">llm</a></li>
+<li><a href="https://github.com/simonw/llm-gemini">llm-gemini</a></li>
+<li><a href="https://github.com/simonw/llm-anthropic">llm-anthropic</a></li>
+</ul>
+<h1 id="html--text">HTML + Text</h1>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F69D50">wget</span><span style="color:#96D0FF"> https://thefocus.ai/blog</span><span style="color:#6CB6FF"> -O</span><span style="color:#96D0FF"> blog.html</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F69D50">cat</span><span style="color:#96D0FF"> blog.html</span><span style="color:#F47067"> |</span><span style="color:#F47067"> \</span></span>
+<span class="line"><span style="color:#F69D50">llm</span><span style="color:#6CB6FF"> -m</span><span style="color:#96D0FF"> gemini-2.5-pro-exp-03-25</span><span style="color:#F47067"> \</span></span>
+<span class="line"><span style="color:#6CB6FF">    --schema-multi</span><span style="color:#96D0FF"> 'title, date str: mm:ss,description,topics'</span><span style="color:#F47067"> \</span></span>
+<span class="line"><span style="color:#96D0FF">    parse</span><span style="color:#F47067"> |</span><span style="color:#F47067"> \</span></span>
+<span class="line"><span style="color:#F69D50">tee</span><span style="color:#96D0FF"> blog.json</span></span></code></pre>
+<p>Or with claude</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F69D50">wget</span><span style="color:#96D0FF"> https://turingpost.com/</span><span style="color:#6CB6FF"> -O</span><span style="color:#96D0FF"> turingpost.html</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F69D50">cat</span><span style="color:#96D0FF"> turingpost.html</span><span style="color:#F47067"> |</span><span style="color:#F47067"> \</span></span>
+<span class="line"><span style="color:#F69D50">llm</span><span style="color:#6CB6FF"> -m</span><span style="color:#96D0FF"> claude-3.7-sonnet</span><span style="color:#F47067"> \</span></span>
+<span class="line"><span style="color:#6CB6FF">    --schema-multi</span><span style="color:#96D0FF"> 'title, link, date str: yyyy/mm/dd,description,topics'</span><span style="color:#F47067"> \</span></span>
+<span class="line"><span style="color:#96D0FF">    parse</span><span style="color:#F47067"> |</span><span style="color:#F69D50"> tee</span><span style="color:#96D0FF"> turingpost2.json</span></span></code></pre>
+<p>Make sense of some real estate data</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F69D50">wget</span><span style="color:#6CB6FF"> --user-agent=</span><span style="color:#96D0FF">"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"</span><span style="color:#96D0FF"> "https://www.redfin.com/NY/Binghamton/3-Brookside-Rd-13903/home/115601261"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F69D50">cat</span><span style="color:#6CB6FF"> 115601261</span><span style="color:#F47067"> |</span><span style="color:#F69D50"> llm</span><span style="color:#6CB6FF"> -m</span><span style="color:#96D0FF"> gemini-2.5-pro-exp-03-25</span><span style="color:#96D0FF"> "extracts the price history of this property and who the broker was"</span></span></code></pre>
+<p>Or if you want something more structured</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F69D50">cat</span><span style="color:#6CB6FF"> 115601261</span><span style="color:#F47067"> |</span><span style="color:#F47067"> \</span></span>
+<span class="line"><span style="color:#F69D50">llm</span><span style="color:#6CB6FF"> -m</span><span style="color:#96D0FF"> gemini-2.5-pro-exp-03-25</span><span style="color:#F47067"> \</span></span>
+<span class="line"><span style="color:#6CB6FF">	--schema-multi</span><span style="color:#96D0FF"> 'date: status, broker: broker name of was in the transaction, description: listed/price change/offered/sold etc, price: the price'</span><span style="color:#F47067"> \</span></span>
+<span class="line"><span style="color:#96D0FF">	"figure out the price history for when this property was bought and sold"</span></span></code></pre>
+<h1 id="audio">Audio</h1>
+<p>Here’s one to get a transcript of an audio file, for example of a pod cast</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F69D50">wget</span><span style="color:#6CB6FF"> -O</span><span style="color:#96D0FF"> audio.mp3</span><span style="color:#96D0FF"> "https://podtrac.com/pts/redirect.mp3/tracking.swap.fm/track/SxlTEPDY7xDg35RXkASs/traffic.omny.fm/d/clips/e73c998e-6e60-432f-8610-ae210140c5b1/afbd76b8-eff2-442a-b938-b28e0126edad/4c60a33c-1249-4bd6-ae78-b29100f1413d/audio.mp3?utm_source=Podcast&#x26;in_playlist=d08826cd-f888-4cd3-b700-b28e0126edbb"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F69D50">llm</span><span style="color:#6CB6FF"> -m</span><span style="color:#96D0FF"> gemini-2.5-pro-exp-03-25</span><span style="color:#F47067"> \</span></span>
+<span class="line"><span style="color:#6CB6FF">	-a</span><span style="color:#96D0FF"> audio.mp3</span><span style="color:#F47067"> \</span></span>
+<span class="line"><span style="color:#6CB6FF">	--schema-multi</span><span style="color:#96D0FF"> 'timestamp str: mm:ss,ad bool, speaker, text, tone: the conversation tone'</span><span style="color:#F47067"> \</span></span>
+<span class="line"><span style="color:#96D0FF">	transcript</span><span style="color:#F47067"> |</span><span style="color:#F69D50"> tee</span><span style="color:#96D0FF"> transcript.json</span></span></code></pre>
+<h1 id="video">Video</h1>
+<p>Lets pull down something from youtube</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F69D50">  brew</span><span style="color:#96D0FF"> install</span><span style="color:#96D0FF"> yt-dlp</span></span></code></pre>
+<p>Grab something, the smallest something and turn it into an mp4 if it isn’t:</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#768390"># These flags try to get the smallest filesize</span></span>
+<span class="line"><span style="color:#F69D50">yt-dlp</span><span style="color:#6CB6FF"> -S</span><span style="color:#96D0FF"> +size,+br,+res,+fps</span><span style="color:#F47067"> \</span></span>
+<span class="line"><span style="color:#6CB6FF">	-o</span><span style="color:#96D0FF"> video.webm</span><span style="color:#F47067"> \</span></span>
+<span class="line"><span style="color:#96D0FF">	"https://www.youtube.com/watch?v=ndvRsQx3xBw"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#768390"># Convert it to mp4 if its in some unsupported format</span></span>
+<span class="line"><span style="color:#F69D50">ffmpeg</span><span style="color:#6CB6FF"> -i</span><span style="color:#96D0FF"> video.webm.mkv</span><span style="color:#96D0FF"> video.mp4</span></span></code></pre>
+<p>And then lets see what happens:</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F69D50">llm</span><span style="color:#6CB6FF"> -m</span><span style="color:#96D0FF"> gemini-2.5-pro-exp-03-25</span><span style="color:#F47067"> \</span></span>
+<span class="line"><span style="color:#6CB6FF">	-a</span><span style="color:#96D0FF"> video.mp4</span><span style="color:#F47067"> \</span></span>
+<span class="line"><span style="color:#6CB6FF">    --schema-multi</span><span style="color:#96D0FF"> 'timestamp: in the format mm:ss,</span></span>
+<span class="line"><span style="color:#96D0FF">     text: what was said,</span></span>
+<span class="line"><span style="color:#96D0FF">     mood: what was the tone of voice,</span></span>
+<span class="line"><span style="color:#96D0FF">     sponsor_section bool: is this section an add or not,</span></span>
+<span class="line"><span style="color:#96D0FF">     '</span><span style="color:#F47067"> \</span></span>
+<span class="line"><span style="color:#96D0FF">    transcript</span><span style="color:#F47067"> |</span><span style="color:#F47067"> \</span></span>
+<span class="line"><span style="color:#F69D50">tee</span><span style="color:#96D0FF"> video.json</span></span></code></pre>
+<p>which gives us</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F69D50">sed</span><span style="color:#96D0FF"> '1,2d;$d'</span><span style="color:#96D0FF"> video.json</span><span style="color:#F47067"> |</span><span style="color:#F69D50"> jq</span><span style="color:#96D0FF"> '.items | length'</span></span></code></pre>
+<p>47 items.  Or we can look at the moods:</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>sed '1,2d;$d' video.json | jq '.items[].mood' | sort | uniq -c | sort -nr</span></span>
+<span class="line"><span>  18 "Analytical"</span></span>
+<span class="line"><span>  15 "Explanatory"</span></span>
+<span class="line"><span>   7 "Informative"</span></span>
+<span class="line"><span>   2 "Conclusive"</span></span>
+<span class="line"><span>   2 "Comparative"</span></span>
+<span class="line"><span>   1 "Reflective"</span></span>
+<span class="line"><span>   1 "Problem-solving"</span></span>
+<span class="line"><span>   1 "Confident"</span></span></code></pre>
+<h1 id="schema">Schema</h1>
+<p>This command helps see <a href="https://llm.datasette.io/en/stable/schemas.html">how schemas are defined</a></p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F69D50">llm schemas dsl</span></span></code></pre>
+<p>And you can do multi, so:</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F69D50">llm</span><span style="color:#96D0FF"> schemas</span><span style="color:#96D0FF"> dsl</span><span style="color:#6CB6FF"> --multi</span><span style="color:#96D0FF"> 'timestamp: in the format mm:ss,</span></span>
+<span class="line"><span style="color:#96D0FF">     text: what was said,</span></span>
+<span class="line"><span style="color:#96D0FF">     mood: what was the tone of voice,</span></span>
+<span class="line"><span style="color:#96D0FF">     sponsor_section bool: is this section an add or not,</span></span>
+<span class="line"><span style="color:#96D0FF">     '</span></span></code></pre>  </div> </div> </article>  </main> <footer class="site-footer"> <div class="site-footer-inner"> <span>Published by <a href="https://thefocus.ai">TheFocus.AI</a></span> <span> <a href="https://courses.thefocus.ai">Courses</a>
+·
+<a href="https://standards.thefocus.ai">Standards</a>
+·
+<a href="https://github.com/The-Focus-AI/labs">Source</a> </span> </div> </footer> <div id="newsletter-popup" class="np-root" hidden data-astro-cid-7ixr6fiy> <div class="np-backdrop" id="np-backdrop" data-astro-cid-7ixr6fiy></div> <div class="np-modal-wrap" data-astro-cid-7ixr6fiy> <div class="np-modal" role="dialog" aria-modal="true" aria-labelledby="np-heading" data-astro-cid-7ixr6fiy> <button id="np-close" class="np-close" aria-label="Close" data-astro-cid-7ixr6fiy>×</button> <div class="np-eyebrow" data-astro-cid-7ixr6fiy>Don't miss out</div> <h3 id="np-heading" class="np-heading" data-astro-cid-7ixr6fiy>Stay ahead of the curve.</h3> <p class="np-blurb" data-astro-cid-7ixr6fiy>
+Field reports from AI engineering — what's shipping, what's
+        breaking, what's about to change. One email per issue.
+</p> <form action="https://buttondown.com/api/emails/embed-subscribe/thefocusai" method="post" class="np-form" data-astro-cid-7ixr6fiy> <input type="email" name="email" id="np-email" required placeholder="you@domain.com" class="np-input" data-astro-cid-7ixr6fiy> <button type="submit" class="np-button" data-astro-cid-7ixr6fiy>Subscribe →</button> </form> <button id="np-dismiss" class="np-dismiss" data-astro-cid-7ixr6fiy>No thanks, I'll pass</button> </div> </div> </div>  <script>
+  (function () {
+    const KEY = 'focus_newsletter_dismissed';
+    if (typeof window === 'undefined') return;
+
+    function init() {
+      const root = document.getElementById('newsletter-popup');
+      const closeBtn = document.getElementById('np-close');
+      const dismissBtn = document.getElementById('np-dismiss');
+      const backdrop = document.getElementById('np-backdrop');
+      if (!root) return;
+      if (localStorage.getItem(KEY)) return;
+
+      function show() {
+        root.hidden = false;
+        document.body.style.overflow = 'hidden';
+      }
+      function hide(persist) {
+        root.hidden = true;
+        document.body.style.overflow = '';
+        if (persist) {
+          try { localStorage.setItem(KEY, 'true'); } catch (_) {}
+        }
+      }
+
+      const t = setTimeout(show, 30000);
+
+      closeBtn && closeBtn.addEventListener('click', () => hide(true));
+      dismissBtn && dismissBtn.addEventListener('click', () => hide(true));
+      backdrop && backdrop.addEventListener('click', () => hide(false));
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !root.hidden) hide(false);
+      });
+      window.addEventListener('beforeunload', () => clearTimeout(t));
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script> </body></html>  
