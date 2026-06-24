@@ -2,21 +2,15 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import EmailSignup from '../components/EmailSignup.astro';
+import { getThoughts, getThoughtPath } from '../lib/thoughts';
 
-const all = await getCollection('issues');
-const issues = all
+const allIssues = await getCollection('issues');
+const issues = allIssues
   .filter((i) => !i.data.draft)
-  .sort((a, b) => {
-    if (a.data.vertical === 'state') return -1;
-    if (b.data.vertical === 'state') return 1;
-    return b.data.published.getTime() - a.data.published.getTime();
-  });
+  .sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
 
-const forthcoming = all
-  .filter((i) => i.data.draft)
-  .sort((a, b) => a.data.vertical.localeCompare(b.data.vertical));
-
-const featured = issues[0];
+const featuredIssue = issues.find((i) => i.data.vertical === 'state') ?? issues[0];
+const recentThoughts = (await getThoughts()).slice(0, 4);
 
 const verticalLabel: Record<string, string> = {
   state: 'STATE',
@@ -26,425 +20,233 @@ const verticalLabel: Record<string, string> = {
   local: 'LOCAL',
   wire: 'WIRE',
 };
-
-const verticalDescription: Record<string, string> = {
-  state: 'Reports on the state of AI engineering.',
-  surface: 'On presentation layers, UI protocols, and rendering.',
-  runtime: 'On machines that think, and the substrates that hold them.',
-  harness: "On the builder's practice of working with agent-native SDKs.",
-  local: 'On inference sovereignty — hosted, self-hosted, on-device.',
-  wire: 'On how agents access capability.',
-};
-
-const featuredEyebrow = featured
-  ? `Issue ${String(featured.data.issue_number).padStart(2, '0')} · ${featured.data.published
-      .toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
-      .toUpperCase()}`
-  : '';
 ---
-<BaseLayout title="TheFocus.AI · Magazine">
-
-  <!-- ══ HERO ════════════════════════════════════════════════ -->
-  <section class="hero">
+<BaseLayout title="TheFocus.AI Labs">
+  <section class="hero ledger-grid">
     <div class="hero-inner">
-      {featured && (
-        <div class="hero-eyebrow mono">{featuredEyebrow}</div>
-      )}
-      <h1 class="hero-title">
-        Field reports from the front of<br />
-        <span class="hero-title-accent">AI engineering.</span>
-      </h1>
-      <p class="hero-lede">
-        A magazine on what's actually happening in AI engineering — what's
-        shipping, what's breaking, what's about to change. New issues land
-        irregularly, written for people who build for a living.
+      <p class="section-label">TheFocus.AI Labs</p>
+      <h1>Field reports from the front of AI engineering.</h1>
+      <p class="hero-lead">
+        Thoughts, interactive reports, recipes, and publication issues — for people
+        who build for a living.
       </p>
-      {featured && (
-        <div class="hero-ctas">
-          <a class="btn-primary" href={`/${featured.slug}/`}>
-            Read Issue 01 →
-          </a>
-          <a class="btn-secondary" href="#coming">What's coming</a>
-        </div>
-      )}
+      <div class="hero-actions">
+        <a class="btn-primary" href="/thoughts/">Read thoughts</a>
+        <a class="btn-ghost" href="/reports/">Browse reports</a>
+      </div>
     </div>
   </section>
 
-  <!-- ══ FEATURED ISSUE ══════════════════════════════════════ -->
-  {featured && (
+  <section class="lanes">
+    <div class="lanes-inner">
+      <a class="lane-card" href="/thoughts/">
+        <span class="mono-label">01 — THOUGHTS</span>
+        <h2>Essays and working notes</h2>
+        <p>What we're seeing, building, and testing in the open.</p>
+      </a>
+      <a class="lane-card" href="/reports/">
+        <span class="mono-label">02 — REPORTS</span>
+        <h2>Interactive research</h2>
+        <p>Model evals, benchmarks, and field studies with real data.</p>
+      </a>
+      <a class="lane-card" href="/recipes/">
+        <span class="mono-label">03 — RECIPES</span>
+        <h2>Weekend projects</h2>
+        <p>Agents, tools, prompts — build it yourself in one sitting.</p>
+      </a>
+      <a class="lane-card" href="/issues/">
+        <span class="mono-label">04 — ISSUES</span>
+        <h2>Publication line</h2>
+        <p>STATE, SURFACE, RUNTIME — six verticals, irregular issues.</p>
+      </a>
+    </div>
+  </section>
+
+  {featuredIssue && (
     <section class="featured">
       <div class="featured-inner">
-        <div class="featured-label uppercase-label">
-          <span class="spot-number">§</span>&nbsp;In this issue
-        </div>
-
-        <a href={`/${featured.slug}/`} class="featured-card">
-          <div class="featured-meta">
-            <div class="featured-vertical mono">
-              {verticalLabel[featured.data.vertical]} · №&nbsp;{String(featured.data.issue_number).padStart(2, '0')}
-            </div>
-            <div class="featured-date mono">
-              {featured.data.published.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }).toUpperCase()}
-            </div>
-          </div>
-
-          <h2 class="featured-title">{featured.data.issue_title}</h2>
-          <p class="featured-subtitle">{featured.data.subtitle}</p>
-          <p class="featured-tagline">"{featured.data.tagline}"</p>
-
-          {featured.data.summary && (
-            <p class="featured-summary">{featured.data.summary}</p>
-          )}
-
-          <div class="featured-cta mono">
-            Read the issue →
-          </div>
+        <p class="section-label">Latest issue</p>
+        <a class="content-card featured-card" href={`/${featuredIssue.slug}/`}>
+          <p class="mono-label">
+            {verticalLabel[featuredIssue.data.vertical]} · №{' '}
+            {String(featuredIssue.data.issue_number).padStart(2, '0')}
+          </p>
+          <h2>{featuredIssue.data.issue_title}</h2>
+          <p>{featuredIssue.data.subtitle}</p>
         </a>
       </div>
     </section>
   )}
 
-  <!-- ══ WHAT'S COMING ═══════════════════════════════════════ -->
-  {forthcoming.length > 0 && (
-    <section class="coming" id="coming">
-      <div class="coming-inner">
-        <div class="coming-header">
-          <div class="coming-label uppercase-label">What's coming</div>
-          <div class="coming-count mono">
-            {String(forthcoming.length).padStart(2, '0')} FORTHCOMING
-          </div>
+  {recentThoughts.length > 0 && (
+    <section class="recent">
+      <div class="recent-inner">
+        <div class="recent-header">
+          <p class="section-label">Recent thoughts</p>
+          <a class="mono-label" href="/thoughts/">View all →</a>
         </div>
-
-        <p class="coming-blurb">
-          The magazine covers six beats. Each gets its own issue when
-          there's something worth saying. Below — what's queued.
-        </p>
-
-        <ol class="coming-list">
-          {forthcoming.map((issue) => (
-            <li class="coming-row">
-              <div class="coming-vertical mono">{verticalLabel[issue.data.vertical]}</div>
-              <div class="coming-body">
-                <div class="coming-title">{issue.data.issue_title}</div>
-                <div class="coming-desc mono">{verticalDescription[issue.data.vertical]}</div>
-              </div>
-              <div class="coming-badge mono">FORTHCOMING</div>
+        <ul class="recent-list">
+          {recentThoughts.map((thought) => (
+            <li>
+              <a href={getThoughtPath(thought)}>
+                <span class="mono-label">
+                  {thought.data.date.toLocaleDateString('en-US', {
+                    month: 'short',
+                    year: 'numeric',
+                  })}
+                </span>
+                <span>{thought.data.title}</span>
+              </a>
             </li>
           ))}
-        </ol>
+        </ul>
       </div>
     </section>
   )}
 
-  <!-- ══ SISTER PROPERTIES ═══════════════════════════════════ -->
-  <section class="sisters">
-    <div class="sisters-inner">
-      <p class="sisters-text mono">
-        For long-form research, see
-        <a href="https://thefocus.ai/reports">thefocus.ai/reports</a>.
-        Courses are forthcoming at
-        <span class="sisters-future">courses.thefocus.ai</span>.
-      </p>
-    </div>
-  </section>
-
   <EmailSignup
-    heading="Get the next issue."
-    blurb="One email when each issue ships. No marketing — just the dispatch."
+    heading="Get the dispatch."
+    blurb="One email when new issues and reports ship. No marketing."
   />
-
-  <style>
-    /* ══ Hero ═════════════════════════════════════════════════ */
-    .hero {
-      padding: 5rem 0 4rem;
-      border-bottom: 1px solid var(--void);
-    }
-    .hero-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-    .hero-eyebrow {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--alert-red);
-      margin-bottom: 1.5rem;
-      padding-left: 1rem;
-      border-left: 3px solid var(--alert-red);
-    }
-    .hero-title {
-      font-family: 'Inter', system-ui, sans-serif;
-      font-weight: 900;
-      font-size: clamp(2.5rem, 7vw, 6rem);
-      line-height: 0.95;
-      letter-spacing: -0.035em;
-      color: var(--void);
-      margin: 0 0 1.5rem;
-      max-width: 14ch;
-    }
-    .hero-title-accent {
-      color: var(--rand-blue);
-    }
-    .hero-lede {
-      font-size: clamp(1.05rem, 1.4vw, 1.25rem);
-      line-height: 1.55;
-      color: var(--void);
-      max-width: 640px;
-      margin: 0 0 2.25rem;
-      font-weight: 400;
-    }
-    .hero-ctas {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .btn-primary {
-      display: inline-block;
-      font-family: var(--mono, 'Courier Prime', monospace);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      padding: 0.95rem 1.75rem;
-      background: var(--void);
-      color: var(--paper);
-      text-decoration: none;
-      border: 1px solid var(--void);
-      transition: background 150ms ease, border-color 150ms ease;
-    }
-    .btn-primary:hover {
-      background: var(--rand-blue);
-      border-color: var(--rand-blue);
-    }
-    .btn-secondary {
-      font-family: var(--mono, 'Courier Prime', monospace);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--void);
-      text-decoration: none;
-      padding: 0.95rem 0.5rem;
-      border-bottom: 1px solid var(--void);
-    }
-    .btn-secondary:hover {
-      color: var(--rand-blue);
-      border-bottom-color: var(--rand-blue);
-    }
-
-    /* ══ Featured issue card ══════════════════════════════════ */
-    .featured {
-      padding: 4rem 0;
-    }
-    .featured-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-    .featured-label {
-      font-size: 13px;
-      margin-bottom: 1.5rem;
-    }
-    .featured-card {
-      display: block;
-      background: var(--paper);
-      border: 1px solid var(--void);
-      padding: 3rem 3rem 2.5rem;
-      text-decoration: none;
-      color: var(--void);
-      transition: transform 200ms var(--ease, ease), box-shadow 200ms var(--ease, ease);
-      position: relative;
-    }
-    .featured-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 96px;
-      height: 6px;
-      background: var(--alert-red);
-    }
-    .featured-card:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 4px 4px 0 0 var(--void);
-    }
-    .featured-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding-bottom: 1rem;
-      margin-bottom: 1.5rem;
-      border-bottom: 1px solid var(--rule-subtle, rgba(20, 19, 16, 0.14));
-    }
-    .featured-vertical {
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      color: var(--alert-red);
-    }
-    .featured-date {
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      color: rgba(26, 26, 26, 0.55);
-    }
-    .featured-title {
-      font-family: 'Inter', system-ui, sans-serif;
-      font-weight: 900;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.04;
-      letter-spacing: -0.025em;
-      margin: 0 0 0.75rem;
-      color: var(--void);
-    }
-    .featured-subtitle {
-      font-size: 18px;
-      line-height: 1.45;
-      color: rgba(26, 26, 26, 0.75);
-      margin: 0 0 1.25rem;
-    }
-    .featured-tagline {
-      font-family: 'Inter', system-ui, sans-serif;
-      font-style: italic;
-      font-size: 17px;
-      line-height: 1.4;
-      color: var(--void);
-      margin: 0 0 1.75rem;
-      padding-left: 1rem;
-      border-left: 3px solid var(--rand-blue);
-      max-width: 720px;
-    }
-    .featured-summary {
-      font-size: 15px;
-      line-height: 1.65;
-      color: rgba(26, 26, 26, 0.7);
-      max-width: 720px;
-      margin: 0 0 2rem;
-    }
-    .featured-cta {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      color: var(--rand-blue);
-    }
-
-    /* ══ What's coming ════════════════════════════════════════ */
-    .coming {
-      padding: 4rem 0;
-      border-top: 1px solid var(--void);
-    }
-    .coming-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-    .coming-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding-bottom: 1rem;
-      border-bottom: 2px solid var(--void);
-      margin-bottom: 1.5rem;
-    }
-    .coming-label { font-size: 13px; }
-    .coming-count {
-      font-size: 11px;
-      color: rgba(26, 26, 26, 0.55);
-      letter-spacing: 0.15em;
-    }
-    .coming-blurb {
-      font-size: 15px;
-      line-height: 1.55;
-      color: rgba(26, 26, 26, 0.7);
-      max-width: 640px;
-      margin: 0 0 2.5rem;
-    }
-    .coming-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .coming-row {
-      display: grid;
-      grid-template-columns: 140px 1fr 140px;
-      gap: 1.5rem;
-      align-items: center;
-      padding: 1.25rem 0;
-      border-bottom: 1px solid var(--rule-subtle, rgba(20, 19, 16, 0.14));
-    }
-    .coming-vertical {
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      color: var(--void);
-    }
-    .coming-title {
-      font-family: 'Inter', system-ui, sans-serif;
-      font-weight: 700;
-      font-size: 17px;
-      letter-spacing: -0.01em;
-      color: var(--void);
-      margin-bottom: 0.25rem;
-    }
-    .coming-desc {
-      font-size: 11px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: rgba(26, 26, 26, 0.55);
-    }
-    .coming-badge {
-      justify-self: end;
-      font-size: 10px;
-      letter-spacing: 0.22em;
-      color: rgba(26, 26, 26, 0.45);
-      border: 1px solid rgba(26, 26, 26, 0.2);
-      padding: 0.4rem 0.65rem;
-    }
-
-    /* ══ Sister properties ═══════════════════════════════════ */
-    .sisters {
-      padding: 2.5rem 0;
-      border-top: 1px solid var(--rule-subtle, rgba(20, 19, 16, 0.14));
-    }
-    .sisters-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-    .sisters-text {
-      font-size: 12px;
-      line-height: 1.7;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(26, 26, 26, 0.6);
-      margin: 0;
-    }
-    .sisters-text a {
-      color: var(--rand-blue);
-      text-decoration: none;
-      border-bottom: 1px solid currentColor;
-    }
-    .sisters-text a:hover { color: var(--alert-red); }
-    .sisters-future {
-      color: rgba(26, 26, 26, 0.45);
-      border-bottom: 1px dashed rgba(26, 26, 26, 0.3);
-    }
-
-    /* ══ Responsive ══════════════════════════════════════════ */
-    @media (max-width: 720px) {
-      .hero { padding: 3rem 0 2.5rem; }
-      .featured { padding: 2.5rem 0; }
-      .featured-card { padding: 2rem 1.5rem; }
-      .coming { padding: 2.5rem 0; }
-      .coming-row {
-        grid-template-columns: 1fr;
-        gap: 0.5rem;
-        padding: 1rem 0;
-      }
-      .coming-badge { justify-self: start; }
-      .hero-ctas { gap: 0.5rem; }
-    }
-  </style>
 </BaseLayout>
+
+<style>
+  .hero {
+    padding: 5rem 0 4rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  h1 {
+    font-size: clamp(2.25rem, 6vw, 3.75rem);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--text-strong);
+    margin: 0.75rem 0 1.25rem;
+    max-width: 16ch;
+  }
+
+  .hero-lead {
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--text-2);
+    max-width: 52ch;
+    margin: 0 0 2rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .lanes {
+    padding: var(--section-y) 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .lanes-inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .lane-card {
+    background: var(--surface);
+    padding: var(--card-pad);
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .lane-card:hover {
+    background: color-mix(in srgb, var(--surface) 92%, white);
+  }
+
+  .lane-card h2 {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-strong);
+    margin: 0.5rem 0 0.75rem;
+  }
+
+  .lane-card p {
+    font-size: 14px;
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .featured,
+  .recent {
+    padding: var(--section-y) 0;
+  }
+
+  .featured-inner,
+  .recent-inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  .featured-card h2 {
+    margin-top: 0.5rem;
+  }
+
+  .recent-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .recent-header a {
+    text-decoration: none;
+    color: var(--signal);
+  }
+
+  .recent-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--border);
+  }
+
+  .recent-list li + li {
+    border-top: 1px solid var(--border);
+  }
+
+  .recent-list a {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 1.5rem;
+    padding: 1rem 1.25rem;
+    text-decoration: none;
+    color: var(--text);
+    background: var(--surface);
+  }
+
+  .recent-list a:hover {
+    color: var(--text-strong);
+    background: color-mix(in srgb, var(--surface) 90%, white);
+  }
+
+  @media (max-width: 640px) {
+    .recent-list a {
+      grid-template-columns: 1fr;
+      gap: 0.35rem;
+    }
+  }
+</style>

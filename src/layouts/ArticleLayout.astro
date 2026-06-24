@@ -1,0 +1,211 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  section: 'thoughts' | 'recipes';
+  date?: Date;
+  tags?: string[];
+  imageSrc?: string | null;
+}
+
+const { title, description, section, date, tags = [], imageSrc } = Astro.props;
+
+const sectionLabel = section === 'thoughts' ? 'Thoughts' : 'Recipes';
+const backHref = section === 'thoughts' ? '/thoughts/' : '/recipes/';
+const formattedDate = date
+  ? date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+  : null;
+---
+<BaseLayout title={`${title} · TheFocus.AI Labs`} description={description} theme="ledger">
+  <article class="article-page">
+    <div class="article-shell">
+      <header class="article-header">
+        <a class="article-back mono-label" href={backHref}>← {sectionLabel}</a>
+        <p class="section-label">{sectionLabel}</p>
+        <h1 class="article-title">{title}</h1>
+        {description && <p class="article-lead">{description}</p>}
+        {(formattedDate || tags.length > 0) && (
+          <div class="article-meta">
+            {formattedDate && <time class="mono-label">{formattedDate}</time>}
+            {tags.length > 0 && (
+              <ul class="article-tags">
+                {tags.map((tag) => (
+                  <li class="mono-label">{tag}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        )}
+      </header>
+
+      {imageSrc && (
+        <figure class="article-hero">
+          <img src={imageSrc} alt="" loading="eager" />
+        </figure>
+      )}
+
+      <div class="article-prose">
+        <slot />
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .article-page {
+    padding: var(--section-y) 0 4rem;
+  }
+
+  .article-shell {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  .article-back {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    text-decoration: none;
+    color: var(--signal);
+  }
+
+  .article-back:hover {
+    color: var(--text-strong);
+  }
+
+  .article-header {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .article-title {
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--text-strong);
+    margin: 0.75rem 0 1rem;
+  }
+
+  .article-lead {
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--text-2);
+    margin: 0;
+  }
+
+  .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 1.25rem;
+  }
+
+  .article-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .article-hero {
+    margin: 0 0 2rem;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .article-hero img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .article-prose :global(h2) {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 2.5rem 0 1rem;
+    color: var(--text-strong);
+  }
+
+  .article-prose :global(h3) {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 2rem 0 0.75rem;
+    color: var(--text-strong);
+  }
+
+  .article-prose :global(p),
+  .article-prose :global(li) {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text);
+  }
+
+  .article-prose :global(a) {
+    color: var(--text-strong);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .article-prose :global(a:hover) {
+    color: var(--signal);
+  }
+
+  .article-prose :global(pre) {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1rem;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .article-prose :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+  }
+
+  .article-prose :global(blockquote) {
+    margin: 1.5rem 0;
+    padding-left: 1rem;
+    border-left: 2px solid var(--signal);
+    color: var(--text-2);
+  }
+
+  .article-prose :global(img) {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+  }
+
+  .article-prose :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 1.5rem 0;
+    border: 1px solid var(--border);
+  }
+
+  .article-prose :global(th),
+  .article-prose :global(td) {
+    border: 1px solid var(--border);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+  }
+
+  .article-prose :global(th) {
+    background: var(--surface);
+    color: var(--text-strong);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+</style>

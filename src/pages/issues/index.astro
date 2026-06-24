@@ -1,0 +1,131 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const all = await getCollection('issues');
+const issues = all
+  .filter((i) => !i.data.draft)
+  .sort((a, b) => {
+    if (a.data.vertical === 'state') return -1;
+    if (b.data.vertical === 'state') return 1;
+    return b.data.published.getTime() - a.data.published.getTime();
+  });
+
+const forthcoming = all
+  .filter((i) => i.data.draft)
+  .sort((a, b) => a.data.vertical.localeCompare(b.data.vertical));
+
+const verticalLabel: Record<string, string> = {
+  state: 'STATE',
+  surface: 'SURFACE',
+  runtime: 'RUNTIME',
+  harness: 'HARNESS',
+  local: 'LOCAL',
+  wire: 'WIRE',
+};
+---
+<BaseLayout title="Issues · TheFocus.AI Labs" description="Publication issues — STATE, SURFACE, RUNTIME, and the rest.">
+  <section class="hub">
+    <div class="hub-inner">
+      <p class="section-label">Issues</p>
+      <h1 class="hub-title">The publication line.</h1>
+      <p class="hub-lead">
+        Six verticals. Each gets its own issue when there is something worth saying.
+      </p>
+
+      <ul class="issue-list">
+        {issues.map((issue) => (
+          <li>
+            <a class="content-card issue-card" href={`/${issue.slug}/`}>
+              <p class="mono-label">
+                {verticalLabel[issue.data.vertical]} · №{' '}
+                {String(issue.data.issue_number).padStart(2, '0')}
+              </p>
+              <h2>{issue.data.issue_title}</h2>
+              <p>{issue.data.subtitle}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      {forthcoming.length > 0 && (
+        <section class="forthcoming">
+          <h2 class="section-label">Forthcoming</h2>
+          <ul class="forthcoming-list">
+            {forthcoming.map((issue) => (
+              <li>
+                <span class="mono-label">{verticalLabel[issue.data.vertical]}</span>
+                <span>{issue.data.issue_title}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hub {
+    padding: var(--section-y) 0;
+  }
+
+  .hub-inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  .hub-title {
+    font-size: clamp(2rem, 5vw, 3.75rem);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--text-strong);
+    margin: 0.75rem 0 1rem;
+  }
+
+  .hub-lead {
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--text-2);
+    max-width: 52ch;
+    margin: 0 0 3rem;
+  }
+
+  .issue-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .issue-card h2 {
+    margin-top: 0.35rem;
+  }
+
+  .forthcoming {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .forthcoming-list {
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .forthcoming-list li {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    color: var(--muted);
+    font-size: 15px;
+  }
+</style>

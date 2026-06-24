@@ -1,0 +1,167 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  pageTitle: string;
+  description?: string;
+  bodyClass?: string;
+  openGraphImage?: string;
+}
+
+const {
+  pageTitle,
+  description = 'Research reports from TheFocus.AI Labs.',
+  bodyClass = '',
+  openGraphImage,
+} = Astro.props;
+
+const site = Astro.site ?? new URL('https://labs.thefocus.ai');
+const ogUrl = openGraphImage ? new URL(openGraphImage, site).href : new URL('/favicon.svg', site).href;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>{pageTitle}</title>
+    <slot name="head" />
+  </head>
+  <body class:list={['report-body', bodyClass]}>
+    <header class="report-chrome">
+      <div class="report-chrome-inner">
+        <a href="/" class="wordmark" aria-label="TheFocus.AI Labs">
+          <span class="wordmark-glyph" aria-hidden="true"></span>
+          <span class="wordmark-text">TheFocus</span>
+          <span class="wordmark-sub">Labs</span>
+        </a>
+        <nav class="site-nav" aria-label="Labs">
+          <a href="/thoughts/">Thoughts</a>
+          <a href="/reports/">Reports</a>
+          <a href="/recipes/">Recipes</a>
+          <a href="/issues/">Issues</a>
+        </nav>
+      </div>
+    </header>
+    <main class="report-main">
+      <slot />
+    </main>
+    <footer class="report-chrome report-footer">
+      <div class="report-chrome-inner">
+        <span>Published by <a href="https://thefocus.ai">TheFocus.AI</a></span>
+        <a href="https://github.com/The-Focus-AI/labs">Source</a>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .report-body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-body);
+    color: var(--text);
+    background: var(--canvas);
+  }
+
+  .report-chrome {
+    border-bottom: 1px solid var(--border);
+    background: var(--canvas);
+  }
+
+  .report-footer {
+    border-bottom: none;
+    border-top: 1px solid var(--border);
+    margin-top: auto;
+  }
+
+  .report-chrome-inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 1rem var(--gutter);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    font-size: 14px;
+    color: var(--text-2);
+  }
+
+  .report-footer .report-chrome-inner a {
+    color: var(--text-2);
+    text-decoration: none;
+  }
+
+  .report-footer .report-chrome-inner a:hover {
+    color: var(--text-strong);
+  }
+
+  .report-main {
+    flex: 1;
+  }
+
+  .wordmark {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    text-decoration: none;
+    color: var(--text-strong);
+  }
+
+  .wordmark-glyph {
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--signal);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+
+  .wordmark-glyph::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--signal);
+  }
+
+  .wordmark-text {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .wordmark-sub {
+    color: var(--text-2);
+    font-weight: 500;
+  }
+
+  .site-nav {
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .site-nav a {
+    color: var(--text-2);
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .site-nav a:hover {
+    color: var(--text-strong);
+  }
+</style>

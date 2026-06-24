@@ -1,4 +1,5 @@
 import { defineCollection, z, reference } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 // Voice: "reportage" = STATE-style, named speakers, first-person editorial allowed.
 // Voice: "architecture" = SURFACE/RUNTIME-style, declarative third-person, heavily cited.
@@ -102,9 +103,42 @@ const concepts = defineCollection({
   }),
 });
 
+const thoughts = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/thoughts' }),
+  schema: z
+    .object({
+      title: z.string(),
+      date: z.coerce.date(),
+    })
+    .passthrough(),
+});
+
+const recipes = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/recipes' }),
+  schema: z
+    .object({
+      title: z.string(),
+      date: z.coerce.date(),
+    })
+    .passthrough(),
+});
+
+const reportMemos = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/reports' }),
+  schema: z
+    .object({
+      title: z.string().optional(),
+      date: z.coerce.date().optional(),
+    })
+    .passthrough(),
+});
+
 export const collections = {
   issues,
   sections,
   sources,
   concepts,
+  thoughts,
+  recipes,
+  reportMemos,
 };

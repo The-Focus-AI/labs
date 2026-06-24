@@ -1,0 +1,81 @@
+---
+import { render } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { getRecipes, getRecipePath, getRelatedRecipes } from '../../lib/recipes';
+
+export async function getStaticPaths() {
+  const recipes = await getRecipes();
+  return recipes
+    .filter((r) => !r.data.slug || r.data.slug.startsWith('/recipes/'))
+    .map((recipe) => ({
+      params: { slug: recipe.id },
+      props: { recipe },
+    }));
+}
+
+const { recipe } = Astro.props;
+const { Content } = await render(recipe);
+
+const recipeImages = await import.meta.glob<{ default: { src: string } }>(
+  '/src/content/assets/recipes/*.{jpeg,jpg,png,gif,webp}'
+);
+
+let imageSrc: string | null = null;
+if (recipe.data.image) {
+  const key = `/src/content/assets/recipes/${recipe.data.image}`;
+  if (recipeImages[key]) {
+    imageSrc = (await recipeImages[key]()).default.src;
+  }
+}
+
+const relatedRecipes = await getRelatedRecipes(recipe);
+---
+<ArticleLayout
+  title={recipe.data.title}
+  description={recipe.data.description}
+  section="recipes"
+  date={recipe.data.date}
+  tags={recipe.data.tech}
+  imageSrc={imageSrc}
+>
+  <Content />
+
+  {relatedRecipes.length > 0 && (
+    <section class="related">
+      <h2 class="section-label">Related</h2>
+      <ul>
+        {relatedRecipes.map((r) => (
+          <li>
+            <a href={getRecipePath(r)}>{r.data.title}</a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+</ArticleLayout>
+
+<style>
+  .related {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .related ul {
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .related a {
+    color: var(--text-strong);
+    text-decoration: none;
+    font-size: 15px;
+  }
+
+  .related a:hover {
+    color: var(--signal);
+  }
+</style>

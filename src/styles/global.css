@@ -1,35 +1,44 @@
 /* ═══════════════════════════════════════════════════════════════════════
-   THE FOCUS.AI · Labs Design System
-   Bell Labs / RAND Corporation research memorandum aesthetic
+   TheFocus.AI Labs — "The Ledger" design system
+   See docs/design.md (from thefocus-v2)
    ═══════════════════════════════════════════════════════════════════════ */
 
 :root {
-  /* Labs palette */
+  /* Ledger tokens */
+  --canvas: #0a0a0a;
+  --surface: #111111;
+  --signal: #556b2f;
+  --text: #e5e5e5;
+  --text-strong: #ffffff;
+  --text-2: #b0b0b0;
+  --muted: #999999;
+  --muted-soft: #666666;
+  --on-signal: #ffffff;
+  --cta-bg: #ffffff;
+  --cta-text: #000000;
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.2);
+  --hover-fill: rgba(255, 255, 255, 0.05);
+  --grid-line: #222222;
+
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --base: 4px;
+  --gutter: 32px;
+  --section-y: 64px;
+  --card-pad: 32px;
+  --container-max: 1280px;
+  --radius: 0px;
+
+  /* Magazine issue pages (light Bell Labs) */
   --paper: #f3f2ea;
   --void: #1a1a1a;
   --rand-blue: #0055aa;
   --alert-red: #d93025;
-  --surface: #e6e4dc;
   --page-bg: #e8e6df;
-  --inactive-tab: #d6d4ce;
   --rule-subtle: rgba(26, 26, 26, 0.12);
-  --rule-faint: rgba(26, 26, 26, 0.06);
-
-  /* Vertical accent colors — these override the default accent per-issue.
-     Each is a restrained hue that reads as "spot color on a research memo". */
-  --state-accent: #7a5c3a;      /* oxblood / manila */
-  --surface-accent: #c3471d;    /* vermilion */
-  --runtime-accent: #0055aa;    /* rand-blue */
-  --harness-accent: #2d5a3d;    /* forest */
-  --local-accent: #5a3d8a;      /* institutional violet */
-  --wire-accent: #a65a1c;       /* bronze */
-
-  /* Type */
-  --sans: 'Inter', system-ui, -apple-system, sans-serif;
   --mono: 'Courier Prime', 'Courier New', monospace;
-  --serif: 'Source Serif 4', Georgia, serif;
-
-  /* Motion */
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -41,24 +50,63 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background: var(--page-bg);
-  color: var(--void);
-  font-family: var(--sans);
-  font-size: 16px;
-  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-feature-settings: 'kern' 1, 'liga' 1;
 }
 
-body {
+/* ─── Ledger (default) ─────────────────────────────────────────────── */
+
+html[data-theme='ledger'],
+html:not([data-theme]) {
+  background: var(--canvas);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+html[data-theme='ledger'] body,
+html:not([data-theme]) body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: var(--canvas);
+  color: var(--text);
 }
 
-/* Baseline grid background — subtle ledger lines for that printed-paper feel */
-body::before {
+html[data-theme='ledger'] main,
+html:not([data-theme]) main {
+  flex: 1;
+}
+
+html[data-theme='ledger'] a,
+html:not([data-theme]) a {
+  color: var(--text-strong);
+}
+
+html[data-theme='ledger'] ::selection,
+html:not([data-theme]) ::selection {
+  background: var(--signal);
+  color: var(--on-signal);
+}
+
+/* ─── Magazine issue theme ─────────────────────────────────────────── */
+
+html[data-theme='magazine'] {
+  background: var(--page-bg);
+  color: var(--void);
+  font-family: var(--font-body);
+}
+
+html[data-theme='magazine'] body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--page-bg);
+  color: var(--void);
+}
+
+html[data-theme='magazine'] body::before {
   content: '';
   position: fixed;
   inset: 0;
@@ -74,36 +122,40 @@ body::before {
   z-index: 0;
 }
 
-main {
+html[data-theme='magazine'] main {
   flex: 1;
   position: relative;
   z-index: 1;
 }
 
-/* ─── Typography ─────────────────────────────────────────────────────── */
-
-a {
+html[data-theme='magazine'] a {
   color: var(--rand-blue);
   text-decoration: underline;
-  text-decoration-thickness: 1px;
   text-underline-offset: 3px;
-  transition: color 150ms var(--ease);
 }
 
-a:hover {
+html[data-theme='magazine'] a:hover {
   color: var(--alert-red);
 }
 
-::selection {
-  background: var(--void);
-  color: var(--paper);
+/* ─── Shared typography utilities ───────────────────────────────────── */
+
+.section-label {
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--signal);
 }
 
-/* ─── Utility classes (Labs vocabulary) ──────────────────────────────── */
-
-.mono {
-  font-family: var(--mono);
-  letter-spacing: 0.02em;
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  color: var(--signal);
 }
 
 .uppercase-label {
@@ -114,22 +166,27 @@ a:hover {
   text-transform: uppercase;
 }
 
+.mono {
+  font-family: var(--mono);
+  letter-spacing: 0.02em;
+}
+
 .spot-number {
   font-family: var(--mono);
   color: var(--alert-red);
   font-weight: 700;
   font-size: 11px;
-  letter-spacing: 0.05em;
 }
 
-/* Offset shadow — Labs signature "floating document" */
-.offset-shadow {
-  box-shadow: 12px 12px 0 0 rgba(26, 26, 26, 0.12);
+/* ─── Site chrome (ledger) ─────────────────────────────────────────── */
+
+html[data-theme='ledger'] .site-header,
+html:not([data-theme]) .site-header {
+  background: var(--canvas);
+  border-bottom: 1px solid var(--border);
 }
 
-/* ─── Site chrome ────────────────────────────────────────────────────── */
-
-.site-header {
+html[data-theme='magazine'] .site-header {
   background: var(--paper);
   border-bottom: 1px solid var(--void);
   position: relative;
@@ -137,21 +194,44 @@ a:hover {
 }
 
 .site-header-inner {
-  max-width: 1400px;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 1rem var(--gutter);
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
+  flex-wrap: wrap;
 }
 
 .wordmark {
   display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  color: var(--text-strong);
+}
+
+html[data-theme='magazine'] .wordmark {
   align-items: baseline;
   gap: 0.6rem;
-  text-decoration: none;
   color: var(--void);
+}
+
+.wordmark-glyph {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--signal);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.wordmark-glyph::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--signal);
 }
 
 .wordmark-block {
@@ -163,6 +243,11 @@ a:hover {
 }
 
 .wordmark-text {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+html[data-theme='magazine'] .wordmark-text {
   font-family: var(--mono);
   font-size: 12px;
   font-weight: 700;
@@ -170,14 +255,12 @@ a:hover {
   text-transform: uppercase;
 }
 
-.wordmark-divider {
-  font-family: var(--mono);
-  color: var(--alert-red);
-  font-size: 12px;
-  font-weight: 700;
+.wordmark-sub {
+  color: var(--text-2);
+  font-weight: 500;
 }
 
-.wordmark-sub {
+html[data-theme='magazine'] .wordmark-sub {
   font-family: var(--mono);
   font-size: 12px;
   font-weight: 400;
@@ -187,9 +270,32 @@ a:hover {
   opacity: 0.75;
 }
 
+.wordmark-divider {
+  font-family: var(--mono);
+  color: var(--alert-red);
+  font-size: 12px;
+  font-weight: 700;
+}
+
 .site-nav {
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+html[data-theme='ledger'] .site-nav a,
+html:not([data-theme]) .site-nav a {
+  color: var(--text-2);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+html[data-theme='ledger'] .site-nav a:hover,
+html:not([data-theme]) .site-nav a:hover {
+  color: var(--text-strong);
+}
+
+html[data-theme='magazine'] .site-nav {
   font-family: var(--mono);
   font-size: 11px;
   font-weight: 700;
@@ -197,35 +303,21 @@ a:hover {
   text-transform: uppercase;
 }
 
-.site-nav a {
+html[data-theme='magazine'] .site-nav a {
   color: var(--void);
   text-decoration: none;
-  position: relative;
-  padding-bottom: 2px;
 }
 
-.site-nav a:hover {
-  color: var(--rand-blue);
+/* ─── Footer ───────────────────────────────────────────────────────── */
+
+html[data-theme='ledger'] .site-footer,
+html:not([data-theme]) .site-footer {
+  border-top: 1px solid var(--border);
+  background: var(--canvas);
+  margin-top: 4rem;
 }
 
-.site-nav a::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0;
-  height: 1px;
-  background: var(--rand-blue);
-  transition: width 200ms var(--ease);
-}
-
-.site-nav a:hover::after {
-  width: 100%;
-}
-
-/* ─── Footer ──────────────────────────────────────────────────────────── */
-
-.site-footer {
+html[data-theme='magazine'] .site-footer {
   border-top: 1px solid var(--void);
   background: var(--paper);
   margin-top: 6rem;
@@ -234,66 +326,114 @@ a:hover {
 }
 
 .site-footer-inner {
-  max-width: 1400px;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem var(--gutter);
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--muted-soft);
+}
+
+html[data-theme='magazine'] .site-footer-inner {
   font-family: var(--mono);
   font-size: 11px;
-  font-weight: 400;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgba(26, 26, 26, 0.65);
 }
 
 .site-footer-inner a {
-  color: rgba(26, 26, 26, 0.65);
+  color: inherit;
   text-decoration: none;
-  border-bottom: 1px solid transparent;
 }
 
-.site-footer-inner a:hover {
+html[data-theme='ledger'] .site-footer-inner a:hover,
+html:not([data-theme]) .site-footer-inner a:hover {
+  color: var(--text-strong);
+}
+
+html[data-theme='magazine'] .site-footer-inner a:hover {
   color: var(--rand-blue);
-  border-bottom-color: var(--rand-blue);
 }
 
-/* ─── Animations ─────────────────────────────────────────────────────── */
+/* ─── Ledger components ────────────────────────────────────────────── */
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.ledger-grid {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
-.fade-in {
-  opacity: 0;
-  animation: fadeInUp 600ms var(--ease) forwards;
+.btn-primary {
+  display: inline-block;
+  padding: 14px 32px;
+  background: var(--cta-bg);
+  color: var(--cta-text);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  border: none;
+  border-radius: var(--radius);
 }
 
-/* Responsive */
+.btn-primary:hover {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--cta-text);
+}
+
+.btn-ghost {
+  display: inline-block;
+  padding: 14px 32px;
+  background: transparent;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+}
+
+.btn-ghost:hover {
+  background: var(--hover-fill);
+  color: var(--text-strong);
+}
+
+.content-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: var(--card-pad);
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.content-card:hover {
+  background: color-mix(in srgb, var(--surface) 92%, white);
+}
+
+.content-card h2 {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text-strong);
+  margin: 0.5rem 0;
+}
+
+.content-card p {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.6;
+}
+
 @media (max-width: 768px) {
-  .site-header-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1rem 1.25rem;
-    gap: 1rem;
-  }
-
-  .site-nav {
-    gap: 1.25rem;
-  }
-
+  .site-header-inner,
   .site-footer-inner {
     flex-direction: column;
     align-items: flex-start;
-    padding: 1.5rem 1.25rem;
   }
 }

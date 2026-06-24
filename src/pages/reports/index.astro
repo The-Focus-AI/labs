@@ -1,0 +1,215 @@
+---
+import ReportLayout from '../../layouts/ReportLayout.astro';
+import fs from 'node:fs';
+import path from 'node:path';
+
+const images = await import.meta.glob<{ default: { src: string } }>(
+  '/src/content/assets/cards/*.{jpeg,jpg,png,gif,webp}'
+);
+
+async function imgSrc(filename?: string) {
+  if (!filename) return null;
+  const key = `/src/content/assets/cards/${filename}`;
+  if (!images[key]) return null;
+  return (await images[key]()).default.src;
+}
+
+const publicReportsDir = path.resolve(process.cwd(), 'public', 'reports');
+const subsiteExists = (href: string) => {
+  const match = href.match(/^\/reports\/([^/]+)\/?$/);
+  if (!match) return true;
+  return fs.existsSync(path.join(publicReportsDir, match[1]));
+};
+
+type Report = {
+  image?: string;
+  label: string;
+  title: string;
+  summary: string;
+  href: string;
+  external?: boolean;
+  docNo: string;
+  requiresSubsite?: boolean;
+  courses?: boolean;
+};
+
+const reports: Report[] = [
+  {
+    image: 'local-providers-tufte-frontier.png',
+    label: 'May 2026',
+    title: 'Local Providers: Which Open Model Should You Actually Run?',
+    summary:
+      'We tested 7 model families across 3 local runtimes on a 64 GB Mac — 20 cells, 5 dimensions.',
+    href: '/reports/local-providers/',
+    docNo: 'RM-2026-05-LP',
+  },
+  {
+    image: 'report-model-showdown.png',
+    label: 'March 2026',
+    title: 'Testing 48 LLMs Across 5 Dimensions for $4.63',
+    summary:
+      'Interactive leaderboard across reasoning, knowledge, instruction following, coding, and MCP tool use.',
+    href: '/reports/model-showdown/',
+    docNo: 'RM-2026-03-MS',
+  },
+  {
+    image: 'report-mcp-tool-test.png',
+    label: 'March 2026',
+    title: 'Can LLMs Use Real-World Tools?',
+    summary:
+      '39 models, real Rivian driving data via MCP — most can call tools; fewer call the right ones.',
+    href: '/reports/mcp-tool-test/',
+    docNo: 'RM-2026-03-MCP',
+  },
+  {
+    image: 'report-car-wash-test.png',
+    label: 'February 2026',
+    title: 'The Car Wash Test: Do LLMs Have Common Sense?',
+    summary: '131 models, one question — should you walk or drive to the car wash?',
+    href: '/reports/car-wash-test/',
+    docNo: 'RM-2026-02-CW',
+  },
+  {
+    image: 'weekend-coding-agent.png',
+    label: 'December 2025',
+    title: 'Weekend Coding Agent',
+    summary: 'Build a coding agent from scratch — now on the courses platform.',
+    href: 'https://courses.thefocus.ai/',
+    docNo: 'RM-2025-12-WCA',
+    courses: true,
+  },
+  {
+    image: 'ai-code-summit-2025.png',
+    label: 'November 2025',
+    title: 'AI Engineering Code Summit 2025',
+    summary: 'Summit report — talks, sessions, and takeaways from Miami.',
+    href: '/reports/aiecode-2025-11/',
+    docNo: 'RM-2025-11-AIECODE',
+    requiresSubsite: true,
+  },
+  {
+    image: 'capture_the_flag_wide.png',
+    label: 'June 2025',
+    title: 'June 2025 Coding Agent Report',
+    summary: '15 AI coding tools tested — strengths, weaknesses, and recommendations.',
+    href: '/reports/june-2025-coding-agents.pdf',
+    external: true,
+    docNo: 'RM-2025-06-CAR',
+  },
+];
+
+const visible = (
+  await Promise.all(
+    reports
+      .filter((r) => r.courses || !r.requiresSubsite || subsiteExists(r.href))
+      .map(async (r) => ({ ...r, imageSrc: await imgSrc(r.image) }))
+  )
+);
+---
+<ReportLayout
+  pageTitle="Research Reports · TheFocus.AI Labs"
+  description="In-depth reports and analysis from TheFocus.AI Labs."
+>
+  <section class="reports-hub">
+    <div class="reports-hub-inner">
+      <p class="section-label">Reports</p>
+      <h1>Measured, not marketed.</h1>
+      <p class="lead">
+        Interactive evaluations and research memos — model benchmarks, tool-use tests,
+        and field studies.
+      </p>
+
+      <ul class="report-grid">
+        {visible.map((report) => (
+          <li>
+            <a
+              class="content-card report-card"
+              href={report.href}
+              target={report.external || report.courses ? '_blank' : undefined}
+              rel={report.external || report.courses ? 'noopener noreferrer' : undefined}
+            >
+              {report.imageSrc && (
+                <img class="report-thumb" src={report.imageSrc} alt="" loading="lazy" />
+              )}
+              <p class="mono-label">{report.docNo} · {report.label}</p>
+              <h2>{report.title}</h2>
+              <p>{report.summary}</p>
+              <span class="mono-label">
+                {report.courses ? 'On courses.thefocus.ai →' : 'Read report →'}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</ReportLayout>
+
+<style>
+  .reports-hub {
+    padding: var(--section-y) 0;
+    background: var(--canvas);
+    color: var(--text);
+  }
+
+  .reports-hub-inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.75rem);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--text-strong);
+    margin: 0.75rem 0 1rem;
+    max-width: 14ch;
+  }
+
+  .lead {
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--text-2);
+    max-width: 52ch;
+    margin: 0 0 3rem;
+  }
+
+  .report-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .report-grid li {
+    background: var(--canvas);
+  }
+
+  .report-thumb {
+    width: calc(100% + var(--card-pad) * 2);
+    margin: calc(var(--card-pad) * -1);
+    margin-bottom: 1rem;
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border);
+    display: block;
+  }
+
+  .report-card h2 {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-strong);
+    margin: 0.35rem 0 0.75rem;
+  }
+
+  .report-card > .mono-label:last-child {
+    display: inline-block;
+    margin-top: 1rem;
+  }
+</style>

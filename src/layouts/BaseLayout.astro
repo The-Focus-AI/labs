@@ -5,24 +5,27 @@ import NewsletterPopup from '../components/NewsletterPopup.astro';
 interface Props {
   title: string;
   description?: string;
+  theme?: 'ledger' | 'magazine';
 }
 
-const { title, description = 'TheFocus.AI Magazine — field reports from the front of AI engineering.' } = Astro.props;
+const {
+  title,
+  description = 'TheFocus.AI Labs — thoughts, reports, recipes, and publication issues from the front of AI engineering.',
+  theme = 'ledger',
+} = Astro.props;
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme={theme}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-    <!-- Fonts: Inter (body/display), Courier Prime (mono metadata) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Courier+Prime:wght@400;700&family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=IBM+Plex+Mono:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;900&family=Courier+Prime:wght@400;700&display=swap"
       rel="stylesheet"
     />
     <title>{title}</title>
@@ -30,12 +33,34 @@ const { title, description = 'TheFocus.AI Magazine — field reports from the fr
   <body>
     <header class="site-header">
       <div class="site-header-inner">
-        <a href="/" class="wordmark" aria-label="TheFocus.AI Magazine">
-          <span class="wordmark-block" aria-hidden="true"></span>
-          <span class="wordmark-text">THEFOCUS.AI</span>
-          <span class="wordmark-divider" aria-hidden="true">·</span>
-          <span class="wordmark-sub">MAGAZINE</span>
+        <a href="/" class="wordmark" aria-label="TheFocus.AI Labs">
+          {theme === 'ledger' ? (
+            <>
+              <span class="wordmark-glyph" aria-hidden="true"></span>
+              <span class="wordmark-text">TheFocus</span>
+              <span class="wordmark-sub">Labs</span>
+            </>
+          ) : (
+            <>
+              <span class="wordmark-block" aria-hidden="true"></span>
+              <span class="wordmark-text">THEFOCUS.AI</span>
+              <span class="wordmark-divider" aria-hidden="true">·</span>
+              <span class="wordmark-sub">MAGAZINE</span>
+            </>
+          )}
         </a>
+        <nav class="site-nav" aria-label="Primary">
+          {theme === 'ledger' ? (
+            <>
+              <a href="/thoughts/">Thoughts</a>
+              <a href="/reports/">Reports</a>
+              <a href="/recipes/">Recipes</a>
+              <a href="/issues/">Issues</a>
+            </>
+          ) : (
+            <a href="/">← Labs</a>
+          )}
+        </nav>
       </div>
     </header>
 
@@ -46,10 +71,16 @@ const { title, description = 'TheFocus.AI Magazine — field reports from the fr
     <footer class="site-footer">
       <div class="site-footer-inner">
         <span>Published by <a href="https://thefocus.ai">TheFocus.AI</a></span>
-        <span><a href="https://github.com/The-Focus-AI/magazine">Source on GitHub</a></span>
+        <span>
+          <a href="https://courses.thefocus.ai">Courses</a>
+          ·
+          <a href="https://standards.thefocus.ai">Standards</a>
+          ·
+          <a href="https://github.com/The-Focus-AI/labs">Source</a>
+        </span>
       </div>
     </footer>
 
-    <NewsletterPopup />
+    {theme === 'ledger' && <NewsletterPopup />}
   </body>
 </html>

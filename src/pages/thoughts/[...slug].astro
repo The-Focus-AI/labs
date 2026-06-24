@@ -1,0 +1,96 @@
+---
+import { render } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { getThoughts, getThoughtSlug, getAdjacentThoughts } from '../../lib/thoughts';
+
+export async function getStaticPaths() {
+  const thoughts = await getThoughts();
+  return thoughts.map((thought) => ({
+    params: { slug: getThoughtSlug(thought) },
+    props: { thought },
+  }));
+}
+
+const { thought } = Astro.props;
+const { Content } = await render(thought);
+const { newer, older } = await getAdjacentThoughts(thought);
+
+const cardImages = await import.meta.glob<{ default: { src: string } }>(
+  '/src/content/assets/cards/*.{jpeg,jpg,png,gif,webp}'
+);
+
+let imageSrc: string | null = null;
+if (thought.data.image) {
+  const key = `/src/content/assets/cards/${thought.data.image}`;
+  if (cardImages[key]) {
+    imageSrc = (await cardImages[key]()).default.src;
+  }
+}
+---
+<ArticleLayout
+  title={thought.data.title}
+  description={thought.data.description}
+  section="thoughts"
+  date={thought.data.date}
+  tags={thought.data.tags}
+  imageSrc={imageSrc}
+>
+  <Content />
+
+  {(newer || older) && (
+    <nav class="adjacent">
+      {older && (
+        <a class="adjacent-link" href={`/thoughts/${getThoughtSlug(older)}/`}>
+          <span class="mono-label">Older</span>
+          <span>{older.data.title}</span>
+        </a>
+      )}
+      {newer && (
+        <a class="adjacent-link adjacent-link--next" href={`/thoughts/${getThoughtSlug(newer)}/`}>
+          <span class="mono-label">Newer</span>
+          <span>{newer.data.title}</span>
+        </a>
+      )}
+    </nav>
+  )}
+</ArticleLayout>
+
+<style>
+  .adjacent {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .adjacent-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    text-decoration: none;
+    color: var(--text);
+    padding: 1rem;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .adjacent-link--next {
+    text-align: right;
+  }
+
+  .adjacent-link:hover {
+    color: var(--text-strong);
+    background: color-mix(in srgb, var(--surface) 90%, white);
+  }
+
+  @media (max-width: 640px) {
+    .adjacent {
+      grid-template-columns: 1fr;
+    }
+    .adjacent-link--next {
+      text-align: left;
+    }
+  }
+</style>

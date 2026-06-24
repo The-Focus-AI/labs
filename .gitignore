@@ -1,11 +1,48 @@
+# Dependencies
 node_modules/
+node_modules/.ignored/
+
+# Package managers (pnpm is canonical for this repo)
+package-lock.json
+npm-shrinkwrap.json
+yarn.lock
+
+# Build output
 dist/
 .astro/
-.DS_Store
+
+# Vite / tooling caches
+.vite/
+*.tsbuildinfo
+.turbo/
+
+# Environment
 .env
 .env.*
 !.env.example
-*.log
-.reviews/
 .env.local
+
+# Logs
+*.log
+pnpm-debug.log*
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor / IDE (local only)
+.idea/
+*.swp
+*.swo
+
+# Reviews / local scratch
+.reviews/
+
+# Generated PDFs in dist
 dist/*.pdf
+
+# Local agent tooling (skills live in standards repo)
+.agents/
+.pi/
+skills-lock.json

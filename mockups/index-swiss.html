@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>TheFocus.AI · Magazine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "media",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: [
+                "IBM Plex Sans",
+                "Hanken Grotesk",
+                "Barlow",
+                "Host Grotesk",
+                "DM Sans",
+                "system-ui",
+                "sans-serif",
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      html {
+        color-scheme: light dark;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-50 font-sans antialiased"
+  >
+    <!-- ══ NAV ═════════════════════════════════════════════════ -->
+    <nav class="border-b border-stone-200 dark:border-stone-800">
+      <div
+        class="max-w-6xl mx-auto px-4 md:px-8 flex items-center justify-between h-16"
+      >
+        <a
+          href="/"
+          class="text-sm font-medium tracking-widest uppercase text-stone-900 dark:text-stone-50"
+        >
+          TheFocus.AI
+        </a>
+        <div class="hidden md:flex items-center gap-8">
+          <a
+            href="#issues"
+            class="text-sm text-stone-900/60 dark:text-stone-50/60 hover:text-stone-900 dark:hover:text-stone-50 transition-colors"
+            >Issues</a
+          >
+          <a
+            href="#coming"
+            class="text-sm text-stone-900/60 dark:text-stone-50/60 hover:text-stone-900 dark:hover:text-stone-50 transition-colors"
+            >Forthcoming</a
+          >
+          <a
+            href="https://thefocus.ai/reports"
+            class="text-sm text-stone-900/60 dark:text-stone-50/60 hover:text-stone-900 dark:hover:text-stone-50 transition-colors"
+            >Reports</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- ══ HERO ════════════════════════════════════════════════ -->
+    <section
+      class="relative overflow-hidden py-16 md:py-24 lg:py-32 border-b border-stone-200 dark:border-stone-800"
+    >
+      <!-- Large background numeral -->
+      <div
+        class="absolute top-0 right-0 text-[clamp(12rem,30vw,28rem)] font-light leading-none text-stone-900/5 dark:text-stone-50/5 select-none pointer-events-none pr-8 pt-4"
+      >
+        01
+      </div>
+
+      <div class="max-w-6xl mx-auto px-4 md:px-8 relative z-10">
+        <span class="text-xs tracking-widest uppercase text-[#C8102E]">
+          Issue 01 · April 2026
+        </span>
+        <div class="w-8 h-px bg-[#C8102E] mt-6 mb-8"></div>
+        <h1
+          class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tight leading-none max-w-4xl text-balance"
+        >
+          Field reports from the front of AI&nbsp;engineering.
+        </h1>
+        <p
+          class="text-lg leading-relaxed text-stone-900/60 dark:text-stone-50/60 mt-8 max-w-[52ch]"
+        >
+          A magazine on what&rsquo;s actually happening in AI engineering
+          &mdash; what&rsquo;s shipping, what&rsquo;s breaking, what&rsquo;s
+          about to change. New issues land irregularly, written for people who
+          build for a living.
+        </p>
+        <div class="flex items-center gap-4 mt-12 flex-wrap">
+          <a
+            href="#issues"
+            class="px-6 py-3 bg-stone-900 dark:bg-stone-50 text-stone-50 dark:text-stone-900 text-sm font-medium tracking-wide hover:bg-stone-800 dark:hover:bg-stone-200 transition-colors min-h-[44px] inline-flex items-center"
+          >
+            Read Issue&nbsp;01 →
+          </a>
+          <a
+            href="#coming"
+            class="px-6 py-3 border border-stone-200 dark:border-stone-800 text-stone-900/60 dark:text-stone-50/60 text-sm font-medium tracking-wide hover:border-stone-900 dark:hover:border-stone-50 transition-colors min-h-[44px] inline-flex items-center"
+          >
+            What&rsquo;s coming
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ FEATURED ISSUE ══════════════════════════════════════ -->
+    <section
+      id="issues"
+      class="py-16 md:py-24 lg:py-32 border-b border-stone-200 dark:border-stone-800"
+    >
+      <div class="max-w-6xl mx-auto px-4 md:px-8">
+        <span
+          class="text-xs tracking-widest uppercase text-stone-900/40 dark:text-stone-50/40"
+          >§ In this issue</span
+        >
+
+        <!-- Featured card -->
+        <a
+          href="/state-01/"
+          class="block mt-8 bg-stone-100 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 border-t-2 border-t-[#C8102E] p-6 md:p-8 hover:bg-stone-200/50 dark:hover:bg-stone-800/50 transition-colors group"
+        >
+          <div
+            class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2 pb-4 mb-6 border-b border-stone-200 dark:border-stone-800"
+          >
+            <span
+              class="text-xs tracking-widest uppercase text-[#C8102E] font-medium"
+              >STATE · №&nbsp;01</span
+            >
+            <span
+              class="text-xs tracking-widest uppercase text-stone-900/40 dark:text-stone-50/40"
+              >Apr 2026</span
+            >
+          </div>
+
+          <h2
+            class="text-3xl md:text-5xl font-light tracking-tight leading-tight text-balance"
+          >
+            The Miami Report
+          </h2>
+          <p
+            class="text-base leading-relaxed text-stone-900/70 dark:text-stone-50/70 mt-4 max-w-[60ch]"
+          >
+            Two days at AI Engineer Miami · the forces moved, the patterns
+            haven&rsquo;t refrozen
+          </p>
+
+          <blockquote
+            class="mt-6 pl-4 border-l-2 border-[#C8102E]/60 text-base italic text-stone-900/70 dark:text-stone-50/70 max-w-[60ch]"
+          >
+            &ldquo;The forces have moved. Three populations are learning agency
+            at once.&rdquo;
+          </blockquote>
+
+          <p
+            class="text-sm leading-relaxed text-stone-900/60 dark:text-stone-50/60 mt-6 max-w-[60ch]"
+          >
+            A dispatch from AI Engineer Miami, April 2026. Day One was patterns
+            breaking &mdash; the gating function of engineering collapsed,
+            identity scarcity collapsed, Gen-3 SDKs reframed the unit of
+            shipping. Day Two was three new patterns hardening &mdash; people,
+            companies, and agents all learning agency at the same moment.
+          </p>
+
+          <span
+            class="inline-block mt-8 text-sm font-medium tracking-wide text-[#C8102E] group-hover:translate-x-1 transition-transform"
+          >
+            Read the issue →
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ══ WHAT'S COMING ═══════════════════════════════════════ -->
+    <section
+      id="coming"
+      class="py-16 md:py-24 lg:py-32 border-b border-stone-200 dark:border-stone-800"
+    >
+      <div class="max-w-6xl mx-auto px-4 md:px-8">
+        <div
+          class="flex items-baseline justify-between pb-4 mb-8 border-b-2 border-stone-900 dark:border-stone-50"
+        >
+          <span
+            class="text-xs tracking-widest uppercase text-stone-900/40 dark:text-stone-50/40"
+            >What&rsquo;s coming</span
+          >
+          <span
+            class="text-xs tracking-widest uppercase text-stone-900/40 dark:text-stone-50/40 tabular-nums"
+            >05 Forthcoming</span
+          >
+        </div>
+
+        <p
+          class="text-base leading-relaxed text-stone-900/70 dark:text-stone-50/70 max-w-[60ch] mb-12"
+        >
+          The magazine covers six beats. Each gets its own issue when
+          there&rsquo;s something worth saying. Below &mdash; what&rsquo;s
+          queued.
+        </p>
+
+        <!-- Forthcoming list -->
+        <div class="space-y-0">
+          <!-- SURFACE -->
+          <div
+            class="border-t border-stone-200 dark:border-stone-800 py-6 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start"
+          >
+            <div class="md:col-span-2">
+              <span
+                class="text-xs tracking-widest uppercase font-medium text-stone-900 dark:text-stone-50"
+                >Surface</span
+              >
+            </div>
+            <div class="md:col-span-8">
+              <h3
+                class="text-base font-normal text-stone-900 dark:text-stone-50"
+              >
+                After the Chat Log
+              </h3>
+              <p class="text-sm text-stone-900/60 dark:text-stone-50/60 mt-1">
+                On presentation layers, UI protocols, and rendering.
+              </p>
+            </div>
+            <div class="md:col-span-2 md:text-right">
+              <span
+                class="inline-block px-2 py-0.5 text-[11px] font-medium tracking-widest uppercase border border-stone-300 dark:border-stone-700 text-stone-900/60 dark:text-stone-50/60"
+              >
+                Forthcoming
+              </span>
+            </div>
+          </div>
+
+          <!-- RUNTIME -->
+          <div
+            class="border-t border-stone-200 dark:border-stone-800 py-6 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start"
+          >
+            <div class="md:col-span-2">
+              <span
+                class="text-xs tracking-widest uppercase font-medium text-stone-900 dark:text-stone-50"
+                >Runtime</span
+              >
+            </div>
+            <div class="md:col-span-8">
+              <h3
+                class="text-base font-normal text-stone-900 dark:text-stone-50"
+              >
+                The Code Mode Issue
+              </h3>
+              <p class="text-sm text-stone-900/60 dark:text-stone-50/60 mt-1">
+                On machines that think, and the substrates that hold them.
+              </p>
+            </div>
+            <div class="md:col-span-2 md:text-right">
+              <span
+                class="inline-block px-2 py-0.5 text-[11px] font-medium tracking-widest uppercase border border-stone-300 dark:border-stone-700 text-stone-900/60 dark:text-stone-50/60"
+              >
+                Forthcoming
+              </span>
+            </div>
+          </div>
+
+          <!-- HARNESS -->
+          <div
+            class="border-t border-stone-200 dark:border-stone-800 py-6 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start"
+          >
+            <div class="md:col-span-2">
+              <span
+                class="text-xs tracking-widest uppercase font-medium text-stone-900 dark:text-stone-50"
+                >Harness</span
+              >
+            </div>
+            <div class="md:col-span-8">
+              <h3
+                class="text-base font-normal text-stone-900 dark:text-stone-50"
+              >
+                The Builder&rsquo;s Field Manual
+              </h3>
+              <p class="text-sm text-stone-900/60 dark:text-stone-50/60 mt-1">
+                On the builder&rsquo;s practice of working with agent-native
+                SDKs.
+              </p>
+            </div>
+            <div class="md:col-span-2 md:text-right">
+              <span
+                class="inline-block px-2 py-0.5 text-[11px] font-medium tracking-widest uppercase border border-stone-300 dark:border-stone-700 text-stone-900/60 dark:text-stone-50/60"
+              >
+                Forthcoming
+              </span>
+            </div>
+          </div>
+
+          <!-- WIRE -->
+          <div
+            class="border-t border-stone-200 dark:border-stone-800 py-6 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start"
+          >
+            <div class="md:col-span-2">
+              <span
+                class="text-xs tracking-widest uppercase font-medium text-stone-900 dark:text-stone-50"
+                >Wire</span
+              >
+            </div>
+            <div class="md:col-span-8">
+              <h3
+                class="text-base font-normal text-stone-900 dark:text-stone-50"
+              >
+                The Three-Legged Stool
+              </h3>
+              <p class="text-sm text-stone-900/60 dark:text-stone-50/60 mt-1">
+                On how agents access capability.
+              </p>
+            </div>
+            <div class="md:col-span-2 md:text-right">
+              <span
+                class="inline-block px-2 py-0.5 text-[11px] font-medium tracking-widest uppercase border border-stone-300 dark:border-stone-700 text-stone-900/60 dark:text-stone-50/60"
+              >
+                Forthcoming
+              </span>
+            </div>
+          </div>
+
+          <!-- LOCAL -->
+          <div
+            class="border-t border-stone-200 dark:border-stone-800 border-b border-b-stone-200 dark:border-b-stone-800 py-6 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start"
+          >
+            <div class="md:col-span-2">
+              <span
+                class="text-xs tracking-widest uppercase font-medium text-stone-900 dark:text-stone-50"
+                >Local</span
+              >
+            </div>
+            <div class="md:col-span-8">
+              <h3
+                class="text-base font-normal text-stone-900 dark:text-stone-50"
+              >
+                Inference or Die
+              </h3>
+              <p class="text-sm text-stone-900/60 dark:text-stone-50/60 mt-1">
+                On inference sovereignty &mdash; hosted, self-hosted, on-device.
+              </p>
+            </div>
+            <div class="md:col-span-2 md:text-right">
+              <span
+                class="inline-block px-2 py-0.5 text-[11px] font-medium tracking-widest uppercase border border-stone-300 dark:border-stone-700 text-stone-900/60 dark:text-stone-50/60"
+              >
+                Forthcoming
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SISTER PROPERTIES ═══════════════════════════════════ -->
+    <section
+      class="py-16 md:py-24 border-b border-stone-200 dark:border-stone-800"
+    >
+      <div class="max-w-6xl mx-auto px-4 md:px-8">
+        <p
+          class="text-sm leading-relaxed text-stone-900/60 dark:text-stone-50/60 max-w-[60ch]"
+        >
+          For long-form research, see
+          <a
+            href="https://thefocus.ai/reports"
+            class="text-[#C8102E] hover:text-[#C8102E]/80 transition-colors border-b border-[#C8102E]/30"
+            >thefocus.ai/reports</a
+          >. Courses are forthcoming at
+          <span
+            class="text-stone-900/40 dark:text-stone-50/40 border-b border-dashed border-stone-900/20 dark:border-stone-50/20"
+            >courses.thefocus.ai</span
+          >.
+        </p>
+      </div>
+    </section>
+
+    <!-- ══ NEWSLETTER SIGNUP ═══════════════════════════════════ -->
+    <section class="py-16 md:py-24 lg:py-32">
+      <div class="max-w-6xl mx-auto px-4 md:px-8">
+        <div class="max-w-lg">
+          <h2 class="text-3xl font-light tracking-tight leading-snug">
+            Get the next issue.
+          </h2>
+          <p
+            class="text-base leading-relaxed text-stone-900/70 dark:text-stone-50/70 mt-4 max-w-[60ch]"
+          >
+            One email when each issue ships. No marketing &mdash; just the
+            dispatch.
+          </p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-3">
+            <div class="flex-1">
+              <label class="sr-only" for="email">Email address</label>
+              <input
+                id="email"
+                type="email"
+                placeholder="you@example.com"
+                class="w-full border border-stone-200 dark:border-stone-800 bg-transparent text-stone-900 dark:text-stone-50 text-base px-4 py-3 outline-none focus:border-stone-900 dark:focus:border-stone-50 placeholder:text-stone-900/30 dark:placeholder:text-stone-50/30 transition-colors"
+              />
+            </div>
+            <button
+              class="px-6 py-3 bg-[#C8102E] text-white text-sm font-medium tracking-wide hover:bg-[#C8102E]/90 active:scale-[0.98] transition-all duration-150 min-h-[44px]"
+            >
+              Subscribe
+            </button>
+          </div>
+          <p class="text-xs text-stone-900/40 dark:text-stone-50/40 mt-3">
+            No spam. Unsubscribe anytime.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ FOOTER ══════════════════════════════════════════════ -->
+    <footer class="border-t border-stone-200 dark:border-stone-800 py-8">
+      <div
+        class="max-w-6xl mx-auto px-4 md:px-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
+      >
+        <span
+          class="text-xs tracking-widest uppercase text-stone-900/40 dark:text-stone-50/40"
+        >
+          © 2026 TheFocus.AI
+        </span>
+        <span class="text-xs text-stone-900/30 dark:text-stone-50/30">
+          labs.thefocus.ai
+        </span>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,54 +1,66 @@
-# TheFocus.AI Magazines
+# TheFocus.AI Labs
 
-Publication line covering the state and shape of AI engineering. Six verticals:
+Human-readable learning and publishing from TheFocus.AI — thoughts, interactive reports, recipes, and the publication issue line (STATE, SURFACE, RUNTIME, HARNESS, LOCAL, WIRE).
 
-- **STATE** — Reportage on where AI engineering is right now.
-- **SURFACE** — UI protocols and rendering.
-- **RUNTIME** — The substrates that hold thinking machines.
-- **HARNESS** — The builder's practice of working with agent-native SDKs.
-- **LOCAL** — Inference sovereignty: hosted, self-hosted, on-device.
-- **WIRE** — How agents access capability.
+Deployed at **labs.thefocus.ai** (GitHub Pages).
 
-Deployed at **magazine.thefocus.ai** (GitHub Pages).
+Related surfaces:
+
+- **thefocus.ai** — marketing (separate repo)
+- **courses.thefocus.ai** — structured courses with progress tracking (separate repo)
+- **standards.thefocus.ai** — canonical operational memos (separate repo)
 
 ## Structure
 
-- `src/content/issues/` — One markdown file per issue (cover + metadata + TOC).
-- `src/content/sections/` — One markdown file per section inside an issue.
-- `src/content/sources/` — Source citations (talks, blog posts, papers, repos).
-- `src/content/concepts/` — Cross-cutting glossary.
-- `src/pages/` — Astro page templates.
-- `src/layouts/` — Shared layout components.
-- `mcp-server/` — (forthcoming) MCP server exposing issues/sections/sources/concepts as tools.
+```
+src/content/
+  thoughts/     ← essays and field notes (migrated from thefocus-landing posts)
+  recipes/      ← hands-on recipes
+  reports/      ← report memos (markdown)
+  issues/       ← publication issues
+  sections/     ← issue sections
+  sources/      ← citations
+  concepts/     ← glossary
+  assets/
+    cards/      ← thought & report card images
+    recipes/    ← recipe images
+public/reports/ ← interactive report builds (JSON data, static subsites)
+docs/design.md  ← "The Ledger" design system (from thefocus-v2)
+```
 
-Markdown is the source of truth. Astro renders the web view. The MCP server reads the same files.
+## Design
 
-## Voice
+The Labs hub uses **The Ledger** — dark operational surface, drab-olive signal color, Inter + IBM Plex Mono. See `docs/design.md`.
 
-- **STATE** uses `voice: reportage` — first-person editorial, named speakers, opinions allowed.
-- **Deep-dive issues** use `voice: architecture` — declarative third-person, heavily cited, system-focused.
+Publication **issues** keep the light Bell Labs memo aesthetic (`theme="magazine"`).
 
 ## Local dev
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm run dev
 ```
 
 ## Deploy
 
-Push to `main`. GitHub Actions builds and deploys to GitHub Pages. The `public/CNAME` file sets the custom domain.
+Push to `main`. GitHub Actions builds and deploys to GitHub Pages.
 
 ## DNS
 
-Add this record at wherever `thefocus.ai` is managed:
-
 ```
-Type    Name         Target
-CNAME   magazine     the-focus-ai.github.io
+Type    Name    Target
+CNAME   labs    the-focus-ai.github.io
 ```
 
-Then on GitHub: Settings → Pages → Custom domain → verify. HTTPS enforcement should turn on automatically once the cert provisions.
+Until DNS propagates, the site may be reachable at:
+https://the-focus-ai.github.io/labs/
 
-Until DNS is added, the site is reachable at:
-https://the-focus-ai.github.io/magazine/
+## Repo
+
+GitHub: [The-Focus-AI/labs](https://github.com/The-Focus-AI/labs)
+
+## Migration notes
+
+Content is being migrated out of `thefocus-landing` (Studio/posts/recipes/reports). Weekend Coding Agent lives on **courses.thefocus.ai**, not Labs.
+
+Old `magazine.thefocus.ai` should redirect to `labs.thefocus.ai/issues` once DNS is updated.

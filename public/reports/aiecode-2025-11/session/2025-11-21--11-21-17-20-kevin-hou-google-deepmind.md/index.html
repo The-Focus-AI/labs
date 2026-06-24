@@ -1,0 +1,267 @@
+<!DOCTYPE html><html lang="en" class="min-h-screen"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><base href="/reports/aiecode-2025-11/"><title>Defying Gravity - AI Engineering Code Summit</title><meta name="description" content="Defying Gravity by Kevin Hou from Google DeepMind at the AI Engineering Code Summit."><link rel="canonical" href="https://thefocus.ai/reports/aiecode-2025-11/session/2025-11-21--11-21-17-20-kevin-hou-google-deepmind.md"><!-- Open Graph --><meta property="og:type" content="article"><meta property="og:title" content="Defying Gravity - AI Engineering Code Summit"><meta property="og:description" content="Defying Gravity by Kevin Hou from Google DeepMind at the AI Engineering Code Summit."><meta property="og:image" content="https://thefocus.ai/reports/aiecode-2025-11/headers/context-memory-harness.png"><meta property="og:url" content="https://thefocus.ai/reports/aiecode-2025-11/session/2025-11-21--11-21-17-20-kevin-hou-google-deepmind.md"><meta property="og:site_name" content="AI Engineering Code Summit 2025"><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Defying Gravity - AI Engineering Code Summit"><meta name="twitter:description" content="Defying Gravity by Kevin Hou from Google DeepMind at the AI Engineering Code Summit."><meta name="twitter:image" content="https://thefocus.ai/reports/aiecode-2025-11/headers/context-memory-harness.png"><script defer data-domain="thefocus.ai" src="https://plausible.io/js/script.file-downloads.js"></script><link rel="stylesheet" href="/reports/aiecode-2025-11/_astro/about.FpiseBWl.css"></head> <body class="min-h-screen font-sans antialiased selection:bg-rand-blue selection:text-white"> <div class="min-h-screen text-void font-sans bg-[#e8e6df]"> <nav class="sticky top-0 w-full z-50 bg-[#e8e6df] px-4 md:px-8 pt-4 print:hidden"> <div class="max-w-6xl mx-auto flex items-end border-b-2 border-void overflow-x-auto no-scrollbar"> <!-- Logo Tab --> <a href="https://thefocus.ai/" class="bg-void text-white px-4 py-2 mr-1 cursor-pointer hover:bg-rand-blue transition-colors flex items-center gap-2 shrink-0"> <div class="w-3 h-3 bg-alert-red rounded-full"></div> <span class="font-sans font-bold tracking-tight">TheFocusAI</span> </a> <!-- Nav Tabs --> <a href="./" class="px-4 md:px-6 py-2 border-t border-x border-void mr-[-1px] relative font-mono text-[10px] md:text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap bg-[#d6d4ce] text-gray-600 hover:bg-white">
+Summary
+</a> <a href="track/leadership" class="px-4 md:px-6 py-2 border-t border-x border-void mr-[-1px] relative font-mono text-[10px] md:text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap bg-[#d6d4ce] text-gray-600 hover:bg-white">
+Leadership
+</a> <a href="track/engineering" class="px-4 md:px-6 py-2 border-t border-x border-void mr-[-1px] relative font-mono text-[10px] md:text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap bg-[#d6d4ce] text-gray-600 hover:bg-white">
+Engineering
+</a> <a href="speakers" class="px-4 md:px-6 py-2 border-t border-x border-void mr-[-1px] relative font-mono text-[10px] md:text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap bg-[#d6d4ce] text-gray-600 hover:bg-white">
+Personnel
+</a> <a href="about" class="px-4 md:px-6 py-2 border-t border-x border-void mr-[-1px] relative font-mono text-[10px] md:text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap bg-[#d6d4ce] text-gray-600 hover:bg-white">
+About
+</a> <!-- Spacer --> <div class="flex-grow min-w-[20px]"></div> <!-- Right Tools --> <div class="pb-2 flex items-center gap-4 shrink-0"> <button id="research-button" class="flex items-center gap-2 font-mono text-xs font-bold hover:text-rand-blue"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder w-4 h-4" aria-hidden="true"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"></path></svg> <span class="hidden md:inline">FILES (<span id="saved-count">0</span>)</span> </button> </div> </div> </nav> <script type="module">document.getElementById("research-button")?.addEventListener("click",()=>{window.dispatchEvent(new CustomEvent("toggle-research"))});function e(){const t=localStorage.getItem("horizon_saved_research"),o=t?JSON.parse(t).length:0,n=document.getElementById("saved-count");n&&(n.textContent=o.toString())}e();window.addEventListener("storage",e);window.addEventListener("saved-items-updated",e);</script> <main class="pb-20 pt-8 px-4">  <div class="w-full min-h-screen bg-paper pb-20 animate-in fade-in duration-300"> <div class="max-w-4xl mx-auto bg-[#fdfdfc] border-x border-void min-h-screen shadow-lg relative"> <!-- Toolbar --> <div class="sticky top-0 z-40 bg-paper border-b border-void p-3 flex justify-between items-center print:hidden border-x border-void mx-[-1px]"> <a href="sessions" class="flex items-center gap-2 text-void hover:text-rand-blue transition-colors font-mono font-bold text-xs uppercase tracking-widest px-2"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-4 h-4" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+All Sessions
+</a> <div class="flex items-center gap-4 px-2"> <button id="save-button" data-session-id="2025-11-21--11-21-17-20-kevin-hou-google-deepmind.md" data-session-title="Defying Gravity" class="flex items-center gap-2 text-xs font-mono uppercase text-gray-500 hover:text-void"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark w-4 h-4" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg> <span class="save-text">File</span> </button> </div> </div> <!-- Page Content --> <div class="px-8 md:px-24 py-16"> <!-- Header Block --> <div class="mb-12"> <div class="flex justify-between items-start border-b-4 border-void pb-4 mb-8"> <div class="flex-1"> <div class="flex items-center gap-4 mb-4"> <span class="font-mono text-xs uppercase tracking-widest px-3 py-1 bg-void text-paper"> Engineering </span> <span class="font-mono text-xs uppercase tracking-widest text-gray-500"> UX &amp; Interaction </span><span class="font-mono text-xs uppercase tracking-widest text-gray-500"> Agents &amp; Autonomy </span> </div> <h1 class="text-3xl md:text-5xl font-sans font-black text-void leading-none uppercase mb-4"> Defying Gravity </h1> <div class="flex items-center gap-6 text-sm font-mono text-gray-600"> <div class="flex items-center gap-2"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar w-4 h-4" aria-hidden="true"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path></svg> November 20, 2025 </div> <div class="flex items-center gap-2"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock w-4 h-4" aria-hidden="true"><path d="M12 6v6l4 2"></path><circle cx="12" cy="12" r="10"></circle></svg> 17:20 </div> </div> </div> </div> <div class="mb-8"> <p class="font-mono text-sm text-gray-600 uppercase mb-2">Speaker(s)</p> <p class="text-xl font-sans font-bold text-void">Kevin Hou</p> <p class="font-mono text-sm text-gray-500">Google DeepMind</p> </div> </div> <!-- Session Notes --> <article class="prose prose-lg max-w-none prose-headings:font-sans prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tight prose-h2:text-3xl prose-h2:mt-16 prose-h2:mb-6 prose-h3:text-2xl prose-h3:mt-12 prose-h3:mb-4 prose-p:font-mono prose-p:text-lg prose-p:leading-8 prose-p:my-6 prose-ul:my-6 prose-li:my-3 prose-li:font-mono prose-li:text-lg prose-li:leading-8 prose-blockquote:border-l-4 prose-blockquote:border-rand-blue prose-blockquote:pl-6 prose-blockquote:py-4 prose-blockquote:my-10 prose-blockquote:font-sans prose-blockquote:text-xl prose-blockquote:leading-9 prose-blockquote:font-bold prose-blockquote:not-italic prose-a:text-rand-blue prose-a:font-semibold prose-a:no-underline hover:prose-a:underline prose-img:border-2 prose-img:border-void prose-img:shadow-lg prose-img:my-10 border-b border-dashed border-gray-400 pb-12"> <h2 id="520pm---539pm--defying-gravity">5:20pm - 5:39pm | Defying Gravity</h2>
+<p><strong>Speaker:</strong> Kevin Hou, Engineering, Google DeepMind</p>
+<p><strong>Speaker Profile:</strong> <a href="../speakers/kevin-hou.md">Full Speaker Profile</a></p>
+<p><strong>Bio:</strong> Engineering, Google DeepMind</p>
+<p><strong>Topic:</strong> Building Google Antigravity and discussing the future of agentic IDEs with Gemini 3</p>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="1376" height="768" src="/reports/aiecode-2025-11/_astro/2025-11-21-16-48-gemini-edited.BBPVMwbO_1aymnq.webp"  data-image-component="true">
+<img  loading="lazy" decoding="async" fetchpriority="auto" width="1376" height="768" src="/reports/aiecode-2025-11/_astro/2025-11-21-17-13-gemini-edited.BY2DxYPb_Z1TVH7D.webp"  data-image-component="true">
+<img  loading="lazy" decoding="async" fetchpriority="auto" width="1376" height="768" src="/reports/aiecode-2025-11/_astro/2025-11-21-17-17-gemini-edited.BgtiJdwB_Z2fjahC.webp"  data-image-component="true">
+<img  loading="lazy" decoding="async" fetchpriority="auto" width="1376" height="768" src="/reports/aiecode-2025-11/_astro/2025-11-21-17-26-gemini-edited.z8zM6iq6_lmWD7.webp"  data-image-component="true">
+<img  loading="lazy" decoding="async" fetchpriority="auto" width="1376" height="768" src="/reports/aiecode-2025-11/_astro/2025-11-21-17-30-gemini-edited.D-eHBrFQ_28h3W6.webp"  data-image-component="true">
+<img  loading="lazy" decoding="async" fetchpriority="auto" width="1376" height="768" src="/reports/aiecode-2025-11/_astro/2025-11-21-17-33-gemini-edited.QZQ-rDsR_2tDupN.webp"  data-image-component="true">
+<img  loading="lazy" decoding="async" fetchpriority="auto" width="1376" height="768" src="/reports/aiecode-2025-11/_astro/2025-11-21-17-34-gemini-edited.WVt6VlFd_Z17SXvo.webp"  data-image-component="true"></p>
+<h3 id="notes">Notes</h3>
+<ul>
+<li>last one of the day</li>
+<li>give me an energy boost</li>
+<li>unapologetically agent-first</li>
+<li>what is it
+<ul>
+<li>editor</li>
+<li>browser</li>
+<li>agent manager</li>
+</ul>
+</li>
+<li>agents are now living outside your ide, manage different surfaces</li>
+<li>agent manage is a high level view
+<ul>
+<li>only on agent manager window</li>
+</ul>
+</li>
+<li>“yes we forked vs code”</li>
+<li>agent controlled browser
+<ul>
+<li>chrome browser</li>
+<li>context retrieval</li>
+<li>give it access to your google docs</li>
+<li>it lets the agent take control of your browser</li>
+<li>it showed the recording of the browser doing it</li>
+</ul>
+</li>
+<li>the editor and the browsers are tools for the agent manager
+<ul>
+<li>it has an inbox</li>
+<li>lets you manage many agents at once</li>
+<li>this is for the agents talking to you</li>
+</ul>
+</li>
+<li>brand new product paradigm
+<ul>
+<li>ran out of capacity</li>
+<li>“on behalf of the team I want to apologize for our global chip shortage”</li>
+</ul>
+</li>
+<li>why did we build the product?
+<ul>
+<li>gemini got good a lot of things</li>
+<li>product is only as good as the models that powered it</li>
+<li>intelligence and reasoning</li>
+<li>advanced tool use</li>
+<li>better at instruction following</li>
+<li>longer running tasks</li>
+<li>multi-modal</li>
+</ul>
+</li>
+<li>“AGY’s approach to AGI”
+<ul>
+<li>raising the capability</li>
+<li>there much more that happens beyond the code</li>
+<li>look up the beginnings guide on the browser</li>
+</ul>
+</li>
+<li>can we use it to come up with verification/specification</li>
+<li>multi-modal experience
+<ul>
+<li>you can comment on the design</li>
+<li>interface with the agent in image space</li>
+</ul>
+</li>
+<li>age of artifacts
+<ul>
+<li>the editor can be the space</li>
+<li>a new interaction pattern</li>
+<li>what is an artifact
+<ul>
+<li>a dynamic representation that the agent generates</li>
+<li>and representation for you and your usecase</li>
+<li>it can be used for self-reflection or communicate to the user</li>
+<li>and can be used across accounts</li>
+</ul>
+</li>
+<li>this should replace the idea of follow what’s going on with the thinking is around the agents</li>
+<li>model decides if it needs an artifact</li>
+<li>what type of artifact</li>
+<li>why it is needed</li>
+<li>who needs to see it</li>
+<li>comments on artifacts</li>
+<li>highlight to select on different modality</li>
+<li>build to optimize the UI of artifacts</li>
+<li>can go back to the editor but mainly we are interacting with the artifact</li>
+</ul>
+</li>
+<li>does it have recommendations?</li>
+<li>what does it mean to be in deep research</li>
+<li>“antigravity will be the most advanced product on the market because we are building it for ourselves”</li>
+<li>tightly together with the gemini team
+<ul>
+<li>identify gaps on both sides</li>
+<li>agent first experience</li>
+</ul>
+</li>
+</ul>
+<h2 id="slides">Slides</h2>
+<h3 id="slide-17-13">Slide: 17-13</h3>
+<p><img src="/slides/2025-11-21-17-13-gemini-edited.jpg" alt="Slide"></p>
+<p><strong>Key Point:</strong> Introduction to Google’s image generation capabilities (Nano Banana Pro) and how it enables multi-modal development tools for both generating visual assets and understanding visual content.</p>
+<p><strong>Literal Content:</strong></p>
+<ul>
+<li>Google Antigravity logo in top left</li>
+<li>Title: “Raise the Ceiling: Images”</li>
+<li>Embedded YouTube video preview showing “Nano Banana Pro” with Google Antigravity branding</li>
+<li>Bullet points listing:
+<ul>
+<li>Bring multi-modality to dev tools</li>
+<li>Generate:
+<ul>
+<li>UI mockups</li>
+<li>Logo &#x26; assets</li>
+</ul>
+</li>
+<li>Understanding:
+<ul>
+<li>Videos &#x26; screenshots</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="slide-17-17">Slide: 17-17</h3>
+<p><img src="/slides/2025-11-21-17-17-gemini-edited.jpg" alt="Slide"></p>
+<p><strong>Key Point:</strong> Demonstrates an agent-driven artifact generation system where the AI model autonomously decides when to create artifacts, what they contain, why they’re needed, and who should see them, following a structured workflow from planning through execution to memory retention.</p>
+<p><strong>Literal Content:</strong></p>
+<ul>
+<li>Google Antigravity logo in top left</li>
+<li>Heading: “The model decides:”
+<ul>
+<li><strong>If</strong> it should generate an artifact</li>
+<li><strong>What</strong> that artifact should contain</li>
+<li><strong>Why</strong> it is needed</li>
+<li><strong>Who</strong> needs to see it (subagent, other agents, notify user, etc.)</li>
+</ul>
+</li>
+<li>Bottom section shows a workflow diagram with 5 stages:
+<ul>
+<li>Plan &#x26; Research (showing document screenshots)</li>
+<li>Feedback (showing implementation plan)</li>
+<li>Execution (showing requirements)</li>
+<li>Walkthrough (showing an image)</li>
+<li>Memory (showing flowchart diagram)</li>
+</ul>
+</li>
+<li>Blue arrows connecting each stage</li>
+</ul>
+<h3 id="slide-17-26">Slide: 17-26</h3>
+<p><img src="/slides/2025-11-21-17-26-gemini-edited.jpg" alt="Slide"></p>
+<p><strong>Key Point:</strong> Summary slide highlighting three key aspects of the Antigravity platform: ambitious AI agents, an agent-first architecture with artifact management, and a research/product feedback loop that drives continuous improvement.</p>
+<p><strong>Literal Content:</strong></p>
+<ul>
+<li>Google Antigravity logo in top left</li>
+<li>Left side heading: “It’s WICKED How Antigravity Defies Gravity” (with stylized “WICKED” text)</li>
+<li>Right side numbered list:
+<ol>
+<li>AI Agent with High Ambition</li>
+<li>Agent-First: Artifacts + Manager</li>
+<li>Research / Product Flywheel</li>
+</ol>
+</li>
+</ul>
+<h3 id="slide-17-30">Slide: 17-30</h3>
+<p><img src="/slides/2025-11-21-17-30-gemini-edited.jpg" alt="Slide"></p>
+<p><strong>Key Point:</strong> Showcases the massive growth and success of AI Engineer events, demonstrating increasing scale in applicants, attendees, and reach across both in-person and remote audiences.</p>
+<p><strong>Literal Content:</strong></p>
+<ul>
+<li>Heading: “Past Event Stats”</li>
+<li>Subtitle: “All events sold out (attendance + expo sponsorships)”</li>
+<li>Timeline showing 4 events:
+<ul>
+<li><strong>October 8-10, 2023</strong> (San Francisco) - AI Engineer Summit: 5,000+ Applicants, 525 Curated Attendees, 29k+ Remote Livestream Attendees, 399k+ YouTube Views</li>
+<li><strong>June 23-25, 2024</strong> (San Francisco) - World’s Fair: 150+ Speakers, 2,000+ Attendees, 50k+ Remote Livestream Attendees, 800k+ YouTube Views</li>
+<li><strong>February 19-21, 2025</strong> (New York) - AI Engineer Summit: 5,000+ Applicants, 800 Curated Attendees, 150k+ Remote Livestream Attendees, 1.5mm YouTube Views</li>
+<li><strong>June 3-5, 2025</strong> (San Francisco) - World’s Fair: 200+ Speakers, 3,300+ Attendees, 150k+ Remote Livestream Attendees, 4.5mm YouTube Views</li>
+</ul>
+</li>
+</ul>
+<h3 id="slide-17-33">Slide: 17-33</h3>
+<p><img src="/slides/2025-11-21-17-33-gemini-edited.jpg" alt="Slide"></p>
+<p><strong>Key Point:</strong> Advertisement for the upcoming AI Engineer World’s Fair in San Francisco (June 30-July 2, 2026), promoting super early bird ticket sales with a 4-day event format.</p>
+<p><strong>Literal Content:</strong></p>
+<ul>
+<li>Header: “AI Engineer World’s Fair”</li>
+<li>Location: “SAN FRANCISCO”</li>
+<li>Date: “JUNE 30-JULY 2, 2026”</li>
+<li>URL: “ai.engineer/WorldsFair”</li>
+<li>“TICKETS NOW ON SALE” (in pink/purple box)</li>
+<li>Details:
+<ul>
+<li>Super Early Bird Pricing</li>
+<li>1 Day workshops, 3 days Sessions</li>
+</ul>
+</li>
+<li>QR code for ticket purchase</li>
+<li>Background image of San Francisco cityscape at night</li>
+</ul>
+<h3 id="slide-17-34">Slide: 17-34</h3>
+<p><img src="/slides/2025-11-21-17-34-gemini-edited.jpg" alt="Slide"></p>
+<p><strong>Key Point:</strong> Advertisement for the first AI Engineer Europe event in London (April 8-10, 2026), promoting super early bird ticket sales with a 3-day event format, expanding the AI Engineer conference series internationally.</p>
+<p><strong>Literal Content:</strong></p>
+<ul>
+<li>Header: “AI Engineer EUROPE”</li>
+<li>Location: “LONDON”</li>
+<li>Date: “APRIL 8-10, 2026”</li>
+<li>URL: “ai.engineer/Europe”</li>
+<li>“TICKETS NOW ON SALE” (in pink/purple box)</li>
+<li>Details:
+<ul>
+<li>Super Early Bird Pricing</li>
+<li>1 Day workshops, 2 days Sessions</li>
+</ul>
+</li>
+<li>QR code for ticket purchase</li>
+<li>Background image of London skyline featuring Big Ben at dusk/evening</li>
+</ul> </article> <!-- Related Articles --> <div class="mt-12"> <h4 class="font-sans font-bold text-sm uppercase mb-2 flex items-center gap-2"> <span class="w-2 h-2 bg-alert-red rounded-full"></span>
+Related Analysis
+</h4> <p class="font-mono text-xs text-gray-600 mb-6">
+This session is featured in the following thematic articles
+</p> <div class="space-y-3"> <a href="article/agents-building-artifacts.md" class="block border border-gray-300 bg-white p-4 hover:border-void hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] transition-all cursor-pointer group"> <div class="flex items-center justify-between"> <div> <span class="font-mono text-xs text-gray-400 uppercase">Section 03</span> <h5 class="font-sans font-bold text-sm group-hover:text-rand-blue transition-colors mt-1">Skills and Artifacts: The New Building Blocks for Agents</h5> </div> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-4 h-4 text-gray-300 group-hover:text-rand-blue transition-colors rotate-180" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg> </div> </a> </div> </div> </div> </div> </div>  </main> <div class="newsletter-signup w-full bg-void text-white py-12 px-4 mt-20 print:hidden"> <div class="max-w-2xl mx-auto text-center"> <span class="font-mono text-xs uppercase tracking-widest text-gray-400 block mb-2">Stay Updated</span> <h3 class="font-sans font-black text-2xl md:text-3xl uppercase mb-4">
+Get the Latest AI Engineering Insights
+</h3> <p class="font-mono text-sm text-gray-300 mb-8 max-w-lg mx-auto">
+Join the Focus.AI newsletter for curated research, analysis, and perspectives on the evolving AI landscape.
+</p> <form action="https://buttondown.com/api/emails/embed-subscribe/thefocusai" method="post" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"> <input type="email" name="email" id="bd-email-footer" placeholder="your@email.com" required class="flex-1 px-4 py-3 bg-white text-void font-mono text-sm border-2 border-white focus:border-rand-blue focus:outline-none"> <button type="submit" class="px-6 py-3 bg-rand-blue text-white font-mono font-bold text-sm uppercase tracking-wider border-2 border-rand-blue hover:bg-white hover:text-rand-blue transition-colors">
+Subscribe
+</button> </form> <p class="font-mono text-[10px] text-gray-500 mt-4">
+No spam. Unsubscribe anytime.
+</p> </div> </div> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var l=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>y(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[h,e]=t;return h in i?i[h](e):void 0},a=t=>t.map(o),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([h,e])=>[h,o(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},p=this.querySelectorAll("template[data-astro-template]");for(let r of p){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let d,m=this.hydrator(this);d=performance.now(),await m(this.Component,u,n,{client:this.getAttribute("client")}),d&&this.setAttribute("client-render-time",(performance.now()-d).toString()),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[p,{default:u}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),d=this.getAttribute("component-export")||"default";if(!d.includes("."))this.Component=p[d];else{this.Component=p;for(let m of d.split("."))this.Component=this.Component[m]}return this.hydrator=u,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="1orIMw" prefix="r8" component-url="/reports/aiecode-2025-11/_astro/ResearchSidebar.CvItGTRC.js" component-export="default" renderer-url="/reports/aiecode-2025-11/_astro/client.hoVE1hpE.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;ResearchSidebar&quot;,&quot;value&quot;:true}" server-render-time="0.4392920000000231" await-children><div class="fixed top-0 right-0 h-full w-full md:w-96 bg-[#eeece6] border-l border-void z-[60] transform transition-transform duration-300 ease-out shadow-2xl translate-x-full"><div class="h-full flex flex-col"><div class="p-4 border-b border-void bg-paper flex justify-between items-center"><div class="flex items-center gap-3"><div class="bg-void text-paper p-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder-open w-4 h-4" aria-hidden="true"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"></path></svg></div><div><h2 class="text-sm font-mono font-bold tracking-widest uppercase">CLASSIFIED_FILES</h2><p class="text-[9px] font-mono text-gray-500">USER: AUTHORIZED</p></div></div><button class="hover:text-alert-red transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x w-5 h-5" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button></div><div class="flex-1 overflow-y-auto bg-[#eeece6] p-4"><div class="h-full flex flex-col items-center justify-center text-center text-gray-400"><p class="font-mono text-xs uppercase tracking-widest mb-2">[ EMPTY DRAWER ]</p><p class="font-serif italic text-sm">No documents have been filed.</p></div></div><div class="p-4 border-t border-void bg-paper"><button class="w-full py-3 bg-void text-paper font-mono font-bold text-xs uppercase tracking-widest hover:bg-alert-red transition-colors">Export Manifest</button></div></div></div><!--astro:end--></astro-island> <astro-island uid="Z1RVT21" prefix="r9" component-url="/reports/aiecode-2025-11/_astro/ChatAssistant.DYOiTopH.js" component-export="default" renderer-url="/reports/aiecode-2025-11/_astro/client.hoVE1hpE.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;ChatAssistant&quot;,&quot;value&quot;:true}" server-render-time="0.44600000000036744" await-children><button class="hidden fixed bottom-6 right-6 bg-void text-terminal-green border border-terminal-green p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all z-40 flex items-center gap-3 pr-6 group"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-terminal w-5 h-5 animate-pulse" aria-hidden="true"><path d="M12 19h8"></path><path d="m4 17 6-6-6-6"></path></svg><span class="font-mono font-bold tracking-widest text-xs">TERM_ACCESS</span></button><!--astro:end--></astro-island> <div id="newsletter-popup" class="fixed inset-0 z-50 hidden print:hidden"> <!-- Backdrop --> <div class="absolute inset-0 bg-void/70 backdrop-blur-sm" id="popup-backdrop"></div> <!-- Modal --> <div class="absolute inset-0 flex items-center justify-center p-4"> <div class="relative bg-paper border-4 border-void shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] max-w-md w-full p-8 animate-in fade-in zoom-in-95 duration-300"> <!-- Close button --> <button id="popup-close" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-void hover:text-alert-red transition-colors font-mono font-bold text-xl" aria-label="Close popup">
+&times;
+</button> <div class="text-center"> <span class="font-mono text-xs uppercase tracking-widest text-gray-500 block mb-2">
+Don't Miss Out
+</span> <h3 class="font-sans font-black text-2xl uppercase mb-4 text-void">
+Stay Ahead of the Curve
+</h3> <p class="font-mono text-sm text-gray-600 mb-6">
+Get weekly insights on AI engineering trends, research summaries, and expert analysis delivered to your inbox.
+</p> <form action="https://buttondown.com/api/emails/embed-subscribe/thefocusai" method="post" class="space-y-3"> <input type="email" name="email" id="bd-email-popup" placeholder="your@email.com" required class="w-full px-4 py-3 bg-white text-void font-mono text-sm border-2 border-void focus:border-rand-blue focus:outline-none"> <button type="submit" class="w-full px-6 py-3 bg-void text-white font-mono font-bold text-sm uppercase tracking-wider border-2 border-void hover:bg-rand-blue hover:border-rand-blue transition-colors">
+Subscribe to Focus.AI
+</button> </form> <button id="popup-dismiss" class="mt-4 font-mono text-xs text-gray-400 hover:text-void transition-colors underline">
+No thanks, I'll pass
+</button> </div> </div> </div> </div> <script type="module">const s="focus_newsletter_dismissed";function o(){const e=document.getElementById("newsletter-popup"),d=document.getElementById("popup-close"),i=document.getElementById("popup-dismiss"),c=document.getElementById("popup-backdrop");if(!e||localStorage.getItem(s))return;const l=setTimeout(()=>{e.classList.remove("hidden"),document.body.style.overflow="hidden"},3e4);function t(n=!1){e.classList.add("hidden"),document.body.style.overflow="",n&&localStorage.setItem(s,"true")}d?.addEventListener("click",()=>t(!0)),i?.addEventListener("click",()=>t(!0)),c?.addEventListener("click",()=>t(!1)),document.addEventListener("keydown",n=>{n.key==="Escape"&&!e.classList.contains("hidden")&&t(!1)}),window.addEventListener("beforeunload",()=>clearTimeout(l))}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",o):o();</script> </div> </body></html> <script type="module">function i(){const e=document.getElementById("save-button");if(!e)return;const n=e.dataset.sessionId,t=JSON.parse(localStorage.getItem("horizon_saved_research")||"[]").some(o=>o.id===n),s=e.querySelector(".save-text");s&&(s.textContent=t?"Filed":"File"),e.classList.toggle("text-alert-red",t),e.classList.toggle("font-bold",t),e.classList.toggle("text-gray-500",!t)}document.getElementById("save-button")?.addEventListener("click",()=>{const e=document.getElementById("save-button");if(!e)return;const n=e.dataset.sessionId,a=e.dataset.sessionTitle,t=JSON.parse(localStorage.getItem("horizon_saved_research")||"[]"),s=t.findIndex(o=>o.id===n);s>=0?t.splice(s,1):t.push({id:n,type:"session",title:a,timestamp:Date.now()}),localStorage.setItem("horizon_saved_research",JSON.stringify(t)),i(),window.dispatchEvent(new Event("saved-items-updated"))});i();</script>

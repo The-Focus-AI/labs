@@ -1,0 +1,111 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getRecipes, getRecipePath } from '../../lib/recipes';
+
+const recipes = await getRecipes();
+
+const recipeImages = await import.meta.glob<{ default: { src: string } }>(
+  '/src/content/assets/recipes/*.{jpeg,jpg,png,gif,webp}'
+);
+
+function recipeImageSrc(image?: string) {
+  if (!image) return null;
+  const key = `/src/content/assets/recipes/${image}`;
+  const mod = recipeImages[key];
+  return mod ? mod().then((m) => m.default.src) : null;
+}
+
+const withImages = await Promise.all(
+  recipes.map(async (recipe) => ({
+    recipe,
+    imageSrc: recipe.data.image ? await recipeImageSrc(recipe.data.image) : null,
+  }))
+);
+---
+<BaseLayout title="Recipes · TheFocus.AI Labs" description="Hands-on recipes and weekend projects for AI engineering.">
+  <section class="hub">
+    <div class="hub-inner">
+      <p class="section-label">Recipes</p>
+      <h1 class="hub-title">Build it yourself.</h1>
+      <p class="hub-lead">
+        Step-by-step recipes for agents, tools, prompts, and workflows. Most are
+        a single sitting.
+      </p>
+
+      <ul class="hub-grid">
+        {withImages.map(({ recipe, imageSrc }) => (
+          <li>
+            <a class="content-card" href={getRecipePath(recipe)}>
+              {imageSrc && (
+                <img class="card-thumb" src={imageSrc} alt="" loading="lazy" />
+              )}
+              <p class="mono-label">
+                {recipe.data.duration ?? 'Recipe'}
+                {recipe.data.date &&
+                  ` · ${recipe.data.date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}`}
+              </p>
+              <h2>{recipe.data.title}</h2>
+              {recipe.data.description && <p>{recipe.data.description}</p>}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hub {
+    padding: var(--section-y) 0;
+  }
+
+  .hub-inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  .hub-title {
+    font-size: clamp(2rem, 5vw, 3.75rem);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--text-strong);
+    margin: 0.75rem 0 1rem;
+    max-width: 12ch;
+  }
+
+  .hub-lead {
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--text-2);
+    max-width: 52ch;
+    margin: 0 0 3rem;
+  }
+
+  .hub-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .hub-grid li {
+    background: var(--canvas);
+  }
+
+  .card-thumb {
+    height: 160px;
+    object-fit: cover;
+    display: block;
+    margin: calc(var(--card-pad) * -1);
+    margin-bottom: 1rem;
+    width: calc(100% + var(--card-pad) * 2);
+    border-bottom: 1px solid var(--border);
+  }
+</style>

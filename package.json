@@ -1,9 +1,9 @@
 {
-  "name": "focus-ai-magazine",
+  "name": "focus-ai-labs",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "description": "The Focus.AI publication line — SURFACE, RUNTIME, STATE, HARNESS, LOCAL, WIRE",
+  "description": "TheFocus.AI Labs — thoughts, reports, recipes, and publication issues",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -17,5 +17,9 @@
     "astro": "^5.0.0",
     "@astrojs/mdx": "^4.0.0",
     "@astrojs/sitemap": "^3.2.0"
+  },
+  "packageManager": "pnpm@9.15.0",
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild", "sharp"]
   }
 }
