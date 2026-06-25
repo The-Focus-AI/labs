@@ -1,17 +1,21 @@
 ---
 import '../styles/global.css';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 import NewsletterPopup from '../components/NewsletterPopup.astro';
 
 interface Props {
   title: string;
   description?: string;
   theme?: 'ledger' | 'magazine';
+  bodyClass?: string;
 }
 
 const {
   title,
-  description = 'TheFocus.AI Labs — thoughts, reports, recipes, and publication issues from the front of AI engineering.',
+  description = 'TheFocus.AI Labs — dispatch, measurements, bench recipes, and publication issues from the front of AI engineering.',
   theme = 'ledger',
+  bodyClass = '',
 } = Astro.props;
 ---
 <!doctype html>
@@ -29,58 +33,16 @@ const {
       rel="stylesheet"
     />
     <title>{title}</title>
+    <slot name="head" />
   </head>
-  <body>
-    <header class="site-header">
-      <div class="site-header-inner">
-        <a href="/" class="wordmark" aria-label="TheFocus.AI Labs">
-          {theme === 'ledger' ? (
-            <>
-              <span class="wordmark-glyph" aria-hidden="true"></span>
-              <span class="wordmark-text">TheFocus</span>
-              <span class="wordmark-sub">Labs</span>
-            </>
-          ) : (
-            <>
-              <span class="wordmark-block" aria-hidden="true"></span>
-              <span class="wordmark-text">THEFOCUS.AI</span>
-              <span class="wordmark-divider" aria-hidden="true">·</span>
-              <span class="wordmark-sub">MAGAZINE</span>
-            </>
-          )}
-        </a>
-        <nav class="site-nav" aria-label="Primary">
-          {theme === 'ledger' ? (
-            <>
-              <a href="/dispatch/">Dispatch</a>
-              <a href="/quarterly/">How AI</a>
-              <a href="/reports/">Measurements</a>
-              <a href="/recipes/">Bench</a>
-              <a href="/issues/">Issues</a>
-            </>
-          ) : (
-            <a href="/">← Labs</a>
-          )}
-        </nav>
-      </div>
-    </header>
+  <body class:list={[bodyClass]}>
+    <SiteHeader theme={theme} />
 
     <main>
       <slot />
     </main>
 
-    <footer class="site-footer">
-      <div class="site-footer-inner">
-        <span>Published by <a href="https://thefocus.ai">TheFocus.AI</a></span>
-        <span>
-          <a href="https://courses.thefocus.ai">Courses</a>
-          ·
-          <a href="https://standards.thefocus.ai">Standards</a>
-          ·
-          <a href="https://github.com/The-Focus-AI/labs">Source</a>
-        </span>
-      </div>
-    </footer>
+    <SiteFooter theme={theme} />
 
     {theme === 'ledger' && <NewsletterPopup />}
   </body>

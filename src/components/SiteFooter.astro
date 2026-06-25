@@ -1,0 +1,19 @@
+---
+interface Props {
+  theme?: 'ledger' | 'magazine';
+}
+
+const { theme = 'ledger' } = Astro.props;
+---
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>Published by <a href="https://thefocus.ai">TheFocus.AI</a></span>
+    <span>
+      <a href="https://courses.thefocus.ai">Courses</a>
+      ·
+      <a href="https://standards.thefocus.ai">Standards</a>
+      ·
+      <a href="https://github.com/The-Focus-AI/labs">Source</a>
+    </span>
+  </div>
+</footer>
