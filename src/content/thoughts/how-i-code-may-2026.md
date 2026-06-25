@@ -10,6 +10,10 @@ tags:
   - workflow
   - coding
 image: how-i-code-may-2026.png
+pillar: "build"
+column: "quarterly"
+series: "how-i-code"
+quarter: "2026-Q2"
 ---
 
 It's May 2026, five months since I [last wrote about how I use AI](https://thefocus.ai/posts/how-i-use-ai-jan-2026/). That's decades in AI time, so the January column below is already completely out of date — feel free to chuckle knowingly at how cute and innocent it all looks.

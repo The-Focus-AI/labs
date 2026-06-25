@@ -1,0 +1,144 @@
+---
+import { render } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import {
+  getThoughts,
+  getThoughtSlug,
+  getAdjacentThoughts,
+  getAdjacentQuarterly,
+  getThoughtPath,
+} from '../../lib/thoughts';
+import { PILLARS, QUARTERLY_SERIES, COLUMNS } from '../../lib/taxonomy';
+
+export async function getStaticPaths() {
+  const thoughts = await getThoughts();
+  return thoughts
+    .filter((t) => t.data.column !== 'ephemeral')
+    .map((thought) => ({
+      params: { slug: getThoughtSlug(thought) },
+      props: { thought },
+    }));
+}
+
+const { thought } = Astro.props;
+const { Content } = await render(thought);
+
+const isQuarterly = thought.data.column === 'quarterly';
+const isBrief = thought.data.column === 'brief';
+const adjacent = isQuarterly
+  ? await getAdjacentQuarterly(thought)
+  : isBrief
+    ? { newer: undefined, older: undefined }
+    : await getAdjacentThoughts(thought);
+
+const cardImages = await import.meta.glob<{ default: { src: string } }>(
+  '/src/content/assets/cards/*.{jpeg,jpg,png,gif,webp}'
+);
+
+let imageSrc: string | null = null;
+if (thought.data.image) {
+  const key = `/src/content/assets/cards/${thought.data.image}`;
+  if (cardImages[key]) {
+    imageSrc = (await cardImages[key]()).default.src;
+  }
+}
+
+const pillar = PILLARS[thought.data.pillar];
+const column = COLUMNS[thought.data.column];
+const seriesInfo = thought.data.series ? QUARTERLY_SERIES[thought.data.series] : null;
+const backHref = isQuarterly ? '/quarterly/' : isBrief ? '/reports/' : '/dispatch/';
+const backLabel = isQuarterly ? 'Quarterly' : isBrief ? 'Measurements' : 'Dispatch';
+---
+<ArticleLayout
+  title={thought.data.title}
+  description={thought.data.description}
+  backHref={backHref}
+  backLabel={backLabel}
+  date={thought.data.date}
+  pillar={pillar.label}
+  column={column.label}
+  series={seriesInfo?.label}
+  quarter={thought.data.quarter}
+  imageSrc={imageSrc}
+>
+  {isBrief && thought.data.relatedReport && (
+    <p class="brief-cta">
+      <a href={thought.data.relatedReport}>
+        Read the full measurement →
+      </a>
+    </p>
+  )}
+
+  <Content />
+
+  {(adjacent.newer || adjacent.older) && (
+    <nav class="adjacent">
+      {adjacent.older && (
+        <a class="adjacent-link" href={getThoughtPath(adjacent.older)}>
+          <span class="mono-label">Previous</span>
+          <span>{adjacent.older.data.title}</span>
+        </a>
+      )}
+      {adjacent.newer && (
+        <a class="adjacent-link adjacent-link--next" href={getThoughtPath(adjacent.newer)}>
+          <span class="mono-label">Next</span>
+          <span>{adjacent.newer.data.title}</span>
+        </a>
+      )}
+    </nav>
+  )}
+</ArticleLayout>
+
+<style>
+  .brief-cta {
+    margin: 0 0 2rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--signal);
+    background: color-mix(in srgb, var(--signal) 12%, transparent);
+  }
+
+  .brief-cta a {
+    color: var(--text-strong);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .brief-cta a:hover {
+    color: var(--signal);
+  }
+
+  .adjacent {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .adjacent-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    text-decoration: none;
+    color: var(--text);
+    padding: 1rem;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .adjacent-link--next { text-align: right; }
+
+  .adjacent-link:hover {
+    color: var(--text-strong);
+    background: color-mix(in srgb, var(--surface) 90%, white);
+  }
+
+  @media (max-width: 640px) {
+    .adjacent { grid-template-columns: 1fr; }
+    .adjacent-link--next { text-align: left; }
+  }
+</style>

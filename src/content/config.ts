@@ -109,6 +109,26 @@ const thoughts = defineCollection({
     .object({
       title: z.string(),
       date: z.coerce.date(),
+      description: z.string().optional(),
+      published: z.coerce.boolean().default(true),
+      image: z.string().optional(),
+      ogImage: z.string().optional(),
+      author: z.string().optional(),
+      audio: z.union([z.string(), z.boolean()]).optional(),
+      slug: z.string().optional(),
+      /** Six pillars of intelligent organization */
+      pillar: z
+        .enum(['use', 'build', 'deploy', 'measure', 'lead', 'connect'])
+        .default('use'),
+      /** Publishing cadence / lifecycle */
+      column: z.enum(['dispatch', 'quarterly', 'brief', 'ephemeral']).default('dispatch'),
+      /** Quarterly series key (how-i-ai, how-i-code) */
+      series: z.enum(['how-i-ai', 'how-i-code']).optional(),
+      /** e.g. 2026-Q1 */
+      quarter: z.string().optional(),
+      /** Link to full measurement when column is brief */
+      relatedReport: z.string().optional(),
+      tags: z.array(z.string()).optional(),
     })
     .passthrough(),
 });
@@ -119,6 +139,15 @@ const recipes = defineCollection({
     .object({
       title: z.string(),
       date: z.coerce.date(),
+      description: z.string().optional(),
+      published: z.coerce.boolean().default(true),
+      image: z.string().optional(),
+      duration: z.string().optional(),
+      slug: z.string().optional(),
+      section: z.array(z.enum(['coding', 'analysis', 'user-experience'])).optional(),
+      tech: z.array(z.string()).optional(),
+      related: z.array(z.string()).optional().nullable(),
+      tags: z.array(z.string()).optional(),
     })
     .passthrough(),
 });

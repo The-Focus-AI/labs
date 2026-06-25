@@ -7,6 +7,8 @@ tags:
 published: true
 image: swift_wide.png
 description: swift files can be run directly without compiling and without XCode, making it easy to create native UI elements and access all of macOS's APIs. Once you see Swift as a scripting language rather than just an app language, you start wondering what other capabilities are hiding in plain sight.
+pillar: "build"
+column: "dispatch"
 ---
 Did you know that you can run a single `swift` file?  You can *just write a single .swift file and run it*.  Not only can you use it like a shell script and have it create UI elements, but *you can avoid the abomination of Xcode.*
 

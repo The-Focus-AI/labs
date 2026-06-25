@@ -10,6 +10,8 @@ tags:
   - agents
   - workflow
   - process
+pillar: "build"
+column: "dispatch"
 ---
 
 Claude Code -- and the others like Gemini CLI or Codex or Cursor -- is way more than vibe-coding.  There's a new style of application or systems that I've been building over the last few weeks, all using a similar, LLM at the heart of the flow, pattern.  One manages company operations, client projects, hiring pipelines, and invoices. One tracks a 11-day water fast (and the weeks after of refeeding) with body composition analysis and meal planning. One synthesizes content from Twitter, YouTube, and newsletters into weekly digests.

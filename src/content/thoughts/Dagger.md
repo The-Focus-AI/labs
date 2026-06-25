@@ -3,6 +3,9 @@ title: Dagger
 date: 2025-06-08
 tags:
   - daily
+pillar: "build"
+column: "ephemeral"
+published: false
 ---
 
 ```shell

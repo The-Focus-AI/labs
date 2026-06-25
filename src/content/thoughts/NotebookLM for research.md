@@ -7,6 +7,8 @@ tags:
 description: By utilizing NotebookLM, an AI model capable of generating audio summaries and interactive conversations, you can create customized podcasts on-the-go.  You can also join the conversation.
 published: true
 image: broadcast_wide.png
+pillar: "use"
+column: "dispatch"
 ---
 I was cleaning out my tabs this morning and there were a few things that I wanted to go a little bit deeper on and make sure that I understood. So I thought, hey, let's just throw this stuff into a model and then see if I can listen to it while driving back from the coffee shop.  Its about a 12 minute drive, so instead of listening to some jokers podcast lets make our own!
 

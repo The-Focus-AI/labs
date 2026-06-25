@@ -12,6 +12,9 @@ published: true
 author: Will Schenk
 image: gemma4-showdown-infographic-v2.png
 ogImage: gemma4-showdown-infographic-v2.png
+pillar: "measure"
+column: "brief"
+relatedReport: "/reports/model-showdown/"
 ---
 
 Google shipped **Gemma 4** in early April 2026: dense **e2b** / **e4b-class** models, a **26B MoE** (4B active), and a **31B dense** variant, Apache 2.0, multimodal context up to 256K on the larger weights. The practical question for builders is not the press release—it’s how those checkpoints behave on **the same tasks** you already run against GPT, Claude, Gemini, and the open-weights crowd.

@@ -10,6 +10,8 @@ tags:
   - process
 image: agent-coordination.png
 ogImage: agent-coordination.png
+pillar: "build"
+column: "dispatch"
 ---
 
 In [The Agent Habitat](/posts/agent-habitat) I described how each agent is a self-contained git repo — its own skills, credentials, memory, and working state. That pattern works for one agent. But what happens when you have a dozen of them?

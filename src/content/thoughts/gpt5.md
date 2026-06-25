@@ -6,6 +6,8 @@ tags:
 published: true
 image: gpt5_wide.png
 description: gpt5 can choose to be so smart it's almost impossible to judge.  Lets see how it does on some unanswerable questions and if it can totally replace google.
+pillar: "use"
+column: "dispatch"
 ---
 I've been pretty excited about how [gpt-oss](gpt5%20and%20gpt-oss.md) is working and I have a few good posts lined up about that.  But lets talk about gpt-5 for a hot second: it's pretty good, and has almost replaced all of my googling.  (Spoiler: [AI Mode](https://search.google/ways-to-search/ai-mode/) is no slouch either)
 

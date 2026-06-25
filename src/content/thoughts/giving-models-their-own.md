@@ -9,6 +9,8 @@ image: giving-models-their-own.png
 description: "When we give models a vocabulary—tools with schemas, UI components with props—they can make their own decisions about what to fetch and their own interfaces for how to show it. Two screenshots from the wild."
 published: false
 author: Will Schenk
+pillar: "connect"
+column: "dispatch"
 ---
 
 <!-- Replace the two post images with the right Desktop screenshots: (1) a chat or product UI where the model has generated structured UI—e.g. cards, charts, map, table in the reply; (2) tool use in action—e.g. chat with tool calls visible, or eval output showing which models called which tools. Save them as giving-models-ui-example.png and giving-models-tools-example.png in src/content/assets/posts/ and use the paths below. -->

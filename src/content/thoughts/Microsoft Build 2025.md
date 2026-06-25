@@ -7,6 +7,8 @@ tags:
 image: build_wide.png
 description: Microsoft is betting big on an open, agent-powered web—where protocols like MCP, A2A, and NLWeb redefine how AI and services interact. The real opportunity in AI isn’t just smarter models, but the “capability overhang” waiting to be unlocked by better reasoning and open standards.
 published: true
+pillar: "connect"
+column: "dispatch"
 ---
 > Look at what the web has become.  Can you imagine if a company had tried to own parts of it?  Locking it in with browser features that only they controlled?  We would never have the breadth and width and amazing things that we have in the web now.
 > -- Not actually a quote but they kept repeating that sentiment

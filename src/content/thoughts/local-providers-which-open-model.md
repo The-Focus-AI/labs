@@ -10,6 +10,9 @@ tags:
   - local-models
   - benchmarks
   - labs
+pillar: "measure"
+column: "brief"
+relatedReport: "/reports/local-providers/"
 ---
 
 Everyone says local models are getting good. We wanted numbers.

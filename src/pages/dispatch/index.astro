@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getDispatches, getThoughtPath } from '../../lib/thoughts';
+import { PILLARS, type Pillar } from '../../lib/taxonomy';
+
+const pillarFilter = Astro.params.pillar as Pillar | undefined;
+const dispatches = await getDispatches(pillarFilter);
+const pillar = pillarFilter ? PILLARS[pillarFilter] : null;
+
+const cardImages = await import.meta.glob<{ default: { src: string } }>(
+  '/src/content/assets/cards/*.{jpeg,jpg,png,gif,webp}'
+);
+
+async function cardSrc(image?: string) {
+  if (!image) return null;
+  const key = `/src/content/assets/cards/${image}`;
+  const mod = cardImages[key];
+  return mod ? (await mod()).default.src : null;
+}
+
+const withImages = await Promise.all(
+  dispatches.map(async (thought) => ({
+    thought,
+    imageSrc: thought.data.image ? await cardSrc(thought.data.image) : null,
+  }))
+);
+
+const pageTitle = pillar
+  ? `${pillar.label} · Dispatch · TheFocus.AI Labs`
+  : 'Dispatch · TheFocus.AI Labs';
+---
+<BaseLayout
+  title={pageTitle}
+  description={pillar?.description ?? 'Weekly field notes on building intelligent organizations with AI.'}
+>
+  <section class="hub">
+    <div class="hub-inner">
+      <p class="section-label">Dispatch</p>
+      <h1 class="hub-title">
+        {pillar ? pillar.title : 'Weekly field notes.'}
+      </h1>
+      <p class="hub-lead">
+        {pillar
+          ? pillar.description
+          : 'One or two posts a week as work happens — observations, experiments, and notes from the field. Rolled into quarterly snapshots and the publication line.'}
+      </p>
+
+      <nav class="pillar-nav" aria-label="Filter by pillar">
+        <a class:list={['pillar-link', { active: !pillarFilter }]} href="/dispatch/">
+          All
+        </a>
+        {(Object.entries(PILLARS) as [Pillar, (typeof PILLARS)[Pillar]][]).map(([key, p]) => (
+          <a class:list={['pillar-link', { active: pillarFilter === key }]} href={`/dispatch/${key}/`}>
+            {p.label}
+          </a>
+        ))}
+      </nav>
+
+      <ul class="hub-grid">
+        {withImages.map(({ thought, imageSrc }) => (
+          <li>
+            <a class="content-card" href={getThoughtPath(thought)}>
+              {imageSrc && <img class="card-thumb" src={imageSrc} alt="" loading="lazy" />}
+              <p class="mono-label">
+                {PILLARS[thought.data.pillar].label}
+                {' · '}
+                {thought.data.date.toLocaleDateString('en-US', {
+                  month: 'short',
+                  day: 'numeric',
+                  year: 'numeric',
+                })}
+              </p>
+              <h2>{thought.data.title}</h2>
+              {thought.data.description && <p>{thought.data.description}</p>}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      {withImages.length === 0 && (
+        <p class="empty">No dispatches in this pillar yet.</p>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hub {
+    padding: var(--section-y) 0;
+  }
+
+  .hub-inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  .hub-title {
+    font-size: clamp(2rem, 5vw, 3.75rem);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--text-strong);
+    margin: 0.75rem 0 1rem;
+    max-width: 18ch;
+  }
+
+  .hub-lead {
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--text-2);
+    max-width: 58ch;
+    margin: 0 0 2rem;
+  }
+
+  .pillar-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .pillar-link {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--muted);
+    padding: 0.35rem 0;
+    border-bottom: 1px solid transparent;
+  }
+
+  .pillar-link:hover,
+  .pillar-link.active {
+    color: var(--signal);
+    border-bottom-color: var(--signal);
+  }
+
+  .hub-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .hub-grid li {
+    background: var(--canvas);
+  }
+
+  .card-thumb {
+    width: calc(100% + var(--card-pad) * 2);
+    height: 160px;
+    object-fit: cover;
+    display: block;
+    margin: calc(var(--card-pad) * -1);
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .empty {
+    color: var(--muted);
+    font-size: 15px;
+  }
+</style>

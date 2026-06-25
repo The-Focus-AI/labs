@@ -8,6 +8,8 @@ tags:
 published: false
 image: geolocate_wide.png
 description: Principles and mental models for effective "vibe coding" with AI - managing context, breaking down phases, and building reliable workflows with LLMs.
+pillar: "use"
+column: "dispatch"
 ---
 There are moments when "the models" will stagger you with its ability to intuit your intent, and give you the answer to the question that you should have asked.  Vibe coding in the coding casino, that unpredictable dopamine hit of vibe coding it what makes us coming back for more.
 

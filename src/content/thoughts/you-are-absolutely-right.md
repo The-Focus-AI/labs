@@ -8,6 +8,8 @@ tags:
   - essay
   - agents
   - process
+pillar: "use"
+column: "dispatch"
 ---
 
 AI can be very useful thought partners, but they aren't especially great thinkers especially when their context window fills up.  How do you know you've gone too far?  When it says: "You're absolutely right".

@@ -8,6 +8,8 @@ tags:
 image: tree_wide.png
 published: true
 description: Small models are smart yet limited in knowledge; foundation models possess both deep understanding and extensive knowledge but lack structured problem-solving approaches. Educated models like DeepResearch excel by combining learned reasoning processes with large memory capacities, enabling them to adapt effectively to complex tasks while handling vast information instantaneously.
+pillar: "use"
+column: "dispatch"
 ---
 Stepping back a bit from [thoughts on what these models can really help us answer](AI%20for%20research,%20DeepResearch%20wins.md), there are 4 different dimensions ways to think about AI model capabilities: 
 * smart (ability to reason and understand language)

@@ -6,6 +6,8 @@ tags:
 description: Explore how generative AI-based tools can revolutionize the way we work, making creative tasks more accessible and efficient for both novices and experts, while also highlighting the importance of critical thinking and creativity in the face of automation.
 published: true
 image: workshop.png
+pillar: "use"
+column: "dispatch"
 ---
 > [Computers are a bicycle for the mind.](https://www.themarginalian.org/2011/12/21/steve-jobs-bicycle-for-the-mind-1990/)
 

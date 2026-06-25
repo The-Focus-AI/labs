@@ -7,6 +7,8 @@ tags:
 published: true
 image: live_free_or_die.jpg
 description: Small, local AI models deliver surprisingly effective results for everyday tasks.  Also llama3.2 is surprisingly fast and gpt-oss is surprisingly good.
+pillar: "build"
+column: "dispatch"
 ---
 I needed a small script to help anonymizing some test data.  Nothing fancy, but on my way to ChatGPT I ended up on the "wrong window" -- and threw the prompt at Olamma `gpt-oss` instead.  And it surprised me by giving me a solid result quickly.  Small local models are the future and being able to run them on hardware you already own is a political statement. 
 

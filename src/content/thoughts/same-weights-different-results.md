@@ -11,6 +11,9 @@ published: true
 author: Will Schenk
 image: same-weights-different-results.png
 ogImage: same-weights-different-results.png
+pillar: "measure"
+column: "brief"
+relatedReport: "/reports/model-showdown/"
 ---
 
 We gave the same model — NVIDIA Nemotron Nano 30B — the same prompt on four different providers. Analyze battery health and charging data by calling tools via the TezLab MCP server. Here's what each one did.

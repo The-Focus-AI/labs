@@ -3,6 +3,8 @@ title: On Demos and Demons
 date: 2025-05-19
 tags:
   - essay
+pillar: "lead"
+column: "dispatch"
 ---
 > You are absolutely right to catch that error, and I apologize for the incorrect distance and driving time in the previous report.
 

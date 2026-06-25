@@ -6,6 +6,8 @@ tags:
 published: true
 image: gpt_oss_wide.png
 description: OpenAI’s GPT-5 launch stole headlines, but GPT-OSS quietly made local AI a lot more practical. This post covers what’s new, how to run it with Ollama or LM Studio, and why context size can change your results.
+pillar: "use"
+column: "dispatch"
 ---
 Did you hear that the new gpt weights just dropped?   [OpenAI](https://openai.com) just released [gpt-5](https://openai.com/index/introducing-gpt-5/) and did a coordinated release of [gpt-oss](https://openai.com/index/introducing-gpt-oss/) with Hugging Face, Ollama, LMStudio and more that you can run and tinker with at home.
 

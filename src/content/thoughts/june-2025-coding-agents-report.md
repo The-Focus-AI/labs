@@ -10,6 +10,9 @@ tags:
   - agents
 image: coding-agent-heatmap.png
 author: Will Schenk
+pillar: "measure"
+column: "brief"
+relatedReport: "/reports/june-2025-coding-agents.pdf"
 ---
 
 ## Executive Summary

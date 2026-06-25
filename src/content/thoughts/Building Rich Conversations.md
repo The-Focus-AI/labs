@@ -7,6 +7,8 @@ tags:
 image: rich_conversations_wide.png
 published: false
 description: Building rich conversational interfaces with MCP servers - making your data truly interactive instead of just queryable.
+pillar: "connect"
+column: "dispatch"
 ---
 There's a new interface in town, where you get into a thoughtful, curious place, and the computer is there to assist you.
 

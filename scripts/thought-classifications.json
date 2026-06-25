@@ -1,0 +1,95 @@
+{
+  "how-i-use-ai-jan-2026.md": {
+    "pillar": "use",
+    "column": "quarterly",
+    "series": "how-i-ai",
+    "quarter": "2026-Q1"
+  },
+  "how-i-code-may-2026.md": {
+    "pillar": "build",
+    "column": "quarterly",
+    "series": "how-i-code",
+    "quarter": "2026-Q2"
+  },
+  "june-2025-coding-agents-report.md": {
+    "pillar": "measure",
+    "column": "brief",
+    "relatedReport": "/reports/june-2025-coding-agents.pdf"
+  },
+  "local-providers-which-open-model.md": {
+    "pillar": "measure",
+    "column": "brief",
+    "relatedReport": "/reports/local-providers/"
+  },
+  "the-car-wash-test.md": {
+    "pillar": "measure",
+    "column": "brief",
+    "relatedReport": "/reports/car-wash-test/"
+  },
+  "same-weights-different-results.md": {
+    "pillar": "measure",
+    "column": "brief",
+    "relatedReport": "/reports/model-showdown/"
+  },
+  "gemma-4-umwelten-showdown.md": {
+    "pillar": "measure",
+    "column": "brief",
+    "relatedReport": "/reports/model-showdown/"
+  },
+  "mcp-tool-eval-mercury-umwelten.md": {
+    "pillar": "measure",
+    "column": "brief",
+    "relatedReport": "/reports/mcp-tool-test/"
+  },
+  "ai-engineering-code-summit-2025.md": {
+    "pillar": "measure",
+    "column": "brief",
+    "relatedReport": "/reports/aiecode-2025-11/"
+  },
+  "2025-11-22-ai-engineering-summit-takeaways.md": {
+    "pillar": "lead",
+    "column": "dispatch"
+  },
+  "agent-habitat.md": { "pillar": "build", "column": "dispatch" },
+  "agent-coordination.md": { "pillar": "build", "column": "dispatch" },
+  "neural-harness.md": { "pillar": "build", "column": "dispatch" },
+  "data-flywheel-pattern.md": { "pillar": "build", "column": "dispatch" },
+  "Feature development on the go.md": { "pillar": "build", "column": "dispatch" },
+  "Agentic YOLO with Warp Cursor and Claude.md": { "pillar": "build", "column": "dispatch" },
+  "Coding with a memory system.md": { "pillar": "build", "column": "dispatch" },
+  "local-models-typescript.md": { "pillar": "build", "column": "dispatch" },
+  "Image Gen on Apple Silicon.md": { "pillar": "build", "column": "dispatch" },
+  "single file swift code.md": { "pillar": "build", "column": "dispatch" },
+  "Slicing a design from figma.md": { "pillar": "build", "column": "dispatch" },
+  "Building a chrome extension.md": { "pillar": "build", "column": "dispatch" },
+  "Building Rich Conversations.md": { "pillar": "connect", "column": "dispatch" },
+  "Exposing Services with MCP.md": { "pillar": "connect", "column": "dispatch" },
+  "Using Structured Output.md": { "pillar": "connect", "column": "dispatch" },
+  "giving-models-their-own.md": { "pillar": "connect", "column": "dispatch" },
+  "building-an-intelligent-organization.md": { "pillar": "lead", "column": "dispatch" },
+  "laddering-up-from-chatboxes-to-autonomy.md": { "pillar": "lead", "column": "dispatch" },
+  "on-demos-and-demons.md": { "pillar": "lead", "column": "dispatch" },
+  "Microsoft Build 2025.md": { "pillar": "connect", "column": "dispatch" },
+  "claude-code-non-coding.md": { "pillar": "use", "column": "dispatch" },
+  "good-for-human-good-for-ai.md": { "pillar": "deploy", "column": "dispatch" },
+  "technical-debt-and-the-roi-threshhold.md": { "pillar": "deploy", "column": "dispatch" },
+  "dont-be-passive-aggressive.md": { "pillar": "deploy", "column": "dispatch" },
+  "you-are-absolutely-right.md": { "pillar": "use", "column": "dispatch" },
+  "Moral Vibe Check.md": { "pillar": "use", "column": "dispatch" },
+  "Geo-affordance.md": { "pillar": "use", "column": "dispatch" },
+  "The New Touch Interface.md": { "pillar": "use", "column": "dispatch" },
+  "Making hard things easier.md": { "pillar": "use", "column": "dispatch" },
+  "Tools for Thinking.md": { "pillar": "use", "column": "dispatch" },
+  "Thoughts on gemini.md": { "pillar": "use", "column": "dispatch" },
+  "gpt5.md": { "pillar": "use", "column": "dispatch" },
+  "gpt5 and gpt-oss.md": { "pillar": "use", "column": "dispatch" },
+  "How I classify models.md": { "pillar": "use", "column": "dispatch" },
+  "AI for research, DeepResearch wins.md": { "pillar": "measure", "column": "dispatch" },
+  "Clipboards are eating the world.md": { "pillar": "use", "column": "dispatch" },
+  "sraffas-gesture.md": { "pillar": "use", "column": "dispatch" },
+  "mental-models-for-mechanical-minds.md": { "pillar": "use", "column": "dispatch" },
+  "The AI Productivity Ecosystem.md": { "pillar": "use", "column": "dispatch" },
+  "NotebookLM for research.md": { "pillar": "use", "column": "dispatch" },
+  "Recipe Book.md": { "pillar": "use", "column": "ephemeral", "published": false },
+  "Dagger.md": { "pillar": "build", "column": "ephemeral", "published": false }
+}

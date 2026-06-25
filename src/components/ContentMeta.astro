@@ -1,0 +1,44 @@
+---
+interface Props {
+  pillar?: string;
+  column?: string;
+  series?: string;
+  quarter?: string;
+  date?: Date;
+}
+
+const { pillar, column, series, quarter, date } = Astro.props;
+---
+{(pillar || column || series || quarter || date) && (
+  <div class="content-meta">
+    {pillar && <span class="mono-label meta-pillar">{pillar}</span>}
+    {column && <span class="mono-label meta-column">{column}</span>}
+    {series && <span class="mono-label meta-series">{series}</span>}
+    {quarter && <span class="mono-label meta-quarter">{quarter}</span>}
+    {date && (
+      <time class="mono-label meta-date">
+        {date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+      </time>
+    )}
+  </div>
+)}
+
+<style>
+  .content-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    align-items: center;
+  }
+
+  .meta-pillar {
+    color: var(--signal);
+  }
+
+  .meta-column,
+  .meta-series,
+  .meta-quarter,
+  .meta-date {
+    color: var(--muted);
+  }
+</style>

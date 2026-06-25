@@ -11,6 +11,8 @@ tags:
 author: Will Schenk
 image: neural-harness-orb-harness.png
 ogImage: neural-harness-orb-harness.png
+pillar: "build"
+column: "dispatch"
 ---
 
 > "Coding agents will build their own tools and their own agents. Agents will be used by non-engineers to manage other agents to manage parts of the org chart."  

@@ -9,6 +9,10 @@ tags:
   - agents
   - workflow
 image: how-i-use-ai-jan-2026.png
+pillar: "use"
+column: "quarterly"
+series: "how-i-ai"
+quarter: "2026-Q1"
 ---
 
 This is what it feels like to live in The Singularity.  The amount of change and discovering for what AI can do is staggering, and what was cutting edge on Monday seems to be ho-hum by Friday.  So, in the spirit of "this will be out dated by the time I press publish" I wanted to share how I use AI.

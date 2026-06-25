@@ -8,6 +8,8 @@ tags:
   - essay
   - process
   - agents
+pillar: "deploy"
+column: "dispatch"
 ---
 
 The client was going through due diligence for a potential deal and one of the points that came up was that their technology was a bit long in the tooth. They wanted to go through and see what they could do to clean things up.

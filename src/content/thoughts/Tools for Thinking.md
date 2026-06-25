@@ -6,6 +6,8 @@ tags:
 published: true
 description: From building nuclear fusors to probing Vatican AI doctrine, this exploration reveals how AI tools are reshaping our daily intellectual work in surprisingly practical ways. Through examples of interfacing with databases, analyzing legal documents, and diving into deep research rabbit holes, we see how AI assistants are becoming intuitive research companions that expand our ability to quickly understand and synthesize complex information.
 image: using_ai_wide.png
+pillar: "use"
+column: "dispatch"
 ---
 I was struck recently reading an article about [A Young Man Used AI to Build A Nuclear Fusor](https://substack.com/home/post/p-155980666) by this passage:
 

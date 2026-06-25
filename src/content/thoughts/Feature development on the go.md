@@ -7,6 +7,8 @@ tags:
 image: dev_on_the_go_wide.png
 description: What happens when you challenge Google Jules, OpenAI Codex, and Cursor to build a PWA—using just your phone? Find out which agent delivered.
 published: true
+pillar: "build"
+column: "dispatch"
 ---
 I had some time to kill while I was out and about with the kids.  They were occupied with Important Stuff, and I didn't want to break out the laptop, so I tried to see what I could get done with the phone.
 

@@ -2,7 +2,12 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import EmailSignup from '../components/EmailSignup.astro';
-import { getThoughts, getThoughtPath } from '../lib/thoughts';
+import {
+  getDispatches,
+  getQuarterlyPosts,
+  getThoughtPath,
+} from '../lib/thoughts';
+import { PILLARS, type Pillar } from '../lib/taxonomy';
 
 const allIssues = await getCollection('issues');
 const issues = allIssues
@@ -10,7 +15,8 @@ const issues = allIssues
   .sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
 
 const featuredIssue = issues.find((i) => i.data.vertical === 'state') ?? issues[0];
-const recentThoughts = (await getThoughts()).slice(0, 4);
+const latestQuarterly = (await getQuarterlyPosts())[0];
+const recentDispatches = (await getDispatches()).slice(0, 5);
 
 const verticalLabel: Record<string, string> = {
   state: 'STATE',
@@ -20,52 +26,131 @@ const verticalLabel: Record<string, string> = {
   local: 'LOCAL',
   wire: 'WIRE',
 };
+
+const measurements = [
+  {
+    label: 'RM-2026-05-LP',
+    title: 'Local Providers',
+    href: '/reports/local-providers/',
+  },
+  {
+    label: 'RM-2026-03-MS',
+    title: 'Model Showdown',
+    href: '/reports/model-showdown/',
+  },
+  {
+    label: 'RM-2026-02-CW',
+    title: 'Car Wash Test',
+    href: '/reports/car-wash-test/',
+  },
+];
 ---
 <BaseLayout title="TheFocus.AI Labs">
   <section class="hero ledger-grid">
     <div class="hero-inner">
       <p class="section-label">TheFocus.AI Labs</p>
-      <h1>Field reports from the front of AI engineering.</h1>
+      <h1>Building intelligent organizations.</h1>
       <p class="hero-lead">
-        Thoughts, interactive reports, recipes, and publication issues — for people
-        who build for a living.
+        We teach teams to use AI, build habitats and integrations, deploy in production,
+        and measure what works. Labs is the workshop floor — weekly dispatches, quarterly
+        snapshots, evidence, and the publication line.
       </p>
       <div class="hero-actions">
-        <a class="btn-primary" href="/thoughts/">Read thoughts</a>
-        <a class="btn-ghost" href="/reports/">Browse reports</a>
+        <a class="btn-primary" href="/dispatch/">Read dispatch</a>
+        <a class="btn-ghost" href="/quarterly/">Quarterly snapshots</a>
       </div>
     </div>
   </section>
 
-  <section class="lanes">
-    <div class="lanes-inner">
-      <a class="lane-card" href="/thoughts/">
-        <span class="mono-label">01 — THOUGHTS</span>
-        <h2>Essays and working notes</h2>
-        <p>What we're seeing, building, and testing in the open.</p>
-      </a>
-      <a class="lane-card" href="/reports/">
-        <span class="mono-label">02 — REPORTS</span>
-        <h2>Interactive research</h2>
-        <p>Model evals, benchmarks, and field studies with real data.</p>
-      </a>
-      <a class="lane-card" href="/recipes/">
-        <span class="mono-label">03 — RECIPES</span>
-        <h2>Weekend projects</h2>
-        <p>Agents, tools, prompts — build it yourself in one sitting.</p>
-      </a>
-      <a class="lane-card" href="/issues/">
-        <span class="mono-label">04 — ISSUES</span>
-        <h2>Publication line</h2>
-        <p>STATE, SURFACE, RUNTIME — six verticals, irregular issues.</p>
-      </a>
+  <section class="cadence">
+    <div class="cadence-inner">
+      <p class="section-label">Publishing cadence</p>
+      <div class="cadence-grid">
+        <div class="cadence-card">
+          <span class="mono-label">Weekly</span>
+          <h2>Dispatch</h2>
+          <p>1–2 field notes per week. Small observations, experiments, and client patterns.</p>
+          <a class="mono-label" href="/dispatch/">Browse dispatch →</a>
+        </div>
+        <div class="cadence-card">
+          <span class="mono-label">Quarterly</span>
+          <h2>How I AI / How I Code</h2>
+          <p>Fixed-frame operational snapshots — models, harness, process, what changed.</p>
+          <a class="mono-label" href="/quarterly/">Read quarterly →</a>
+        </div>
+        <div class="cadence-card">
+          <span class="mono-label">Evidence</span>
+          <h2>Measurements</h2>
+          <p>Interactive evals and field studies with real data and doc numbers.</p>
+          <a class="mono-label" href="/reports/">Browse measurements →</a>
+        </div>
+        <div class="cadence-card">
+          <span class="mono-label">Archive</span>
+          <h2>Issues &amp; print</h2>
+          <p>Curated magazine issues — roll-ups you can print as the record of a year.</p>
+          <a class="mono-label" href="/issues/">Publication line →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pillars">
+    <div class="pillars-inner">
+      <p class="section-label">Six pillars</p>
+      <div class="pillars-grid">
+        {(Object.entries(PILLARS) as [Pillar, (typeof PILLARS)[Pillar]][]).map(([key, p]) => (
+          <a class="pillar-card" href={`/dispatch/${key}/`}>
+            <span class="mono-label">{p.label}</span>
+            <h2>{p.title}</h2>
+            <p>{p.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {latestQuarterly && (
+    <section class="featured-block">
+      <div class="featured-inner">
+        <div class="block-header">
+          <p class="section-label">Latest quarterly</p>
+          <a class="mono-label" href="/quarterly/">All quarterly →</a>
+        </div>
+        <a class="content-card featured-card" href={getThoughtPath(latestQuarterly)}>
+          <p class="mono-label">{latestQuarterly.data.quarter ?? 'Quarterly'}</p>
+          <h2>{latestQuarterly.data.title}</h2>
+          <p>{latestQuarterly.data.description}</p>
+        </a>
+      </div>
+    </section>
+  )}
+
+  <section class="featured-block">
+    <div class="featured-inner">
+      <div class="block-header">
+        <p class="section-label">Recent measurements</p>
+        <a class="mono-label" href="/reports/">All measurements →</a>
+      </div>
+      <ul class="measure-list">
+        {measurements.map((m) => (
+          <li>
+            <a href={m.href}>
+              <span class="mono-label">{m.label}</span>
+              <span>{m.title}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 
   {featuredIssue && (
-    <section class="featured">
+    <section class="featured-block">
       <div class="featured-inner">
-        <p class="section-label">Latest issue</p>
+        <div class="block-header">
+          <p class="section-label">Latest issue</p>
+          <a class="mono-label" href="/issues/">All issues →</a>
+        </div>
         <a class="content-card featured-card" href={`/${featuredIssue.slug}/`}>
           <p class="mono-label">
             {verticalLabel[featuredIssue.data.vertical]} · №{' '}
@@ -78,23 +163,18 @@ const verticalLabel: Record<string, string> = {
     </section>
   )}
 
-  {recentThoughts.length > 0 && (
-    <section class="recent">
-      <div class="recent-inner">
-        <div class="recent-header">
-          <p class="section-label">Recent thoughts</p>
-          <a class="mono-label" href="/thoughts/">View all →</a>
+  {recentDispatches.length > 0 && (
+    <section class="featured-block">
+      <div class="featured-inner">
+        <div class="block-header">
+          <p class="section-label">Recent dispatch</p>
+          <a class="mono-label" href="/dispatch/">All dispatch →</a>
         </div>
-        <ul class="recent-list">
-          {recentThoughts.map((thought) => (
+        <ul class="measure-list">
+          {recentDispatches.map((thought) => (
             <li>
               <a href={getThoughtPath(thought)}>
-                <span class="mono-label">
-                  {thought.data.date.toLocaleDateString('en-US', {
-                    month: 'short',
-                    year: 'numeric',
-                  })}
-                </span>
+                <span class="mono-label">{PILLARS[thought.data.pillar].label}</span>
                 <span>{thought.data.title}</span>
               </a>
             </li>
@@ -106,7 +186,7 @@ const verticalLabel: Record<string, string> = {
 
   <EmailSignup
     heading="Get the dispatch."
-    blurb="One email when new issues and reports ship. No marketing."
+    blurb="Weekly notes and quarterly snapshots. No marketing."
   />
 </BaseLayout>
 
@@ -129,14 +209,14 @@ const verticalLabel: Record<string, string> = {
     letter-spacing: -0.03em;
     color: var(--text-strong);
     margin: 0.75rem 0 1.25rem;
-    max-width: 16ch;
+    max-width: 14ch;
   }
 
   .hero-lead {
     font-size: 20px;
     line-height: 1.5;
     color: var(--text-2);
-    max-width: 52ch;
+    max-width: 58ch;
     margin: 0 0 2rem;
   }
 
@@ -146,23 +226,64 @@ const verticalLabel: Record<string, string> = {
     gap: 1rem;
   }
 
-  .lanes {
+  .cadence,
+  .pillars,
+  .featured-block {
     padding: var(--section-y) 0;
     border-bottom: 1px solid var(--border);
   }
 
-  .lanes-inner {
+  .cadence-inner,
+  .pillars-inner,
+  .featured-inner {
     max-width: var(--container-max);
     margin: 0 auto;
     padding: 0 var(--gutter);
+  }
+
+  .cadence-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 1px;
     background: var(--border);
     border: 1px solid var(--border);
+    margin-top: 1.5rem;
   }
 
-  .lane-card {
+  .cadence-card {
+    background: var(--surface);
+    padding: var(--card-pad);
+  }
+
+  .cadence-card h2 {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-strong);
+    margin: 0.5rem 0 0.75rem;
+  }
+
+  .cadence-card p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 0 0 1.25rem;
+  }
+
+  .cadence-card a {
+    color: var(--signal);
+    text-decoration: none;
+  }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 1.5rem;
+  }
+
+  .pillar-card {
     background: var(--surface);
     padding: var(--card-pad);
     text-decoration: none;
@@ -170,67 +291,55 @@ const verticalLabel: Record<string, string> = {
     display: block;
   }
 
-  .lane-card:hover {
+  .pillar-card:hover {
     background: color-mix(in srgb, var(--surface) 92%, white);
   }
 
-  .lane-card h2 {
-    font-size: 20px;
+  .pillar-card h2 {
+    font-size: 18px;
     font-weight: 500;
     color: var(--text-strong);
     margin: 0.5rem 0 0.75rem;
   }
 
-  .lane-card p {
+  .pillar-card p {
     font-size: 14px;
     color: var(--muted);
     margin: 0;
     line-height: 1.6;
   }
 
-  .featured,
-  .recent {
-    padding: var(--section-y) 0;
+  .block-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
   }
 
-  .featured-inner,
-  .recent-inner {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 0 var(--gutter);
+  .block-header a {
+    text-decoration: none;
+    color: var(--signal);
   }
 
   .featured-card h2 {
     margin-top: 0.5rem;
   }
 
-  .recent-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .recent-header a {
-    text-decoration: none;
-    color: var(--signal);
-  }
-
-  .recent-list {
+  .measure-list {
     list-style: none;
     margin: 0;
     padding: 0;
     border: 1px solid var(--border);
   }
 
-  .recent-list li + li {
+  .measure-list li + li {
     border-top: 1px solid var(--border);
   }
 
-  .recent-list a {
+  .measure-list a {
     display: grid;
-    grid-template-columns: 120px 1fr;
+    grid-template-columns: 100px 1fr;
     gap: 1.5rem;
     padding: 1rem 1.25rem;
     text-decoration: none;
@@ -238,13 +347,13 @@ const verticalLabel: Record<string, string> = {
     background: var(--surface);
   }
 
-  .recent-list a:hover {
+  .measure-list a:hover {
     color: var(--text-strong);
     background: color-mix(in srgb, var(--surface) 90%, white);
   }
 
   @media (max-width: 640px) {
-    .recent-list a {
+    .measure-list a {
       grid-template-columns: 1fr;
       gap: 0.35rem;
     }

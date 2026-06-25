@@ -8,6 +8,8 @@ tags:
   - philosophy
   - models
 image: sraffas-gesture.png
+pillar: "use"
+column: "dispatch"
 ---
 Imagine two men on a train -- or perhaps just walking; the memory varies -- one is [Piero Sraffa](https://en.wikipedia.org/wiki/Piero_Sraffa) and deep in conversation he flips off [Ludwig Wittgenstein](https://en.wikipedia.org/wiki/Ludwig_Wittgenstein), fingertips sweeping outward beneath the chin—the gesture we’d recognize as a *fuggettaboutit* blow-off.  *Ma che dici!*
 

@@ -8,6 +8,8 @@ tags:
   - agents
   - conference
   - essay
+pillar: "lead"
+column: "dispatch"
 ---
 The AI Engineering Summit in November 2025 brought together a great crowd of people who are right at the forefront of all of the AI activity.  I've been busting through all of my usage limits on all the models pretty much every day since then trying out all these new ideas.
 

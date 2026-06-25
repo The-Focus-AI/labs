@@ -9,6 +9,9 @@ published: true
 image: car-wash-test-infographic.png
 ogImage: car-wash-test-infographic.png
 description: We asked 131 AI models a simple question — should I walk or drive to the car wash? 76% got it wrong. Simple gotcha questions reveal more about model reasoning than any benchmark leaderboard.
+pillar: "measure"
+column: "brief"
+relatedReport: "/reports/car-wash-test/"
 ---
 The question is:
 

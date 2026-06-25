@@ -7,6 +7,8 @@ tags:
 image: gemini_wide.png
 published: true
 description: Despite popular narratives about Google lagging in AI, their Gemini models reveal engineering excellence that's hard to ignore when you strip away the conservative product decisions and UI polish. From the lightweight yet powerful Gemma 3 to the multimodal capabilities of Gemini 2.5, Google's models demonstrate a level of speed, precision, and fundamental understanding that suggests they're not playing catch-up—they're just being cautious.
+pillar: "use"
+column: "dispatch"
 ---
 It’s funny how quickly narratives form in tech. One of the more common ones right now is that Google is “behind” in AI — playing catch-up to OpenAI, Anthropic, or even to scrappy open-source players. But that story doesn’t quite hold up once you actually use Google’s models directly.
 

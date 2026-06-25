@@ -7,6 +7,8 @@ tags:
 published: true
 image: moral_vibe_check_wide.png
 description: 'Technical correctness and meaningful insight: well-formatted, detailed AI responses can mask a fundamental lack of understanding—a "raving lunatic" hidden behind impressive form.  Maybe P-doom is less about malice and more of making us intellectually poorer by substituting form for substance, facts for understanding, and technical accuracy for wisdom.'
+pillar: "use"
+column: "dispatch"
 ---
 > “Knowledge is knowing that Frankenstein is not the monster. **Wisdom is knowing that he is**.”
 

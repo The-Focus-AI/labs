@@ -8,6 +8,8 @@ tags:
 published: 
 section: 
 image: ai_productivity.png
+pillar: "use"
+column: "dispatch"
 ---
 # The AI Productivity Ecosystem: Unifying Image Generation, Metadata, and Service Integration
 

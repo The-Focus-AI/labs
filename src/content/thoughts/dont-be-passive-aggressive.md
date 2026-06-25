@@ -7,6 +7,8 @@ tags:
   - essay
 description: Treat your coding agents as adaptable collaborators—communicate clearly, value efficiency over endurance, match tools to your workflow, skip unnecessary formality, rethink technical debt, and document your development rules for best results.
 published: true
+pillar: "deploy"
+column: "dispatch"
 ---
 Agents are things you assign tasks to.
 

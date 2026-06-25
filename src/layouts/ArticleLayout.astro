@@ -4,16 +4,29 @@ import BaseLayout from './BaseLayout.astro';
 interface Props {
   title: string;
   description?: string;
-  section: 'thoughts' | 'recipes';
+  backHref?: string;
+  backLabel?: string;
   date?: Date;
-  tags?: string[];
+  pillar?: string;
+  column?: string;
+  series?: string;
+  quarter?: string;
   imageSrc?: string | null;
 }
 
-const { title, description, section, date, tags = [], imageSrc } = Astro.props;
+const {
+  title,
+  description,
+  backHref = '/dispatch/',
+  backLabel = 'Dispatch',
+  date,
+  pillar,
+  column,
+  series,
+  quarter,
+  imageSrc,
+} = Astro.props;
 
-const sectionLabel = section === 'thoughts' ? 'Thoughts' : 'Recipes';
-const backHref = section === 'thoughts' ? '/thoughts/' : '/recipes/';
 const formattedDate = date
   ? date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
   : null;
@@ -22,20 +35,20 @@ const formattedDate = date
   <article class="article-page">
     <div class="article-shell">
       <header class="article-header">
-        <a class="article-back mono-label" href={backHref}>← {sectionLabel}</a>
-        <p class="section-label">{sectionLabel}</p>
+        <a class="article-back mono-label" href={backHref}>← {backLabel}</a>
+        {(pillar || column || series || quarter) && (
+          <div class="article-taxonomy mono-label">
+            {pillar && <span class="tax-pillar">{pillar}</span>}
+            {column && <span>{column}</span>}
+            {series && <span>{series}</span>}
+            {quarter && <span>{quarter}</span>}
+          </div>
+        )}
         <h1 class="article-title">{title}</h1>
         {description && <p class="article-lead">{description}</p>}
-        {(formattedDate || tags.length > 0) && (
+        {formattedDate && (
           <div class="article-meta">
-            {formattedDate && <time class="mono-label">{formattedDate}</time>}
-            {tags.length > 0 && (
-              <ul class="article-tags">
-                {tags.map((tag) => (
-                  <li class="mono-label">{tag}</li>
-                ))}
-              </ul>
-            )}
+            <time class="mono-label">{formattedDate}</time>
           </div>
         )}
       </header>
@@ -66,13 +79,28 @@ const formattedDate = date
 
   .article-back {
     display: inline-block;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     text-decoration: none;
     color: var(--signal);
   }
 
   .article-back:hover {
     color: var(--text-strong);
+  }
+
+  .article-taxonomy {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 11px;
+  }
+
+  .tax-pillar {
+    color: var(--signal);
   }
 
   .article-header {
@@ -98,20 +126,7 @@ const formattedDate = date
   }
 
   .article-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    align-items: center;
     margin-top: 1.25rem;
-  }
-
-  .article-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
   }
 
   .article-hero {

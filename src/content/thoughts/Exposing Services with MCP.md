@@ -6,6 +6,8 @@ tags:
 description: Model Context Protocol bridges the gap between AI models and your applications. Learn how defining simple tools with descriptions and parameters lets Claude intelligently combine services without explicit instructions.
 published: true
 image: mcp_wide.png
+pillar: "connect"
+column: "dispatch"
 ---
 This morning I plugged in [Tezlab](https://tezlabapp.com) to my local Claude desktop.
 

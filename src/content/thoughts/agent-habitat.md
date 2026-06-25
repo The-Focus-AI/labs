@@ -10,6 +10,8 @@ tags:
   - process
 image: agent-habitat.png
 ogImage: agent-habitat.png
+pillar: "build"
+column: "dispatch"
 ---
 
 The [Data Flywheel](/posts/data-flywheel-pattern) showed how data flows through these systems — GitHub commits become weekly reports, Oura metrics become infographics, tweets become daily digests. But in every case, someone was sitting at a terminal typing commands. `/sync-with-github`. `/daily`. "Pull down the latest tweets."

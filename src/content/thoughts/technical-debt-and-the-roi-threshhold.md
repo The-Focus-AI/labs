@@ -6,6 +6,8 @@ tags:
 image: loom_wide.png
 description: With agents now able to read and refactor code, the future cost of messy code -- and the current costs of unwritten code -- is shrinking.  Code is more disposable and experimentation more rewarding.
 published: true
+pillar: "deploy"
+column: "dispatch"
 ---
 Code is easier now, which has some interesting properties to how and what we thinking about working on.
 

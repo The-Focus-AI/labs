@@ -11,6 +11,9 @@ tags:
   - agents
 image: ai-code-summit-2025.png
 author: Will Schenk
+pillar: "measure"
+column: "brief"
+relatedReport: "/reports/aiecode-2025-11/"
 ---
 
 <script>

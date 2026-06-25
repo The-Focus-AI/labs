@@ -4,6 +4,8 @@ date: 2025-03-30
 tags:
   - essay
   - process
+pillar: "build"
+column: "dispatch"
 ---
 I've been playing around a lot with memory system which is a way to sort of give software coding agents context and overall plan for how to build something.
 

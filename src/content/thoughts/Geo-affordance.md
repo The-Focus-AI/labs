@@ -7,6 +7,8 @@ tags:
 image: geolocate_wide.png
 description: Imagine having Sherlock Holmes’ legendary eye for detail—AI now makes that possible for all of us. Is this AI changing us?  It will alter our expectations and the risks of everyday digital life.
 published: true
+pillar: "use"
+column: "dispatch"
 ---
 What does AI ask us to do?
 

@@ -2,6 +2,7 @@
 import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getRecipes, getRecipePath } from '../../lib/recipes';
+import { RECIPE_SECTIONS, type RecipeSection } from '../../lib/taxonomy';
 
 const recipes = await getRecipes();
 
@@ -22,35 +23,74 @@ const withImages = await Promise.all(
     imageSrc: recipe.data.image ? await recipeImageSrc(recipe.data.image) : null,
   }))
 );
+
+const grouped = (Object.keys(RECIPE_SECTIONS) as RecipeSection[]).map((key) => ({
+  key,
+  meta: RECIPE_SECTIONS[key],
+  items: withImages.filter(({ recipe }) => recipe.data.section?.includes(key)),
+}));
+
+const uncategorized = withImages.filter(
+  ({ recipe }) => !recipe.data.section?.length
+);
 ---
-<BaseLayout title="Recipes · TheFocus.AI Labs" description="Hands-on recipes and weekend projects for AI engineering.">
+<BaseLayout title="Bench · TheFocus.AI Labs" description="Hands-on recipes and weekend projects for AI engineering.">
   <section class="hub">
     <div class="hub-inner">
-      <p class="section-label">Recipes</p>
+      <p class="section-label">Bench</p>
       <h1 class="hub-title">Build it yourself.</h1>
       <p class="hub-lead">
-        Step-by-step recipes for agents, tools, prompts, and workflows. Most are
-        a single sitting.
+        Reproducible procedures — agents, tools, prompts, and workflows. Most are a single
+        sitting. When a pattern becomes operational, it graduates to standards.
       </p>
 
-      <ul class="hub-grid">
-        {withImages.map(({ recipe, imageSrc }) => (
-          <li>
-            <a class="content-card" href={getRecipePath(recipe)}>
-              {imageSrc && (
-                <img class="card-thumb" src={imageSrc} alt="" loading="lazy" />
-              )}
-              <p class="mono-label">
-                {recipe.data.duration ?? 'Recipe'}
-                {recipe.data.date &&
-                  ` · ${recipe.data.date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}`}
-              </p>
-              <h2>{recipe.data.title}</h2>
-              {recipe.data.description && <p>{recipe.data.description}</p>}
-            </a>
-          </li>
-        ))}
-      </ul>
+      {grouped.map(({ key, meta, items }) =>
+        items.length > 0 ? (
+          <section class="recipe-section">
+            <h2 class="section-label">{meta.label}</h2>
+            <p class="section-desc">{meta.description}</p>
+            <ul class="hub-grid">
+              {items.map(({ recipe, imageSrc }) => (
+                <li>
+                  <a class="content-card" href={getRecipePath(recipe)}>
+                    {imageSrc && (
+                      <img class="card-thumb" src={imageSrc} alt="" loading="lazy" />
+                    )}
+                    <p class="mono-label">
+                      {recipe.data.duration ?? 'Recipe'}
+                      {recipe.data.date &&
+                        ` · ${recipe.data.date.toLocaleDateString('en-US', {
+                          month: 'short',
+                          year: 'numeric',
+                        })}`}
+                    </p>
+                    <h3>{recipe.data.title}</h3>
+                    {recipe.data.description && <p>{recipe.data.description}</p>}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null
+      )}
+
+      {uncategorized.length > 0 && (
+        <section class="recipe-section">
+          <h2 class="section-label">More</h2>
+          <ul class="hub-grid">
+            {uncategorized.map(({ recipe, imageSrc }) => (
+              <li>
+                <a class="content-card" href={getRecipePath(recipe)}>
+                  {imageSrc && (
+                    <img class="card-thumb" src={imageSrc} alt="" loading="lazy" />
+                  )}
+                  <h3>{recipe.data.title}</h3>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
     </div>
   </section>
 </BaseLayout>
@@ -84,6 +124,16 @@ const withImages = await Promise.all(
     margin: 0 0 3rem;
   }
 
+  .recipe-section {
+    margin-bottom: 3rem;
+  }
+
+  .section-desc {
+    color: var(--muted);
+    font-size: 14px;
+    margin: 0.5rem 0 1.5rem;
+  }
+
   .hub-grid {
     list-style: none;
     margin: 0;
@@ -97,6 +147,13 @@ const withImages = await Promise.all(
 
   .hub-grid li {
     background: var(--canvas);
+  }
+
+  .hub-grid h3 {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-strong);
+    margin: 0.35rem 0 0.75rem;
   }
 
   .card-thumb {

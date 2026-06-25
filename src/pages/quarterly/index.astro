@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getQuarterlyPosts, getThoughtPath } from '../../lib/thoughts';
+import { QUARTERLY_SERIES } from '../../lib/taxonomy';
+
+const howIAI = await getQuarterlyPosts('how-i-ai');
+const howICode = await getQuarterlyPosts('how-i-code');
+
+const cardImages = await import.meta.glob<{ default: { src: string } }>(
+  '/src/content/assets/cards/*.{jpeg,jpg,png,gif,webp}'
+);
+
+async function cardSrc(image?: string) {
+  if (!image) return null;
+  const key = `/src/content/assets/cards/${image}`;
+  const mod = cardImages[key];
+  return mod ? (await mod()).default.src : null;
+}
+
+async function enrich(posts: typeof howIAI) {
+  return Promise.all(
+    posts.map(async (thought) => ({
+      thought,
+      imageSrc: thought.data.image ? await cardSrc(thought.data.image) : null,
+    }))
+  );
+}
+
+const aiPosts = await enrich(howIAI);
+const codePosts = await enrich(howICode);
+---
+<BaseLayout
+  title="Quarterly · TheFocus.AI Labs"
+  description="Quarterly operational snapshots — standardized frames for how we use AI and how we build."
+>
+  <section class="hub">
+    <div class="hub-inner">
+      <p class="section-label">Quarterly</p>
+      <h1 class="hub-title">Operational snapshots.</h1>
+      <p class="hub-lead">
+        Every quarter, a fixed frame: models, harness, process, what changed. These roll up
+        the weekly dispatches into something you can print, archive, or hand to a team.
+        Ephemeral posts stay on social; quarterly posts become the record.
+      </p>
+
+      <section class="series">
+        <div class="series-header">
+          <h2>{QUARTERLY_SERIES['how-i-ai'].label}</h2>
+          <p>{QUARTERLY_SERIES['how-i-ai'].description}</p>
+          <ul class="series-sections mono-label">
+            {QUARTERLY_SERIES['how-i-ai'].sections.map((s) => <li>{s}</li>)}
+          </ul>
+        </div>
+        <ul class="post-list">
+          {aiPosts.map(({ thought, imageSrc }) => (
+            <li>
+              <a class="content-card series-card" href={getThoughtPath(thought)}>
+                {imageSrc && <img class="card-thumb" src={imageSrc} alt="" loading="lazy" />}
+                <p class="mono-label">{thought.data.quarter ?? 'Quarterly'}</p>
+                <h3>{thought.data.title}</h3>
+                {thought.data.description && <p>{thought.data.description}</p>}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="series">
+        <div class="series-header">
+          <h2>{QUARTERLY_SERIES['how-i-code'].label}</h2>
+          <p>{QUARTERLY_SERIES['how-i-code'].description}</p>
+          <ul class="series-sections mono-label">
+            {QUARTERLY_SERIES['how-i-code'].sections.map((s) => <li>{s}</li>)}
+          </ul>
+        </div>
+        <ul class="post-list">
+          {codePosts.map(({ thought, imageSrc }) => (
+            <li>
+              <a class="content-card series-card" href={getThoughtPath(thought)}>
+                {imageSrc && <img class="card-thumb" src={imageSrc} alt="" loading="lazy" />}
+                <p class="mono-label">{thought.data.quarter ?? 'Quarterly'}</p>
+                <h3>{thought.data.title}</h3>
+                {thought.data.description && <p>{thought.data.description}</p>}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hub { padding: var(--section-y) 0; }
+  .hub-inner { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--gutter); }
+  .hub-title {
+    font-size: clamp(2rem, 5vw, 3.75rem);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--text-strong);
+    margin: 0.75rem 0 1rem;
+    max-width: 16ch;
+  }
+  .hub-lead {
+    font-size: 20px; line-height: 1.5; color: var(--text-2);
+    max-width: 58ch; margin: 0 0 3rem;
+  }
+  .series { margin-bottom: 4rem; }
+  .series-header { margin-bottom: 1.5rem; max-width: 58ch; }
+  .series-header h2 {
+    font-size: 1.5rem; font-weight: 600; color: var(--text-strong); margin: 0 0 0.75rem;
+  }
+  .series-header p { color: var(--text-2); margin: 0 0 1rem; line-height: 1.5; }
+  .series-sections {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; color: var(--muted);
+  }
+  .post-list {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1px; background: var(--border); border: 1px solid var(--border);
+  }
+  .post-list li { background: var(--canvas); }
+  .series-card h3 { font-size: 20px; font-weight: 500; color: var(--text-strong); margin: 0.35rem 0 0.75rem; }
+  .card-thumb {
+    width: calc(100% + var(--card-pad) * 2); height: 160px; object-fit: cover;
+    display: block; margin: calc(var(--card-pad) * -1); margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+</style>

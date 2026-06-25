@@ -33,9 +33,10 @@ const relatedRecipes = await getRelatedRecipes(recipe);
 <ArticleLayout
   title={recipe.data.title}
   description={recipe.data.description}
-  section="recipes"
+  backHref="/recipes/"
+  backLabel="Bench"
   date={recipe.data.date}
-  tags={recipe.data.tech}
+  column="Bench"
   imageSrc={imageSrc}
 >
   <Content />

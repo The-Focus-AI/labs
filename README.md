@@ -1,8 +1,10 @@
 # TheFocus.AI Labs
 
-Human-readable learning and publishing from TheFocus.AI — thoughts, interactive reports, recipes, and the publication issue line (STATE, SURFACE, RUNTIME, HARNESS, LOCAL, WIRE).
+Human-readable learning and publishing from TheFocus.AI — weekly dispatch, quarterly snapshots, measurements, bench recipes, and publication issues.
 
 Deployed at **labs.thefocus.ai** (GitHub Pages).
+
+See **`docs/publishing.md`** for the content model (cadence, pillars, lifecycle to standards).
 
 Related surfaces:
 
@@ -14,18 +16,23 @@ Related surfaces:
 
 ```
 src/content/
-  thoughts/     ← essays and field notes (migrated from thefocus-landing posts)
-  recipes/      ← hands-on recipes
-  reports/      ← report memos (markdown)
-  issues/       ← publication issues
+  thoughts/     ← dispatch, quarterly, and briefs (pillar + column in frontmatter)
+  recipes/      ← bench recipes (grouped by section)
+  reports/      ← measurement memos (markdown)
+  issues/       ← publication issues / print roll-ups
   sections/     ← issue sections
   sources/      ← citations
   concepts/     ← glossary
   assets/
-    cards/      ← thought & report card images
+    cards/      ← card images
     recipes/    ← recipe images
-public/reports/ ← interactive report builds (JSON data, static subsites)
-docs/design.md  ← "The Ledger" design system (from thefocus-v2)
+public/reports/ ← interactive measurement builds
+docs/
+  design.md       ← "The Ledger" design system
+  publishing.md   ← cadence, pillars, lifecycle
+scripts/
+  thought-classifications.json
+  apply-thought-taxonomy.mjs
 ```
 
 ## Design
