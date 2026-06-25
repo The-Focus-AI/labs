@@ -7,7 +7,7 @@ Labs is the workshop floor for building **intelligent organizations**. Content m
 | Rhythm | Column | Where |
 |--------|--------|-------|
 | 1–2× per week | **Dispatch** | `/dispatch/` |
-| Every quarter | **Quarterly** (How I AI, How I Code) | `/quarterly/` |
+| Monthly (or quarterly) | **How AI** | `/quarterly/` |
 | As needed | **Measurements** | `/reports/` |
 | Weekend projects | **Bench** (recipes) | `/recipes/` |
 | Irregular | **Issues** (publication line) | `/issues/` |
@@ -16,7 +16,7 @@ Labs is the workshop floor for building **intelligent organizations**. Content m
 
 ## Six pillars
 
-Every dispatch and quarterly post is tagged with one primary pillar:
+Every dispatch is tagged with one primary pillar:
 
 - **USE** — How teams work with AI day to day
 - **BUILD** — Habitats, agents, harnesses, systems
@@ -27,33 +27,31 @@ Every dispatch and quarterly post is tagged with one primary pillar:
 
 Filter by pillar: `/dispatch/use/`, `/dispatch/build/`, etc.
 
-## Quarterly series
+## How AI (monthly snapshot)
 
-### How I AI (`series: how-i-ai`)
+One series, one title format: **How AI in {Month} {Year}** — e.g. "How AI in June 2026".
 
-Fixed sections each quarter:
+Fixed sections each edition:
 
-1. Workspace & access
-2. Non-code examples
+1. Delta since last edition
+2. Workspace & access
 3. Models
 4. The harness
-5. Skills & marketplace
-6. Coding & process
-7. What actually changed
-
-### How I Code (`series: how-i-code`)
-
-Fixed sections each quarter:
-
-1. Delta since last quarter
-2. Models
-3. The harness
-4. Workstation (IDE / tmux)
 5. Skills, AGENTS.md, MCP
-6. Process & alignment
-7. What actually changed
+6. Workstation & process
+7. Non-code examples
+8. What actually changed
 
-Set `quarter: 2026-Q3` in frontmatter when publishing.
+Covers work, code, operations, and life in a single operational snapshot — not separate "use" vs "code" columns.
+
+```yaml
+title: How AI in June 2026
+date: 2026-06-15
+pillar: use
+column: quarterly
+series: how-ai
+quarter: 2026-Q2   # optional, for grouping
+```
 
 ## Measurements vs dispatch
 
@@ -64,7 +62,7 @@ Set `quarter: 2026-Q3` in frontmatter when publishing.
 ## Lifecycle to standards
 
 ```
-Dispatch → Quarterly roll-up → Issue section → Standard (external)
+Dispatch → How AI edition → Issue section → Standard (external)
 Measurement → Standard (when methodology is stable)
 Bench recipe → Standard (when procedure is canonical)
 Ephemeral → nowhere (Twitter, etc.)
@@ -75,8 +73,8 @@ Ephemeral → nowhere (Twitter, etc.)
 ```yaml
 pillar: build          # use | build | deploy | measure | lead | connect
 column: dispatch       # dispatch | quarterly | brief | ephemeral
-series: how-i-ai       # optional, for quarterly
-quarter: 2026-Q3       # optional
+series: how-ai         # optional, for How AI editions only
+quarter: 2026-Q2       # optional
 relatedReport: /reports/foo/  # optional, for briefs
 published: true
 ```

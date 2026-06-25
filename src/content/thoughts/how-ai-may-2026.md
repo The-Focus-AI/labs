@@ -1,5 +1,5 @@
 ---
-title: How I Code in May 2026
+title: How AI in May 2026
 date: 2026-05-22
 description: Five months after the last update, almost every choice has shifted. Multi-model is the default, open weights showed up, the harness is open, and the coding agent is now a native part of the software process.
 published: true
@@ -10,13 +10,13 @@ tags:
   - workflow
   - coding
 image: how-i-code-may-2026.png
-pillar: "build"
+pillar: "use"
 column: "quarterly"
-series: "how-i-code"
+series: "how-ai"
 quarter: "2026-Q2"
 ---
 
-It's May 2026, five months since I [last wrote about how I use AI](https://thefocus.ai/posts/how-i-use-ai-jan-2026/). That's decades in AI time, so the January column below is already completely out of date — feel free to chuckle knowingly at how cute and innocent it all looks.
+It's May 2026, five months since the [January edition](/dispatch/how-ai-january-2026/). That's decades in AI time, so that column is already completely out of date — feel free to chuckle knowingly at how cute and innocent it all looks.
 
 The three big shifts: **coding agents as a native software component** &bull; **multi-model by default** &bull; **context compaction as a first-class problem**.
 

@@ -57,7 +57,7 @@ const measurements = [
       </p>
       <div class="hero-actions">
         <a class="btn-primary" href="/dispatch/">Read dispatch</a>
-        <a class="btn-ghost" href="/quarterly/">Quarterly snapshots</a>
+        <a class="btn-ghost" href="/quarterly/">How AI snapshots</a>
       </div>
     </div>
   </section>
@@ -73,10 +73,10 @@ const measurements = [
           <a class="mono-label" href="/dispatch/">Browse dispatch →</a>
         </div>
         <div class="cadence-card">
-          <span class="mono-label">Quarterly</span>
-          <h2>How I AI / How I Code</h2>
+          <span class="mono-label">Monthly</span>
+          <h2>How AI</h2>
           <p>Fixed-frame operational snapshots — models, harness, process, what changed.</p>
-          <a class="mono-label" href="/quarterly/">Read quarterly →</a>
+          <a class="mono-label" href="/quarterly/">Read How AI →</a>
         </div>
         <div class="cadence-card">
           <span class="mono-label">Evidence</span>
@@ -113,11 +113,16 @@ const measurements = [
     <section class="featured-block">
       <div class="featured-inner">
         <div class="block-header">
-          <p class="section-label">Latest quarterly</p>
-          <a class="mono-label" href="/quarterly/">All quarterly →</a>
+          <p class="section-label">Latest How AI</p>
+          <a class="mono-label" href="/quarterly/">All editions →</a>
         </div>
         <a class="content-card featured-card" href={getThoughtPath(latestQuarterly)}>
-          <p class="mono-label">{latestQuarterly.data.quarter ?? 'Quarterly'}</p>
+          <p class="mono-label">
+            {latestQuarterly.data.date.toLocaleDateString('en-US', {
+              month: 'long',
+              year: 'numeric',
+            })}
+          </p>
           <h2>{latestQuarterly.data.title}</h2>
           <p>{latestQuarterly.data.description}</p>
         </a>

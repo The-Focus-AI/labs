@@ -1,14 +1,14 @@
 {
-  "how-i-use-ai-jan-2026.md": {
+  "how-ai-january-2026.md": {
     "pillar": "use",
     "column": "quarterly",
-    "series": "how-i-ai",
+    "series": "how-ai",
     "quarter": "2026-Q1"
   },
-  "how-i-code-may-2026.md": {
-    "pillar": "build",
+  "how-ai-may-2026.md": {
+    "pillar": "use",
     "column": "quarterly",
-    "series": "how-i-code",
+    "series": "how-ai",
     "quarter": "2026-Q2"
   },
   "june-2025-coding-agents-report.md": {

@@ -8,7 +8,7 @@ import {
   getAdjacentQuarterly,
   getThoughtPath,
 } from '../../lib/thoughts';
-import { PILLARS, QUARTERLY_SERIES, COLUMNS } from '../../lib/taxonomy';
+import { PILLARS, HOW_AI, COLUMNS } from '../../lib/taxonomy';
 
 export async function getStaticPaths() {
   const thoughts = await getThoughts();
@@ -45,9 +45,9 @@ if (thought.data.image) {
 
 const pillar = PILLARS[thought.data.pillar];
 const column = COLUMNS[thought.data.column];
-const seriesInfo = thought.data.series ? QUARTERLY_SERIES[thought.data.series] : null;
+const seriesInfo = isQuarterly ? HOW_AI : null;
 const backHref = isQuarterly ? '/quarterly/' : isBrief ? '/reports/' : '/dispatch/';
-const backLabel = isQuarterly ? 'Quarterly' : isBrief ? 'Measurements' : 'Dispatch';
+const backLabel = isQuarterly ? 'How AI' : isBrief ? 'Measurements' : 'Dispatch';
 ---
 <ArticleLayout
   title={thought.data.title}
@@ -57,7 +57,7 @@ const backLabel = isQuarterly ? 'Quarterly' : isBrief ? 'Measurements' : 'Dispat
   date={thought.data.date}
   pillar={pillar.label}
   column={column.label}
-  series={seriesInfo?.label}
+  series={isQuarterly ? HOW_AI.label : undefined}
   quarter={thought.data.quarter}
   imageSrc={imageSrc}
 >

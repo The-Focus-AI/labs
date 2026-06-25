@@ -4,7 +4,7 @@ export const PILLARS = {
     label: 'USE',
     title: 'How teams work with AI',
     description:
-      'Practice, workflows, and the quarterly “How I AI” snapshots — what it looks like day to day.',
+      'Practice, workflows, and the monthly “How AI” snapshots — what it looks like day to day.',
   },
   build: {
     label: 'BUILD',
@@ -67,36 +67,30 @@ export const COLUMNS = {
 
 export type Column = keyof typeof COLUMNS;
 
-export const QUARTERLY_SERIES = {
-  'how-i-ai': {
-    label: 'How I AI',
-    description: 'Quarterly snapshot of how we use AI across work and life.',
-    sections: [
-      'Workspace & access',
-      'Non-code examples',
-      'Models',
-      'The harness',
-      'Skills & marketplace',
-      'Coding & process',
-      'What actually changed',
-    ],
-  },
-  'how-i-code': {
-    label: 'How I Code',
-    description: 'Quarterly snapshot of the builder’s stack and software process.',
-    sections: [
-      'Delta since last quarter',
-      'Models',
-      'The harness',
-      'Workstation (IDE / tmux)',
-      'Skills, AGENTS.md, MCP',
-      'Process & alignment',
-      'What actually changed',
-    ],
-  },
+/** Single monthly/quarterly operational snapshot series. */
+export const HOW_AI = {
+  label: 'How AI',
+  description:
+    'Operational snapshot — how we use AI across work, code, and life. One edition per month (or quarter).',
+  sections: [
+    'Delta since last edition',
+    'Workspace & access',
+    'Models',
+    'The harness',
+    'Skills, AGENTS.md, MCP',
+    'Workstation & process',
+    'Non-code examples',
+    'What actually changed',
+  ],
 } as const;
 
-export type QuarterlySeries = keyof typeof QUARTERLY_SERIES;
+export type QuarterlySeries = 'how-ai';
+
+/** Title format: "How AI in June 2026" */
+export function howAITitle(date: Date): string {
+  const month = date.toLocaleDateString('en-US', { month: 'long' });
+  return `How AI in ${month} ${date.getFullYear()}`;
+}
 
 export const RECIPE_SECTIONS = {
   coding: { label: 'Coding', description: 'Agents, repos, and dev workflows' },

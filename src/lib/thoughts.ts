@@ -34,13 +34,8 @@ export async function getDispatches(pillar?: Pillar): Promise<Thought[]> {
   });
 }
 
-export async function getQuarterlyPosts(series?: 'how-i-ai' | 'how-i-code'): Promise<Thought[]> {
-  const thoughts = await getThoughts();
-  return thoughts.filter((t) => {
-    if (t.data.column !== 'quarterly') return false;
-    if (series && t.data.series !== series) return false;
-    return true;
-  });
+export async function getQuarterlyPosts(): Promise<Thought[]> {
+  return (await getThoughts()).filter((t) => t.data.column === 'quarterly');
 }
 
 export async function getBriefs(): Promise<Thought[]> {

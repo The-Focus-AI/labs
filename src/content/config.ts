@@ -122,8 +122,8 @@ const thoughts = defineCollection({
         .default('use'),
       /** Publishing cadence / lifecycle */
       column: z.enum(['dispatch', 'quarterly', 'brief', 'ephemeral']).default('dispatch'),
-      /** Quarterly series key (how-i-ai, how-i-code) */
-      series: z.enum(['how-i-ai', 'how-i-code']).optional(),
+      /** Monthly/quarterly snapshot series */
+      series: z.enum(['how-ai']).optional(),
       /** e.g. 2026-Q1 */
       quarter: z.string().optional(),
       /** Link to full measurement when column is brief */
