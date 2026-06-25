@@ -1,0 +1,313 @@
+<!DOCTYPE html><html lang="en" data-theme="ledger"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Astro v5.18.2"><meta name="description" content="Transforms chatting from simple text generators into powerful data processing engines, enabling extraction of organized information from PDFs, audio files, and more. Here are some practical techniques for building, including audio analysis, pdf data extraction and conversation state management, showcasing how constraint-driven outputs can power rich user experiences."><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;900&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet"><title>Schema-Driven AI: Better User Experiences with Structured Output · TheFocus.AI Labs</title><link rel="stylesheet" href="/_astro/_slug_.CZnP_JuE.css">
+<style>.article-page[data-astro-cid-zm77yjld]{padding:var(--section-y) 0 4rem}.article-shell[data-astro-cid-zm77yjld]{max-width:720px;margin:0 auto;padding:0 var(--gutter)}.article-back[data-astro-cid-zm77yjld]{display:inline-block;margin-bottom:1rem;text-decoration:none;color:var(--signal)}.article-back[data-astro-cid-zm77yjld]:hover{color:var(--text-strong)}.article-taxonomy[data-astro-cid-zm77yjld]{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-size:11px}.tax-pillar[data-astro-cid-zm77yjld]{color:var(--signal)}.article-header[data-astro-cid-zm77yjld]{margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}.article-title[data-astro-cid-zm77yjld]{font-size:clamp(2rem,5vw,2.75rem);font-weight:600;line-height:1.1;letter-spacing:-.03em;color:var(--text-strong);margin:.75rem 0 1rem}.article-lead[data-astro-cid-zm77yjld]{font-size:20px;line-height:1.5;color:var(--text-2);margin:0}.article-meta[data-astro-cid-zm77yjld]{margin-top:1.25rem}.article-hero[data-astro-cid-zm77yjld]{margin:0 0 2rem;border:1px solid var(--border);background:var(--surface)}.article-hero[data-astro-cid-zm77yjld] img[data-astro-cid-zm77yjld]{display:block;width:100%;height:auto}.article-prose[data-astro-cid-zm77yjld] h2{font-size:1.5rem;font-weight:600;margin:2.5rem 0 1rem;color:var(--text-strong)}.article-prose[data-astro-cid-zm77yjld] h3{font-size:1.15rem;font-weight:600;margin:2rem 0 .75rem;color:var(--text-strong)}.article-prose[data-astro-cid-zm77yjld] p,.article-prose[data-astro-cid-zm77yjld] li{font-size:15px;line-height:1.6;color:var(--text)}.article-prose[data-astro-cid-zm77yjld] a{color:var(--text-strong);text-decoration:underline;text-underline-offset:3px}.article-prose[data-astro-cid-zm77yjld] a:hover{color:var(--signal)}.article-prose[data-astro-cid-zm77yjld] pre{background:var(--surface);border:1px solid var(--border);padding:1rem;overflow-x:auto;font-family:var(--font-mono);font-size:13px;line-height:1.5}.article-prose[data-astro-cid-zm77yjld] code{font-family:var(--font-mono);font-size:.9em}.article-prose[data-astro-cid-zm77yjld] blockquote{margin:1.5rem 0;padding-left:1rem;border-left:2px solid var(--signal);color:var(--text-2)}.article-prose[data-astro-cid-zm77yjld] img{max-width:100%;height:auto;border:1px solid var(--border)}.article-prose[data-astro-cid-zm77yjld] table{width:100%;border-collapse:collapse;font-size:14px;margin:1.5rem 0;border:1px solid var(--border)}.article-prose[data-astro-cid-zm77yjld] th,.article-prose[data-astro-cid-zm77yjld] td{border:1px solid var(--border);padding:.5rem .75rem;text-align:left}.article-prose[data-astro-cid-zm77yjld] th{background:var(--surface);color:var(--text-strong);font-family:var(--font-mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+.brief-cta[data-astro-cid-45vxrcc5]{margin:0 0 2rem;padding:1rem 1.25rem;border:1px solid var(--signal);background:color-mix(in srgb,var(--signal) 12%,transparent)}.brief-cta[data-astro-cid-45vxrcc5] a[data-astro-cid-45vxrcc5]{color:var(--text-strong);font-family:var(--font-mono);font-size:13px;letter-spacing:.05em;text-transform:uppercase;text-decoration:none}.brief-cta[data-astro-cid-45vxrcc5] a[data-astro-cid-45vxrcc5]:hover{color:var(--signal)}.adjacent[data-astro-cid-45vxrcc5]{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)}.adjacent-link[data-astro-cid-45vxrcc5]{display:flex;flex-direction:column;gap:.35rem;text-decoration:none;color:var(--text);padding:1rem;border:1px solid var(--border);background:var(--surface)}.adjacent-link--next[data-astro-cid-45vxrcc5]{text-align:right}.adjacent-link[data-astro-cid-45vxrcc5]:hover{color:var(--text-strong);background:color-mix(in srgb,var(--surface) 90%,white)}@media(max-width:640px){.adjacent[data-astro-cid-45vxrcc5]{grid-template-columns:1fr}.adjacent-link--next[data-astro-cid-45vxrcc5]{text-align:left}}
+.np-root[data-astro-cid-7ixr6fiy]{position:fixed;inset:0;z-index:100}.np-root[data-astro-cid-7ixr6fiy][hidden]{display:none}.np-backdrop[data-astro-cid-7ixr6fiy]{position:absolute;inset:0;background:#141310b3;backdrop-filter:blur(4px)}.np-modal-wrap[data-astro-cid-7ixr6fiy]{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:1rem}.np-modal[data-astro-cid-7ixr6fiy]{position:relative;background:var(--paper);border:4px solid var(--void);box-shadow:8px 8px 0 0 var(--void);max-width:460px;width:100%;padding:2.5rem 2rem 2rem;text-align:center;animation:np-pop .2s cubic-bezier(.22,1,.36,1)}@keyframes np-pop{0%{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.np-close[data-astro-cid-7ixr6fiy]{position:absolute;top:.5rem;right:.75rem;background:none;border:0;font-size:28px;line-height:1;color:var(--void);cursor:pointer;padding:.25rem .5rem;transition:color .15s ease}.np-close[data-astro-cid-7ixr6fiy]:hover{color:var(--alert-red)}.np-eyebrow[data-astro-cid-7ixr6fiy]{font-family:var(--mono, "Courier Prime", monospace);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#1a1a1a8c;margin-bottom:.75rem}.np-heading[data-astro-cid-7ixr6fiy]{font-family:Inter,system-ui,sans-serif;font-weight:900;font-size:1.75rem;line-height:1.05;letter-spacing:-.02em;margin:0 0 .75rem;color:var(--void);text-transform:none}.np-blurb[data-astro-cid-7ixr6fiy]{font-size:14px;line-height:1.5;color:#1a1a1ab3;margin:0 0 1.5rem}.np-form[data-astro-cid-7ixr6fiy]{display:flex;flex-direction:column;gap:.5rem}.np-input[data-astro-cid-7ixr6fiy]{font-family:inherit;font-size:15px;padding:.75rem 1rem;border:1px solid var(--void);background:#fff;border-radius:0;color:var(--void)}.np-input[data-astro-cid-7ixr6fiy]:focus{outline:2px solid var(--rand-blue, #0055aa);outline-offset:1px}.np-button[data-astro-cid-7ixr6fiy]{font-family:var(--mono, "Courier Prime", monospace);font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.85rem 1.5rem;background:var(--void);color:var(--paper);border:1px solid var(--void);cursor:pointer;transition:background .15s ease,border-color .15s ease}.np-button[data-astro-cid-7ixr6fiy]:hover{background:var(--rand-blue, #0055aa);border-color:var(--rand-blue, #0055aa)}.np-dismiss[data-astro-cid-7ixr6fiy]{margin-top:1rem;background:none;border:0;font-family:var(--mono, "Courier Prime", monospace);font-size:11px;letter-spacing:.12em;color:#1a1a1a73;cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:.5rem}.np-dismiss[data-astro-cid-7ixr6fiy]:hover{color:var(--void)}@media print{.np-root[data-astro-cid-7ixr6fiy]{display:none!important}}
+</style></head> <body> <header class="site-header"> <div class="site-header-inner"> <a href="/" class="wordmark" aria-label="TheFocus.AI Labs">  <span class="wordmark-glyph" aria-hidden="true"></span> <span class="wordmark-text">TheFocus</span> <span class="wordmark-sub">Labs</span>  </a> <nav class="site-nav" aria-label="Primary">  <a href="/dispatch/">Dispatch</a> <a href="/quarterly/">Quarterly</a> <a href="/reports/">Measurements</a> <a href="/recipes/">Bench</a> <a href="/issues/">Issues</a>  </nav> </div> </header> <main>  <article class="article-page" data-astro-cid-zm77yjld> <div class="article-shell" data-astro-cid-zm77yjld> <header class="article-header" data-astro-cid-zm77yjld> <a class="article-back mono-label" href="/dispatch/" data-astro-cid-zm77yjld>← Dispatch</a> <div class="article-taxonomy mono-label" data-astro-cid-zm77yjld> <span class="tax-pillar" data-astro-cid-zm77yjld>CONNECT</span> <span data-astro-cid-zm77yjld>Dispatch</span>   </div> <h1 class="article-title" data-astro-cid-zm77yjld>Schema-Driven AI: Better User Experiences with Structured Output</h1> <p class="article-lead" data-astro-cid-zm77yjld>Transforms chatting from simple text generators into powerful data processing engines, enabling extraction of organized information from PDFs, audio files, and more. Here are some practical techniques for building, including audio analysis, pdf data extraction and conversation state management, showcasing how constraint-driven outputs can power rich user experiences.</p> <div class="article-meta" data-astro-cid-zm77yjld> <time class="mono-label" data-astro-cid-zm77yjld>March 30, 2025</time> </div> </header> <figure class="article-hero" data-astro-cid-zm77yjld> <img src="/_astro/structured_output.fPE6oesl.png" alt="" loading="eager" data-astro-cid-zm77yjld> </figure> <div class="article-prose" data-astro-cid-zm77yjld> <p>Structured output is super interesting.  If you’re trying to build AI engineering based applications you should make sure you have a handle of the possibilities.</p>
+<p>The new version of Gemini Flash 2.5 is really quite remarkable. But let’s go through a quick few examples of what you can do — this technique applies to a whole range of the big boy models.</p>
+<p>I’ve had some good luck with PDFs, PowerPoints, and audio files. Let’s take a quick look through each of those.</p>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="1232" height="928" src="/_astro/davinci.DT9Bq29r_263E0U.png" >
+<em>A page from Davincis notebooks intricately sketched on yellowed parchment, surrounded by alchemical symbols and handwritten notes in iron gall ink, old scientific diagram style, high detail,</em></p>
+<h1 id="the-magic-of-constraints">The magic of constraints</h1>
+<p>One thing that’s truly remarkable is how clever and smart it is in matching up what the correct format of the result is.</p>
+<p>It’s much more than just saying I want to end this format.</p>
+<p>For example, you say “give me a timestamp and text” and throw an audio file at it, which is remarkable in itself since these things weren’t really trained with that in mind.  But you can sort of understand how it’s relatively straightforward, how it knows that you want when the text was spoken during the transcript.</p>
+<p>But you can also add in speaker name. And it will do its best based on the entirety of the podcast or audio file to identify who is talking. So it does this both by matching the voice based on the sound of it — what is known as “speaker diarization” — but if later on at the very end of the podcast the speaker identifies themselves, it will put that together to make deduce who was speaking at the end.</p>
+<p>It wasn’t that long ago that “speaker diarization” was itself a challenge, not the general models figure that out <em>magically</em>.</p>
+<p>And you can also say “also i need a boolean to tell me if this segment is an advertisement”.  And it spits it out.  How does it know? I don’t know it figures it out though, and so you can just say advertisement true or false and it will deduce from the context what is going on in that part of the audio.</p>
+<p>Maybe you can add some more stuff in there to break down different sections to say that this is a type of discussion that they’re having. This is a overview news report. This is the highlighted interview. And simply by adding in these fields and perhaps giving it a little bit of information, those constraints will tell it whatever it needs to do to figure it out.</p>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="1232" height="928" src="/_astro/audio.DwabzJs0_ZjNhkw.png" >
+<em>A vintage black-and-white film reel to real tape recorder with field microphones, with intricate mechanical details, set against a pure white background. Medium: Photography.Style: Inspired by minimalist retro aesthetics and classic cinema.Lighting: Soft, diffused lighting to highlight the projector’s form and textures without harsh shadows.Colours: Monochromatic palette with deep blacks and bright whites.Composition: Captured using a Canon EOS R with a 50mm f/1.8 lens, using a shallow depth of field to create a blurred effect on the background while keeping the projector sharply in focus, centered in the frame.</em></p>
+<h2 id="deep-structure">Deep structure</h2>
+<p>The constraints that it will go to to solve are truly mind blowing.  We are up to gemini 2.5 now, but back in the gemini 1.5 days this <a href="https://cloud.google.com/vertex-ai/generative-ai/docs/prompt-gallery/samples/question_answering_barista_bot_105">one example blew my mind</a></p>
+<p>It’s a prompt that defines the reasoning model for a barista bot. This is a “bot” that will help place your order and you can say give me something strong or I want something that’s sort of like this and it will prompt you as a conversation to come up with an order that makes sense.</p>
+<p>But it’s specified as a sort of free-flowing state machine inside of the system prompt and with a again almost scribble of intention of what the structured response should be.  We aren’t defining LL-decent parsers here, just throwing it a few examples of what we think it should look like.</p>
+<p>The structure they defined keeps track of the conversational history of what’s happening throughout the prompt objects, the resulting objects, and so it forces the model to it sort of automatically creates a chain of thought system because in order for the fields to get filled out correctly they have to anticipate and think of future options</p>
+<p>Inside of the structured output, it includes a spot for the model’s reasoning to get to the next step. It includes the prompt that it is meant to show to the user, so a lot of the structured data is not meant to be visible. And it includes a sort of previous conversational history. So this could also be done as sort of one-off generations without having long conversational chains, because the state that the barista bot needs to know is all contained within the structured output itself.</p>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="1232" height="928" src="/_astro/rube.B-bdkgG__Z1UIElL.png" >
+<em>Very complex science fiction rube goldberg machine with water</em></p>
+<h1 id="its-great-for-user-experience">It’s great for user experience</h1>
+<p>When tools in general are added to a conversational agent — either in a direct function way or in the general ModelContextProtocol way — they will return structured data as s result of the interface itself.  You know that you are getting that exact output for sure because that’s code that you’ve explicitly written. And you can built your UI interface off of that, rather than a free flowing text box or some flakey way of detecting where the code diff starts and ends or whatever.</p>
+<p>In the barista example you can show what’s in the order — maybe a draft of the coffee art too while you’re at it — as well as buttons to increase the quantity or whatever else you might want to tweak in addition to using the words.  That’s not what they mean by multimodal, but its a type of it for sure.</p>
+<p>What you’ve done is shifted the business logic right into the model, in the way that it can reason about and that the user experience can supplement rather than define.</p>
+<p>And being able to make structures output off of individual completions means that, starting with very vague data, you can build an experience around that that isn’t a just a chatbot experience. It’s better way to add brains before the application. Let’s go through a quick example of how we could build a better podcasting app.</p>
+<p>And if you want to see the code in action, I’ve got a vibe coded demo up at [<a href="https://github.com/The-Focus-AI/pocketcast-collaborator">https://github.com/The-Focus-AI/pocketcast-collaborator</a>]. Its very cool to be able to talk to a podcast.</p>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="1232" height="928" src="/_astro/coffee-art.UKGJS3iF_Z1rQgiG.png" >
+<em>normal rockwell style painting, visible and thick brush strokes, of an art-deco style robot teaching a younger robot how to draw latte art on a cappuccino</em></p>
+<h1 id="audio-transcription">Audio transcription</h1>
+<p>Hands on coding here people!  Install <a href="https://github.com/simonw/llm-gemini">llm-gemini</a>, get yourself a key, download a podcast mp3 and hold on to your butts:</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F69D50">llm</span><span style="color:#6CB6FF"> -m</span><span style="color:#96D0FF"> gemini-2.5-pro-exp-03-25</span><span style="color:#F47067"> \</span></span>
+<span class="line"><span style="color:#6CB6FF">    -a</span><span style="color:#96D0FF"> google-s-gemma-3-rollout-plus-ftc-delays-amazon-trial-3-12-25-8fc8c4.mp3</span><span style="color:#F47067"> \</span></span>
+<span class="line"><span style="color:#6CB6FF">    --schema-multi</span><span style="color:#96D0FF"> 'timestamp str: mm:ss,speaker_name,advertisement: boolean, text'</span><span style="color:#F47067"> \</span></span>
+<span class="line"><span style="color:#96D0FF">    transcript</span></span></code></pre>
+<p>This is a one word prompt <code>transcript</code> and you pass it an mp3 file, and it breaks it down into the output schema.  How does it know who is talking?  How does it know that we are in an ad?  <em>magic</em></p>
+<p>Now you can do all sorts of fun stuff.</p>
+<h2 id="working-with-the-output">Working with the output</h2>
+<p><em>show me the first 3 non-ad items</em></p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F69D50">jq</span><span style="color:#96D0FF"> '[.items[] | select(.advertisement == "false")] | .[0:3]'</span><span style="color:#96D0FF"> ../transcript.json</span></span></code></pre>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#ADBAC7">[</span></span>
+<span class="line"><span style="color:#ADBAC7">  {</span></span>
+<span class="line"><span style="color:#8DDB8C">    "advertisement"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"false"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#8DDB8C">    "speaker_name"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"Leslie Picker"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#8DDB8C">    "text"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"Google releasing a new family of open source models today that it says can run on a single chip, a GPU or Google's custom AI chip called the TPU."</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#8DDB8C">    "timestamp"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"00:44"</span></span>
+<span class="line"><span style="color:#ADBAC7">  },</span></span>
+<span class="line"><span style="color:#ADBAC7">  {</span></span>
+<span class="line"><span style="color:#8DDB8C">    "advertisement"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"false"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#8DDB8C">    "speaker_name"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"Leslie Picker"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#8DDB8C">    "text"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"Derbosa has more in today's tech check D. Interesting development here."</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#8DDB8C">    "timestamp"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"00:53"</span></span>
+<span class="line"><span style="color:#ADBAC7">  },</span></span>
+<span class="line"><span style="color:#ADBAC7">  {</span></span>
+<span class="line"><span style="color:#8DDB8C">    "advertisement"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"false"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#8DDB8C">    "speaker_name"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"Deirdre Bosa"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#8DDB8C">    "text"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"Hey Leslie, good morning."</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#8DDB8C">    "timestamp"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"00:58"</span></span>
+<span class="line"><span style="color:#ADBAC7">  }</span></span>
+<span class="line"><span style="color:#ADBAC7">]</span></span></code></pre>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="1232" height="928" src="/_astro/teleprompter.ZzpIT7d__Zk18q5.png" >
+<em>picture of a 1950 radio studio showing a hand-written teleprompter showing the lines to two presenters</em></p>
+<p><em>show the key points of discussion with the timestamps</em></p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F69D50">jq</span><span style="color:#96D0FF"> '[.items[] | select(.advertisement == "false")]'</span><span style="color:#96D0FF"> transcript.json</span><span style="color:#F47067">  |</span><span style="color:#F69D50"> \</span><span style="color:#ADBAC7">    </span></span>
+<span class="line"><span style="color:#F69D50">llm</span><span style="color:#6CB6FF"> --schema-multi</span><span style="color:#96D0FF"> 'timestamp str: mm:ss, key_headline, topics[], participants[], discussion'</span><span style="color:#F47067">  ></span><span style="color:#96D0FF"> key_points.json</span></span></code></pre>
+<p>Here are the first 3</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F69D50">jq</span><span style="color:#96D0FF"> '[.items[0:3]]'</span><span style="color:#96D0FF"> ../key_points.json</span></span></code></pre>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#ADBAC7">[</span></span>
+<span class="line"><span style="color:#ADBAC7">  [</span></span>
+<span class="line"><span style="color:#ADBAC7">    {</span></span>
+<span class="line"><span style="color:#8DDB8C">      "timestamp"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"00:44"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#8DDB8C">      "key_headline"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"Google Launches Open Source AI Models"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#8DDB8C">      "topics"</span><span style="color:#ADBAC7">: [</span></span>
+<span class="line"><span style="color:#96D0FF">        "AI Models"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">        "Google"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">        "TPU"</span></span>
+<span class="line"><span style="color:#ADBAC7">      ],</span></span>
+<span class="line"><span style="color:#8DDB8C">      "participants"</span><span style="color:#ADBAC7">: [</span></span>
+<span class="line"><span style="color:#96D0FF">        "Leslie Picker"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">        "Deirdre Bosa"</span></span>
+<span class="line"><span style="color:#ADBAC7">      ],</span></span>
+<span class="line"><span style="color:#8DDB8C">      "discussion"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"Google has released a family of open source models that can run efficiently on various chips, including its own TPU."</span></span>
+<span class="line"><span style="color:#ADBAC7">    },</span></span>
+<span class="line"><span style="color:#ADBAC7">    {</span></span>
+<span class="line"><span style="color:#8DDB8C">      "timestamp"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"00:53"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#8DDB8C">      "key_headline"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"Tech Check Updates"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#8DDB8C">      "topics"</span><span style="color:#ADBAC7">: [</span></span>
+<span class="line"><span style="color:#96D0FF">        "Tech News"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">        "Google"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">        "AI"</span></span>
+<span class="line"><span style="color:#ADBAC7">      ],</span></span>
+<span class="line"><span style="color:#8DDB8C">      "participants"</span><span style="color:#ADBAC7">: [</span></span>
+<span class="line"><span style="color:#96D0FF">        "Leslie Picker"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">        "Deirdre Bosa"</span></span>
+<span class="line"><span style="color:#ADBAC7">      ],</span></span>
+<span class="line"><span style="color:#8DDB8C">      "discussion"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"Deirdre Bosa provides insights into the significance of Google's new model release."</span></span>
+<span class="line"><span style="color:#ADBAC7">    },</span></span>
+<span class="line"><span style="color:#ADBAC7">    {</span></span>
+<span class="line"><span style="color:#8DDB8C">      "timestamp"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"00:58"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#8DDB8C">      "key_headline"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"Market Implications of Google's AI Models"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#8DDB8C">      "topics"</span><span style="color:#ADBAC7">: [</span></span>
+<span class="line"><span style="color:#96D0FF">        "AI Models"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">        "Market Trends"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">        "Nvidia"</span></span>
+<span class="line"><span style="color:#ADBAC7">      ],</span></span>
+<span class="line"><span style="color:#8DDB8C">      "participants"</span><span style="color:#ADBAC7">: [</span></span>
+<span class="line"><span style="color:#96D0FF">        "Deirdre Bosa"</span></span>
+<span class="line"><span style="color:#ADBAC7">      ],</span></span>
+<span class="line"><span style="color:#8DDB8C">      "discussion"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"Deirdre notes that Google's models represent a response to competition and highlight its chip technology advantage."</span></span>
+<span class="line"><span style="color:#ADBAC7">    }</span></span>
+<span class="line"><span style="color:#ADBAC7">  ]</span></span>
+<span class="line"><span style="color:#ADBAC7">]</span></span></code></pre>
+<p>You could image how to build an interface off of this structured data: here’s the key headlines that they covered, a description of the conversation, who was in it, what the larger topics were that you could cross reference with other episodes or podcasts…</p>
+<p>…and all we did was define a couple of schemas.  Pump the audio into one, the output of that into the other, and boom.  It takes a couple of minutes, and the real trick is to figure out how you want to organize your product around the data.</p>
+<h1 id="schema-builder">Schema Builder</h1>
+<p>I’m using the excellent <a href="https://llm.datasette.io/en/stable/schemas.html#schemas-dsl">llm schema</a> command to generate the JSON schema</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F69D50">llm</span><span style="color:#96D0FF"> schemas</span><span style="color:#96D0FF"> dsl</span><span style="color:#6CB6FF"> --multi</span><span style="color:#96D0FF"> 'timestamp str: mm:ss,speaker_name,advertisement: boolean, text'</span><span style="color:#ADBAC7">  </span></span></code></pre>
+<p>And this outputs:</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#ADBAC7">{</span></span>
+<span class="line"><span style="color:#8DDB8C">  "type"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"object"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#8DDB8C">  "properties"</span><span style="color:#ADBAC7">: {</span></span>
+<span class="line"><span style="color:#8DDB8C">    "items"</span><span style="color:#ADBAC7">: {</span></span>
+<span class="line"><span style="color:#8DDB8C">      "type"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"array"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#8DDB8C">      "items"</span><span style="color:#ADBAC7">: {</span></span>
+<span class="line"><span style="color:#8DDB8C">        "type"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"object"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#8DDB8C">        "properties"</span><span style="color:#ADBAC7">: {</span></span>
+<span class="line"><span style="color:#8DDB8C">          "timestamp"</span><span style="color:#ADBAC7">: {</span></span>
+<span class="line"><span style="color:#8DDB8C">            "type"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"string"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#8DDB8C">            "description"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"mm:ss"</span></span>
+<span class="line"><span style="color:#ADBAC7">          },</span></span>
+<span class="line"><span style="color:#8DDB8C">          "speaker_name"</span><span style="color:#ADBAC7">: {</span></span>
+<span class="line"><span style="color:#8DDB8C">            "type"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"string"</span></span>
+<span class="line"><span style="color:#ADBAC7">          },</span></span>
+<span class="line"><span style="color:#8DDB8C">          "advertisement"</span><span style="color:#ADBAC7">: {</span></span>
+<span class="line"><span style="color:#8DDB8C">            "type"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"string"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#8DDB8C">            "description"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"boolean"</span></span>
+<span class="line"><span style="color:#ADBAC7">          },</span></span>
+<span class="line"><span style="color:#8DDB8C">          "text"</span><span style="color:#ADBAC7">: {</span></span>
+<span class="line"><span style="color:#8DDB8C">            "type"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"string"</span></span>
+<span class="line"><span style="color:#ADBAC7">          }</span></span>
+<span class="line"><span style="color:#ADBAC7">        },</span></span>
+<span class="line"><span style="color:#8DDB8C">        "required"</span><span style="color:#ADBAC7">: [</span></span>
+<span class="line"><span style="color:#96D0FF">          "timestamp"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">          "speaker_name"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">          "advertisement"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">          "text"</span></span>
+<span class="line"><span style="color:#ADBAC7">        ]</span></span>
+<span class="line"><span style="color:#ADBAC7">      }</span></span>
+<span class="line"><span style="color:#ADBAC7">    }</span></span>
+<span class="line"><span style="color:#ADBAC7">  },</span></span>
+<span class="line"><span style="color:#8DDB8C">  "required"</span><span style="color:#ADBAC7">: [</span></span>
+<span class="line"><span style="color:#96D0FF">    "items"</span></span>
+<span class="line"><span style="color:#ADBAC7">  ]</span></span>
+<span class="line"><span style="color:#ADBAC7">}</span></span></code></pre>
+<p>If you’re coding this yourself, you’d probably use something like <a href="https://github.com/StefanTerdell/zod-to-json-schema">zod</a> if you are in a typescript context.</p>
+<h1 id="extracting-structured-data-from-a-pdf">Extracting structured data from a PDF</h1>
+<p>Lets do this using the vercel ai sdk.  First lets define the output that we want in <a href="https://github.com/colinhacks/zod">zod</a></p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#F47067">import</span><span style="color:#ADBAC7"> { z } </span><span style="color:#F47067">from</span><span style="color:#96D0FF"> "zod"</span><span style="color:#ADBAC7">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#768390">// HealthInsurancePlan Schema</span></span>
+<span class="line"><span style="color:#F47067">const</span><span style="color:#6CB6FF"> HealthInsurancePlanSchema</span><span style="color:#F47067"> =</span><span style="color:#ADBAC7"> z.</span><span style="color:#DCBDFB">object</span><span style="color:#ADBAC7">({</span></span>
+<span class="line"><span style="color:#768390">  // Basic Plan Information</span></span>
+<span class="line"><span style="color:#ADBAC7">  planName: z</span></span>
+<span class="line"><span style="color:#ADBAC7">    .</span><span style="color:#DCBDFB">string</span><span style="color:#ADBAC7">()</span></span>
+<span class="line"><span style="color:#ADBAC7">    .</span><span style="color:#DCBDFB">describe</span><span style="color:#ADBAC7">(</span></span>
+<span class="line"><span style="color:#96D0FF">      "The formal name of the health insurance plan, e.g., 'Open Access Plus', 'Connect Gold CMS Standard'. Usually appears at the top of the SBC document."</span></span>
+<span class="line"><span style="color:#ADBAC7">    ),</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADBAC7">  carrierName: z</span></span>
+<span class="line"><span style="color:#ADBAC7">    .</span><span style="color:#DCBDFB">string</span><span style="color:#ADBAC7">()</span></span>
+<span class="line"><span style="color:#ADBAC7">    .</span><span style="color:#DCBDFB">describe</span><span style="color:#ADBAC7">(</span></span>
+<span class="line"><span style="color:#96D0FF">      "The name of the insurance company providing the plan, e.g., 'Cigna', 'Cigna HealthCare of North Carolina, Inc.'. Found at the top of the SBC document."</span></span>
+<span class="line"><span style="color:#ADBAC7">    ),</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADBAC7">  planType: z</span></span>
+<span class="line"><span style="color:#ADBAC7">    .</span><span style="color:#DCBDFB">string</span><span style="color:#ADBAC7">()</span></span>
+<span class="line"><span style="color:#ADBAC7">    .</span><span style="color:#DCBDFB">describe</span><span style="color:#ADBAC7">(</span></span>
+<span class="line"><span style="color:#96D0FF">      "The type of health insurance plan, such as 'OAP' (Open Access Plus), 'HMO' (Health Maintenance Organization), 'PPO' (Preferred Provider Organization). Usually found in the header section."</span></span>
+<span class="line"><span style="color:#ADBAC7">    ),</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADBAC7">  coveragePeriod: z</span></span>
+<span class="line"><span style="color:#ADBAC7">    .</span><span style="color:#DCBDFB">object</span><span style="color:#ADBAC7">({</span></span>
+<span class="line"><span style="color:#ADBAC7">      startDate: z</span></span>
+<span class="line"><span style="color:#ADBAC7">        .</span><span style="color:#DCBDFB">date</span><span style="color:#ADBAC7">()</span></span>
+<span class="line"><span style="color:#ADBAC7">        .</span><span style="color:#DCBDFB">describe</span><span style="color:#ADBAC7">(</span></span>
+<span class="line"><span style="color:#96D0FF">          "The start date of the coverage period, formatted as MM/DD/YYYY. Found in the header of the SBC, usually labeled 'Coverage Period'."</span></span>
+<span class="line"><span style="color:#ADBAC7">        ),</span></span>
+<span class="line"><span style="color:#ADBAC7">      endDate: z</span></span>
+<span class="line"><span style="color:#ADBAC7">        .</span><span style="color:#DCBDFB">date</span><span style="color:#ADBAC7">()</span></span>
+<span class="line"><span style="color:#ADBAC7">        .</span><span style="color:#DCBDFB">describe</span><span style="color:#ADBAC7">(</span></span>
+<span class="line"><span style="color:#96D0FF">          "The end date of the coverage period, formatted as MM/DD/YYYY. Found in the header of the SBC, usually labeled 'Coverage Period'."</span></span>
+<span class="line"><span style="color:#ADBAC7">        ),</span></span>
+<span class="line"><span style="color:#ADBAC7">    })</span></span>
+<span class="line"><span style="color:#ADBAC7">    .</span><span style="color:#DCBDFB">describe</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">"The time period during which the plan provides coverage."</span><span style="color:#ADBAC7">),</span></span>
+<span class="line"><span style="color:#F47067">...</span><span style="color:#ADBAC7">.</span></span></code></pre>
+<p>When we can make a prompt that says something like:</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>import HealthInsurancePlanSchema from "./schemas/sbc_schema.js";</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>export const SBC_PROMPT = `You are a healthcare enrollment form parser. </span></span>
+<span class="line"><span>Your task is to extract key information from enrollment forms.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>${HealthInsurancePlanSchema}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Extract and return ONLY the JSON data. Do not include any other text or explanation.`;</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Then we fire it up something like:</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#F47067">const</span><span style="color:#6CB6FF"> fileBuffer</span><span style="color:#F47067"> =</span><span style="color:#F47067"> await</span><span style="color:#ADBAC7"> fs.</span><span style="color:#DCBDFB">readFile</span><span style="color:#ADBAC7">(path.</span><span style="color:#DCBDFB">resolve</span><span style="color:#ADBAC7">(filePath));</span></span>
+<span class="line"><span style="color:#F47067">const</span><span style="color:#6CB6FF"> fileType</span><span style="color:#F47067"> =</span><span style="color:#F47067"> await</span><span style="color:#DCBDFB"> fileTypeFromBuffer</span><span style="color:#ADBAC7">(fileBuffer);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">const</span><span style="color:#6CB6FF"> mimeType</span><span style="color:#F47067"> =</span><span style="color:#ADBAC7"> fileType?.mime </span><span style="color:#F47067">||</span><span style="color:#96D0FF"> "application/octet-stream"</span><span style="color:#ADBAC7">;</span></span>
+<span class="line"><span style="color:#F47067">const</span><span style="color:#6CB6FF"> base64Data</span><span style="color:#F47067"> =</span><span style="color:#ADBAC7"> fileBuffer.</span><span style="color:#DCBDFB">toString</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">"base64"</span><span style="color:#ADBAC7">);</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADBAC7">messages.</span><span style="color:#DCBDFB">push</span><span style="color:#ADBAC7">({</span></span>
+<span class="line"><span style="color:#ADBAC7">	id: </span><span style="color:#96D0FF">"document-context"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#ADBAC7">    role: </span><span style="color:#96D0FF">"system"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#ADBAC7">    content: prompt.system,</span></span>
+<span class="line"><span style="color:#ADBAC7">    })</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADBAC7">message.</span><span style="color:#DCBDFB">push</span><span style="color:#ADBAC7">({</span></span>
+<span class="line"><span style="color:#ADBAC7">    role: </span><span style="color:#96D0FF">"user"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#ADBAC7">    content: [</span></span>
+<span class="line"><span style="color:#ADBAC7">    {</span></span>
+<span class="line"><span style="color:#ADBAC7">      type: </span><span style="color:#96D0FF">"file"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#ADBAC7">      data: base64Data,</span></span>
+<span class="line"><span style="color:#ADBAC7">      mimeType: mimeType</span></span>
+<span class="line"><span style="color:#ADBAC7"> .  }</span></span>
+<span class="line"><span style="color:#ADBAC7">]})</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADBAC7">message.</span><span style="color:#DCBDFB">push</span><span style="color:#ADBAC7">({</span></span>
+<span class="line"><span style="color:#ADBAC7">  {</span></span>
+<span class="line"><span style="color:#F69D50">  role</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"user"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#F69D50">  content</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"Parse the enrollment PDF and extract the information."</span></span>
+<span class="line"><span style="color:#ADBAC7">  });</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADBAC7">await </span><span style="color:#DCBDFB">generateText</span><span style="color:#ADBAC7">({</span></span>
+<span class="line"><span style="color:#F69D50">      model</span><span style="color:#ADBAC7">: </span><span style="color:#F69D50">this</span><span style="color:#ADBAC7">.</span><span style="color:#F69D50">prompt</span><span style="color:#ADBAC7">.</span><span style="color:#F69D50">model</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#F69D50">      messages</span><span style="color:#ADBAC7">: </span><span style="color:#F69D50">this</span><span style="color:#ADBAC7">.</span><span style="color:#F69D50">_messages</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#F69D50">      tools</span><span style="color:#ADBAC7">: </span><span style="color:#F69D50">this</span><span style="color:#ADBAC7">.</span><span style="color:#F69D50">prompt</span><span style="color:#ADBAC7">.</span><span style="color:#F69D50">tools</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#F69D50">      maxSteps</span><span style="color:#ADBAC7">: </span><span style="color:#6CB6FF">1</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#ADBAC7">    });</span></span></code></pre>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="1232" height="928" src="/_astro/doctor_office.hMvHQbxv_2ewrgv.png" >
+<em>charcoal sketch of a medical fileing cabinet overflowing with paperwork with a nurse walking by</em></p>
+<h1 id="thoughts">Thoughts</h1>
+<p>From an AI engineering point of view this is a super interesting way to structure things.</p>
+<p>First you are specifying your intentions — this is what I want, figure out how to do it.  Sometimes you need to coach it a bit with a more detailed system prompt, but you can get pretty far with just the output schema.</p>
+<p>Second, you’re breaking it down so that you have prompts that are leading to prompts that lead into prompts. You’re not building a hugely complicated prompt system that solves everything all at once. What you’re doing is finding a way for these things to plug in to each other easily, and any modular system is easier to maintain and test and verify.</p>
+<p>This stuff is really, you know, simply using the model itself. You can go pretty deep with tools.  Give it some ways to query your analytics database, these are the knobs themselves, have at it — and “give me a list of pages that are the most popular with viewers that come in through India” or some sort of complicated query and in that case the model is being smart in order to understand what you’re asking for and then call the tools in the right way to make that happen.</p>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="1232" height="928" src="/_astro/oracle.BICq14q5_Z1xCyFz.png" >
+<em>greek supplicants visiting the oracle to get the great answers of life, hyper realistic</em></p>
+<p>After that, you’re plugging them in to each other and you’re showing the visualization or whatever of the data that comes back and instead of being, you can build a much richer experience at that point.</p>
+<p>It doesn’t need to be that complicated — think about the transcript app above.  Define the schema, and it gets the output.  You start your product by lets just layer “you can see the transcript of what is being spoken as the user listens.”  You can see the text highlighted where the user is speaking. That’s cool. That’s pretty fun.</p>
+<p>But you can also have it skip over the ads or you can have it summarize the key points of what is in that discussion and be able to zip in to that part directly.  All with another simple schema-prompt that you’ve added after the first one.</p>
+<p>And why not make it so the person can ask deeper questions about it?  Lets add another layer of data answers on top of the previous one. There’s a lot of podcasts that I listen to or I’m in the car or whatever, and being able to kind of ask questions about it is super helpful later on.</p>
+<p>What was that book they were talking about? Why is it that they liked it? What was it that they thought about that author? How can I go and find out more information about it?</p>
+<p>Manual show notes are all well and good, but imagine what this level of deeper understanding will unleash for people interacting with the information that’s streaming into them.</p>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="1232" height="928" src="/_astro/info-flow.CSwVJIDH_2d7dDH.png" >
+<em>A detailed infographic-like schematic illustration that dipicts the flow of information and cross pollenation between 21st-century academic guild system, of universities, private societies, industrial research labs all sharing information and learning all being counteracted by grassroots innovations and resilient communities. Palette: muted bauhaus design, vibrant floral colors as highlights.</em></p> <nav class="adjacent" data-astro-cid-45vxrcc5> <a class="adjacent-link" href="/dispatch/moral-vibe-check/" data-astro-cid-45vxrcc5> <span class="mono-label" data-astro-cid-45vxrcc5>Previous</span> <span data-astro-cid-45vxrcc5>Moral Vibe Check</span> </a> <a class="adjacent-link adjacent-link--next" href="/dispatch/coding-with-a-memory-system/" data-astro-cid-45vxrcc5> <span class="mono-label" data-astro-cid-45vxrcc5>Next</span> <span data-astro-cid-45vxrcc5>Coding with a memory system</span> </a> </nav> </div> </div> </article>  </main> <footer class="site-footer"> <div class="site-footer-inner"> <span>Published by <a href="https://thefocus.ai">TheFocus.AI</a></span> <span> <a href="https://courses.thefocus.ai">Courses</a>
+·
+<a href="https://standards.thefocus.ai">Standards</a>
+·
+<a href="https://github.com/The-Focus-AI/labs">Source</a> </span> </div> </footer> <div id="newsletter-popup" class="np-root" hidden data-astro-cid-7ixr6fiy> <div class="np-backdrop" id="np-backdrop" data-astro-cid-7ixr6fiy></div> <div class="np-modal-wrap" data-astro-cid-7ixr6fiy> <div class="np-modal" role="dialog" aria-modal="true" aria-labelledby="np-heading" data-astro-cid-7ixr6fiy> <button id="np-close" class="np-close" aria-label="Close" data-astro-cid-7ixr6fiy>×</button> <div class="np-eyebrow" data-astro-cid-7ixr6fiy>Don't miss out</div> <h3 id="np-heading" class="np-heading" data-astro-cid-7ixr6fiy>Stay ahead of the curve.</h3> <p class="np-blurb" data-astro-cid-7ixr6fiy>
+Field reports from AI engineering — what's shipping, what's
+        breaking, what's about to change. One email per issue.
+</p> <form action="https://buttondown.com/api/emails/embed-subscribe/thefocusai" method="post" class="np-form" data-astro-cid-7ixr6fiy> <input type="email" name="email" id="np-email" required placeholder="you@domain.com" class="np-input" data-astro-cid-7ixr6fiy> <button type="submit" class="np-button" data-astro-cid-7ixr6fiy>Subscribe →</button> </form> <button id="np-dismiss" class="np-dismiss" data-astro-cid-7ixr6fiy>No thanks, I'll pass</button> </div> </div> </div>  <script>
+  (function () {
+    const KEY = 'focus_newsletter_dismissed';
+    if (typeof window === 'undefined') return;
+
+    function init() {
+      const root = document.getElementById('newsletter-popup');
+      const closeBtn = document.getElementById('np-close');
+      const dismissBtn = document.getElementById('np-dismiss');
+      const backdrop = document.getElementById('np-backdrop');
+      if (!root) return;
+      if (localStorage.getItem(KEY)) return;
+
+      function show() {
+        root.hidden = false;
+        document.body.style.overflow = 'hidden';
+      }
+      function hide(persist) {
+        root.hidden = true;
+        document.body.style.overflow = '';
+        if (persist) {
+          try { localStorage.setItem(KEY, 'true'); } catch (_) {}
+        }
+      }
+
+      const t = setTimeout(show, 30000);
+
+      closeBtn && closeBtn.addEventListener('click', () => hide(true));
+      dismissBtn && dismissBtn.addEventListener('click', () => hide(true));
+      backdrop && backdrop.addEventListener('click', () => hide(false));
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !root.hidden) hide(false);
+      });
+      window.addEventListener('beforeunload', () => clearTimeout(t));
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script> </body></html>  

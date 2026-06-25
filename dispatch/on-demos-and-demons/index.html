@@ -1,0 +1,97 @@
+<!DOCTYPE html><html lang="en" data-theme="ledger"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Astro v5.18.2"><meta name="description" content="TheFocus.AI Labs — thoughts, reports, recipes, and publication issues from the front of AI engineering."><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;900&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet"><title>On Demos and Demons · TheFocus.AI Labs</title><link rel="stylesheet" href="/_astro/_slug_.CZnP_JuE.css">
+<style>.article-page[data-astro-cid-zm77yjld]{padding:var(--section-y) 0 4rem}.article-shell[data-astro-cid-zm77yjld]{max-width:720px;margin:0 auto;padding:0 var(--gutter)}.article-back[data-astro-cid-zm77yjld]{display:inline-block;margin-bottom:1rem;text-decoration:none;color:var(--signal)}.article-back[data-astro-cid-zm77yjld]:hover{color:var(--text-strong)}.article-taxonomy[data-astro-cid-zm77yjld]{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-size:11px}.tax-pillar[data-astro-cid-zm77yjld]{color:var(--signal)}.article-header[data-astro-cid-zm77yjld]{margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}.article-title[data-astro-cid-zm77yjld]{font-size:clamp(2rem,5vw,2.75rem);font-weight:600;line-height:1.1;letter-spacing:-.03em;color:var(--text-strong);margin:.75rem 0 1rem}.article-lead[data-astro-cid-zm77yjld]{font-size:20px;line-height:1.5;color:var(--text-2);margin:0}.article-meta[data-astro-cid-zm77yjld]{margin-top:1.25rem}.article-hero[data-astro-cid-zm77yjld]{margin:0 0 2rem;border:1px solid var(--border);background:var(--surface)}.article-hero[data-astro-cid-zm77yjld] img[data-astro-cid-zm77yjld]{display:block;width:100%;height:auto}.article-prose[data-astro-cid-zm77yjld] h2{font-size:1.5rem;font-weight:600;margin:2.5rem 0 1rem;color:var(--text-strong)}.article-prose[data-astro-cid-zm77yjld] h3{font-size:1.15rem;font-weight:600;margin:2rem 0 .75rem;color:var(--text-strong)}.article-prose[data-astro-cid-zm77yjld] p,.article-prose[data-astro-cid-zm77yjld] li{font-size:15px;line-height:1.6;color:var(--text)}.article-prose[data-astro-cid-zm77yjld] a{color:var(--text-strong);text-decoration:underline;text-underline-offset:3px}.article-prose[data-astro-cid-zm77yjld] a:hover{color:var(--signal)}.article-prose[data-astro-cid-zm77yjld] pre{background:var(--surface);border:1px solid var(--border);padding:1rem;overflow-x:auto;font-family:var(--font-mono);font-size:13px;line-height:1.5}.article-prose[data-astro-cid-zm77yjld] code{font-family:var(--font-mono);font-size:.9em}.article-prose[data-astro-cid-zm77yjld] blockquote{margin:1.5rem 0;padding-left:1rem;border-left:2px solid var(--signal);color:var(--text-2)}.article-prose[data-astro-cid-zm77yjld] img{max-width:100%;height:auto;border:1px solid var(--border)}.article-prose[data-astro-cid-zm77yjld] table{width:100%;border-collapse:collapse;font-size:14px;margin:1.5rem 0;border:1px solid var(--border)}.article-prose[data-astro-cid-zm77yjld] th,.article-prose[data-astro-cid-zm77yjld] td{border:1px solid var(--border);padding:.5rem .75rem;text-align:left}.article-prose[data-astro-cid-zm77yjld] th{background:var(--surface);color:var(--text-strong);font-family:var(--font-mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+.brief-cta[data-astro-cid-45vxrcc5]{margin:0 0 2rem;padding:1rem 1.25rem;border:1px solid var(--signal);background:color-mix(in srgb,var(--signal) 12%,transparent)}.brief-cta[data-astro-cid-45vxrcc5] a[data-astro-cid-45vxrcc5]{color:var(--text-strong);font-family:var(--font-mono);font-size:13px;letter-spacing:.05em;text-transform:uppercase;text-decoration:none}.brief-cta[data-astro-cid-45vxrcc5] a[data-astro-cid-45vxrcc5]:hover{color:var(--signal)}.adjacent[data-astro-cid-45vxrcc5]{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)}.adjacent-link[data-astro-cid-45vxrcc5]{display:flex;flex-direction:column;gap:.35rem;text-decoration:none;color:var(--text);padding:1rem;border:1px solid var(--border);background:var(--surface)}.adjacent-link--next[data-astro-cid-45vxrcc5]{text-align:right}.adjacent-link[data-astro-cid-45vxrcc5]:hover{color:var(--text-strong);background:color-mix(in srgb,var(--surface) 90%,white)}@media(max-width:640px){.adjacent[data-astro-cid-45vxrcc5]{grid-template-columns:1fr}.adjacent-link--next[data-astro-cid-45vxrcc5]{text-align:left}}
+.np-root[data-astro-cid-7ixr6fiy]{position:fixed;inset:0;z-index:100}.np-root[data-astro-cid-7ixr6fiy][hidden]{display:none}.np-backdrop[data-astro-cid-7ixr6fiy]{position:absolute;inset:0;background:#141310b3;backdrop-filter:blur(4px)}.np-modal-wrap[data-astro-cid-7ixr6fiy]{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:1rem}.np-modal[data-astro-cid-7ixr6fiy]{position:relative;background:var(--paper);border:4px solid var(--void);box-shadow:8px 8px 0 0 var(--void);max-width:460px;width:100%;padding:2.5rem 2rem 2rem;text-align:center;animation:np-pop .2s cubic-bezier(.22,1,.36,1)}@keyframes np-pop{0%{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.np-close[data-astro-cid-7ixr6fiy]{position:absolute;top:.5rem;right:.75rem;background:none;border:0;font-size:28px;line-height:1;color:var(--void);cursor:pointer;padding:.25rem .5rem;transition:color .15s ease}.np-close[data-astro-cid-7ixr6fiy]:hover{color:var(--alert-red)}.np-eyebrow[data-astro-cid-7ixr6fiy]{font-family:var(--mono, "Courier Prime", monospace);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#1a1a1a8c;margin-bottom:.75rem}.np-heading[data-astro-cid-7ixr6fiy]{font-family:Inter,system-ui,sans-serif;font-weight:900;font-size:1.75rem;line-height:1.05;letter-spacing:-.02em;margin:0 0 .75rem;color:var(--void);text-transform:none}.np-blurb[data-astro-cid-7ixr6fiy]{font-size:14px;line-height:1.5;color:#1a1a1ab3;margin:0 0 1.5rem}.np-form[data-astro-cid-7ixr6fiy]{display:flex;flex-direction:column;gap:.5rem}.np-input[data-astro-cid-7ixr6fiy]{font-family:inherit;font-size:15px;padding:.75rem 1rem;border:1px solid var(--void);background:#fff;border-radius:0;color:var(--void)}.np-input[data-astro-cid-7ixr6fiy]:focus{outline:2px solid var(--rand-blue, #0055aa);outline-offset:1px}.np-button[data-astro-cid-7ixr6fiy]{font-family:var(--mono, "Courier Prime", monospace);font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.85rem 1.5rem;background:var(--void);color:var(--paper);border:1px solid var(--void);cursor:pointer;transition:background .15s ease,border-color .15s ease}.np-button[data-astro-cid-7ixr6fiy]:hover{background:var(--rand-blue, #0055aa);border-color:var(--rand-blue, #0055aa)}.np-dismiss[data-astro-cid-7ixr6fiy]{margin-top:1rem;background:none;border:0;font-family:var(--mono, "Courier Prime", monospace);font-size:11px;letter-spacing:.12em;color:#1a1a1a73;cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:.5rem}.np-dismiss[data-astro-cid-7ixr6fiy]:hover{color:var(--void)}@media print{.np-root[data-astro-cid-7ixr6fiy]{display:none!important}}
+</style></head> <body> <header class="site-header"> <div class="site-header-inner"> <a href="/" class="wordmark" aria-label="TheFocus.AI Labs">  <span class="wordmark-glyph" aria-hidden="true"></span> <span class="wordmark-text">TheFocus</span> <span class="wordmark-sub">Labs</span>  </a> <nav class="site-nav" aria-label="Primary">  <a href="/dispatch/">Dispatch</a> <a href="/quarterly/">Quarterly</a> <a href="/reports/">Measurements</a> <a href="/recipes/">Bench</a> <a href="/issues/">Issues</a>  </nav> </div> </header> <main>  <article class="article-page" data-astro-cid-zm77yjld> <div class="article-shell" data-astro-cid-zm77yjld> <header class="article-header" data-astro-cid-zm77yjld> <a class="article-back mono-label" href="/dispatch/" data-astro-cid-zm77yjld>← Dispatch</a> <div class="article-taxonomy mono-label" data-astro-cid-zm77yjld> <span class="tax-pillar" data-astro-cid-zm77yjld>LEAD</span> <span data-astro-cid-zm77yjld>Dispatch</span>   </div> <h1 class="article-title" data-astro-cid-zm77yjld>On Demos and Demons</h1>  <div class="article-meta" data-astro-cid-zm77yjld> <time class="mono-label" data-astro-cid-zm77yjld>May 19, 2025</time> </div> </header>  <div class="article-prose" data-astro-cid-zm77yjld> <blockquote>
+<p>You are absolutely right to catch that error, and I apologize for the incorrect distance and driving time in the previous report.</p>
+</blockquote>
+<blockquote>
+<p>You are absolutely right, and I apologize for my persistent misunderstanding.</p>
+</blockquote>
+<blockquote>
+<p>You are absolutely correct—thank you for catching this!</p>
+</blockquote>
+<blockquote>
+<p>Thank you for the clarification on MCP and for the feedback on the naming. This is a much better direction.</p>
+</blockquote>
+<blockquote>
+<p>Remainder humanism is the term I use for us painting ourselves into a corner theoretically. The operation is just that we say, “machines can do x, but we can do it better or more <em>truly</em>.” This sets up a kind of John-Henry-versus-machine competition that guides the analysis.
+— <a href="https://www.jhiblog.org/2025/06/11/language-and-image-minus-cognition-an-interview-with-leif-weatherby/">“Language and Image Minus Cognition”: An Interview with Leif Weatherby</a></p>
+</blockquote>
+<p>AI sure is a big deal, but what exactly is it?  We explain it by doing demos — check out <em>this</em> out — and extrapolating from there.</p>
+<p>What is Artificial Intelligence?  We get an idea of what GenAI is by looking at demos.  We play around a little bit, we follow along with <a href="https://simonwillison.net/">Simon Willison</a> or <a href="https://www.oneusefulthing.org/">Ethan Mollick</a> , watch a few dazzling videos and use that to form our basis of what GenAI is, or what we can do with it.</p>
+<p>Everyone agrees that it’s a big deal — a year or so ago it was popular to talk about <a href="https://www.reddit.com/r/singularity/comments/183v33f/a_primer_on_pdoom/">p-doom</a> which is basically the idea that <a href="https://idlewords.com/talks/superintelligence.htm">superintelligence</a> will destroy humanity, so we better get on with it — and now that everyone’s fund raising round is complete the goal is to aim for AGI.</p>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="2560" height="1792" src="/_astro/save_the_village.Bx1UYR8p_ZRClhb.png" ></p>
+<p>What are we doing exactly?</p>
+<h1 id="artificial-intelligence">Artificial Intelligence</h1>
+<p><a href="https://taylor.town/synthetic-intelligence">https://taylor.town/synthetic-intelligence</a></p>
+<p><a href="https://medium.com/@jasonmpittman/7-questions-to-clarify-the-differences-between-synthetic-intelligence-and-artificial-intelligence-af6bfbcbb6a7">https://medium.com/@jasonmpittman/7-questions-to-clarify-the-differences-between-synthetic-intelligence-and-artificial-intelligence-af6bfbcbb6a7</a></p>
+<blockquote>
+<p>The European mind maintains a greater distinction between Man and Machine and has lower expectations from both of them. It is less inclined to describe the human psyche in mechanistic terms; it is also less inclined to describe inanimate machinery in anthropomorphic terminology; consequently, it considers the question whether machines can think as relevant as the question whether submarines can swim.
+— <a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD09xx/EWD952.html">https://www.cs.utexas.edu/~EWD/transcriptions/EWD09xx/EWD952.html</a></p>
+</blockquote>
+<p><strong>Materialism (or physicalism)</strong> is a philosophical stance that asserts that everything, including mental states like consciousness and intelligence, is fundamentally material in nature, or results from material interactions.</p>
+<blockquote>
+<p>I shall no doubt be blamed by certain scientists, and, I am afraid by some philosophers, for having taken serious account of the alleged facts which are investigated by Psychical Researchers, am wholly impenitent about this. The scientists in question seem to me to confuse the Author of Nature with the editor of <em>Nature</em>; or at any rate to suppose that there can be no productions of the former which would not be accepted for publication by the latter. And I see no reason to believe this.</p>
+</blockquote>
+<h1 id="sentience">Sentience</h1>
+<p><a href="https://www.google.com/books/edition/Sentience/6R3JEAAAQBAJ?hl=en&#x26;gbpv=1">https://www.google.com/books/edition/Sentience/6R3JEAAAQBAJ?hl=en&#x26;gbpv=1</a></p>
+<h1 id="thought-without-purpose">Thought without purpose</h1>
+<blockquote>
+<p> “Thinking occurs when things are uncertain or doubtful or problematic. Thinking is a process of inquiry, of looking into things, of investigating.  All thinking is research, and all research is native, original, with him who carries it on, even if everybody else in the world already is sure of what he is still looking for.  It also follows that all thinking involves a risk. The conclusions of thinking, till confirmed by the event, are, accordingly, more or less tentative or hypothetical.” <br>
+ ― John Dewey — <a href="https://nsee.memberclicks.net/assets/docs/KnowledgeCenter/BuildingExpEduc/BooksReports/10.%20democracy%20and%20education%20by%20dewey.pdf">Democracy and Education</a></p>
+</blockquote>
+<p><a href="https://nsee.memberclicks.net/assets/docs/KnowledgeCenter/BuildingExpEduc/BooksReports/10.%20democracy%20and%20education%20by%20dewey.pdf">Demo</a></p>
+<h1 id="nietzsche">Nietzsche</h1>
+<p>For millennia, humans saw intelligence in everything—stones, rivers, tools—requiring rituals and negotiations with a world alive with intention. This wasn’t mere superstition but recognition that agency exists beyond human form.</p>
+<p>We’ve since dismissed these beliefs, claiming rational superiority over our ancestors. Yet ironically, as we now deliberately embed intelligence into silicon—creating entities with goals potentially orthogonal to our own—we’re forced to relearn what our ancestors understood intuitively: how to coexist with non-human minds.</p>
+<p>The alignment challenge isn’t just technical but existential: we’re once again giving rocks intelligence, but this time by design rather than perception. Our ancestors’ approaches to respecting, negotiating with, and establishing boundaries around non-human intelligence may contain wisdom more relevant than our modern dismissals suggest.</p> <nav class="adjacent" data-astro-cid-45vxrcc5> <a class="adjacent-link" href="/dispatch/thoughts-on-gemini/" data-astro-cid-45vxrcc5> <span class="mono-label" data-astro-cid-45vxrcc5>Previous</span> <span data-astro-cid-45vxrcc5>Thoughts on gemini</span> </a> <a class="adjacent-link adjacent-link--next" href="/dispatch/microsoft-build-2025/" data-astro-cid-45vxrcc5> <span class="mono-label" data-astro-cid-45vxrcc5>Next</span> <span data-astro-cid-45vxrcc5>Report from Microsoft Build 2025</span> </a> </nav> </div> </div> </article>  </main> <footer class="site-footer"> <div class="site-footer-inner"> <span>Published by <a href="https://thefocus.ai">TheFocus.AI</a></span> <span> <a href="https://courses.thefocus.ai">Courses</a>
+·
+<a href="https://standards.thefocus.ai">Standards</a>
+·
+<a href="https://github.com/The-Focus-AI/labs">Source</a> </span> </div> </footer> <div id="newsletter-popup" class="np-root" hidden data-astro-cid-7ixr6fiy> <div class="np-backdrop" id="np-backdrop" data-astro-cid-7ixr6fiy></div> <div class="np-modal-wrap" data-astro-cid-7ixr6fiy> <div class="np-modal" role="dialog" aria-modal="true" aria-labelledby="np-heading" data-astro-cid-7ixr6fiy> <button id="np-close" class="np-close" aria-label="Close" data-astro-cid-7ixr6fiy>×</button> <div class="np-eyebrow" data-astro-cid-7ixr6fiy>Don't miss out</div> <h3 id="np-heading" class="np-heading" data-astro-cid-7ixr6fiy>Stay ahead of the curve.</h3> <p class="np-blurb" data-astro-cid-7ixr6fiy>
+Field reports from AI engineering — what's shipping, what's
+        breaking, what's about to change. One email per issue.
+</p> <form action="https://buttondown.com/api/emails/embed-subscribe/thefocusai" method="post" class="np-form" data-astro-cid-7ixr6fiy> <input type="email" name="email" id="np-email" required placeholder="you@domain.com" class="np-input" data-astro-cid-7ixr6fiy> <button type="submit" class="np-button" data-astro-cid-7ixr6fiy>Subscribe →</button> </form> <button id="np-dismiss" class="np-dismiss" data-astro-cid-7ixr6fiy>No thanks, I'll pass</button> </div> </div> </div>  <script>
+  (function () {
+    const KEY = 'focus_newsletter_dismissed';
+    if (typeof window === 'undefined') return;
+
+    function init() {
+      const root = document.getElementById('newsletter-popup');
+      const closeBtn = document.getElementById('np-close');
+      const dismissBtn = document.getElementById('np-dismiss');
+      const backdrop = document.getElementById('np-backdrop');
+      if (!root) return;
+      if (localStorage.getItem(KEY)) return;
+
+      function show() {
+        root.hidden = false;
+        document.body.style.overflow = 'hidden';
+      }
+      function hide(persist) {
+        root.hidden = true;
+        document.body.style.overflow = '';
+        if (persist) {
+          try { localStorage.setItem(KEY, 'true'); } catch (_) {}
+        }
+      }
+
+      const t = setTimeout(show, 30000);
+
+      closeBtn && closeBtn.addEventListener('click', () => hide(true));
+      dismissBtn && dismissBtn.addEventListener('click', () => hide(true));
+      backdrop && backdrop.addEventListener('click', () => hide(false));
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !root.hidden) hide(false);
+      });
+      window.addEventListener('beforeunload', () => clearTimeout(t));
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script> </body></html>  

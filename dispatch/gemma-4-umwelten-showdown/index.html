@@ -1,0 +1,159 @@
+<!DOCTYPE html><html lang="en" data-theme="ledger"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Astro v5.18.2"><meta name="description" content="We benchmarked Gemma 4 (e2b, default, 26B MoE, 31B dense) through Ollama against 50+ hosted and local models on reasoning, knowledge, instruction, coding, and TezLab MCP tool use—same Umwelten harness as our other showdowns. Here’s where the new line shines, where frontier models still pull ahead, and how the biggest Gemma handles real EV data tools."><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;900&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet"><title>Gemma 4 on Your Machine: How Google’s New Open Weights Stack Up (Model Showdown) · TheFocus.AI Labs</title><link rel="stylesheet" href="/_astro/_slug_.CZnP_JuE.css">
+<style>.article-page[data-astro-cid-zm77yjld]{padding:var(--section-y) 0 4rem}.article-shell[data-astro-cid-zm77yjld]{max-width:720px;margin:0 auto;padding:0 var(--gutter)}.article-back[data-astro-cid-zm77yjld]{display:inline-block;margin-bottom:1rem;text-decoration:none;color:var(--signal)}.article-back[data-astro-cid-zm77yjld]:hover{color:var(--text-strong)}.article-taxonomy[data-astro-cid-zm77yjld]{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-size:11px}.tax-pillar[data-astro-cid-zm77yjld]{color:var(--signal)}.article-header[data-astro-cid-zm77yjld]{margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}.article-title[data-astro-cid-zm77yjld]{font-size:clamp(2rem,5vw,2.75rem);font-weight:600;line-height:1.1;letter-spacing:-.03em;color:var(--text-strong);margin:.75rem 0 1rem}.article-lead[data-astro-cid-zm77yjld]{font-size:20px;line-height:1.5;color:var(--text-2);margin:0}.article-meta[data-astro-cid-zm77yjld]{margin-top:1.25rem}.article-hero[data-astro-cid-zm77yjld]{margin:0 0 2rem;border:1px solid var(--border);background:var(--surface)}.article-hero[data-astro-cid-zm77yjld] img[data-astro-cid-zm77yjld]{display:block;width:100%;height:auto}.article-prose[data-astro-cid-zm77yjld] h2{font-size:1.5rem;font-weight:600;margin:2.5rem 0 1rem;color:var(--text-strong)}.article-prose[data-astro-cid-zm77yjld] h3{font-size:1.15rem;font-weight:600;margin:2rem 0 .75rem;color:var(--text-strong)}.article-prose[data-astro-cid-zm77yjld] p,.article-prose[data-astro-cid-zm77yjld] li{font-size:15px;line-height:1.6;color:var(--text)}.article-prose[data-astro-cid-zm77yjld] a{color:var(--text-strong);text-decoration:underline;text-underline-offset:3px}.article-prose[data-astro-cid-zm77yjld] a:hover{color:var(--signal)}.article-prose[data-astro-cid-zm77yjld] pre{background:var(--surface);border:1px solid var(--border);padding:1rem;overflow-x:auto;font-family:var(--font-mono);font-size:13px;line-height:1.5}.article-prose[data-astro-cid-zm77yjld] code{font-family:var(--font-mono);font-size:.9em}.article-prose[data-astro-cid-zm77yjld] blockquote{margin:1.5rem 0;padding-left:1rem;border-left:2px solid var(--signal);color:var(--text-2)}.article-prose[data-astro-cid-zm77yjld] img{max-width:100%;height:auto;border:1px solid var(--border)}.article-prose[data-astro-cid-zm77yjld] table{width:100%;border-collapse:collapse;font-size:14px;margin:1.5rem 0;border:1px solid var(--border)}.article-prose[data-astro-cid-zm77yjld] th,.article-prose[data-astro-cid-zm77yjld] td{border:1px solid var(--border);padding:.5rem .75rem;text-align:left}.article-prose[data-astro-cid-zm77yjld] th{background:var(--surface);color:var(--text-strong);font-family:var(--font-mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+.brief-cta[data-astro-cid-45vxrcc5]{margin:0 0 2rem;padding:1rem 1.25rem;border:1px solid var(--signal);background:color-mix(in srgb,var(--signal) 12%,transparent)}.brief-cta[data-astro-cid-45vxrcc5] a[data-astro-cid-45vxrcc5]{color:var(--text-strong);font-family:var(--font-mono);font-size:13px;letter-spacing:.05em;text-transform:uppercase;text-decoration:none}.brief-cta[data-astro-cid-45vxrcc5] a[data-astro-cid-45vxrcc5]:hover{color:var(--signal)}.adjacent[data-astro-cid-45vxrcc5]{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)}.adjacent-link[data-astro-cid-45vxrcc5]{display:flex;flex-direction:column;gap:.35rem;text-decoration:none;color:var(--text);padding:1rem;border:1px solid var(--border);background:var(--surface)}.adjacent-link--next[data-astro-cid-45vxrcc5]{text-align:right}.adjacent-link[data-astro-cid-45vxrcc5]:hover{color:var(--text-strong);background:color-mix(in srgb,var(--surface) 90%,white)}@media(max-width:640px){.adjacent[data-astro-cid-45vxrcc5]{grid-template-columns:1fr}.adjacent-link--next[data-astro-cid-45vxrcc5]{text-align:left}}
+.np-root[data-astro-cid-7ixr6fiy]{position:fixed;inset:0;z-index:100}.np-root[data-astro-cid-7ixr6fiy][hidden]{display:none}.np-backdrop[data-astro-cid-7ixr6fiy]{position:absolute;inset:0;background:#141310b3;backdrop-filter:blur(4px)}.np-modal-wrap[data-astro-cid-7ixr6fiy]{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:1rem}.np-modal[data-astro-cid-7ixr6fiy]{position:relative;background:var(--paper);border:4px solid var(--void);box-shadow:8px 8px 0 0 var(--void);max-width:460px;width:100%;padding:2.5rem 2rem 2rem;text-align:center;animation:np-pop .2s cubic-bezier(.22,1,.36,1)}@keyframes np-pop{0%{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.np-close[data-astro-cid-7ixr6fiy]{position:absolute;top:.5rem;right:.75rem;background:none;border:0;font-size:28px;line-height:1;color:var(--void);cursor:pointer;padding:.25rem .5rem;transition:color .15s ease}.np-close[data-astro-cid-7ixr6fiy]:hover{color:var(--alert-red)}.np-eyebrow[data-astro-cid-7ixr6fiy]{font-family:var(--mono, "Courier Prime", monospace);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#1a1a1a8c;margin-bottom:.75rem}.np-heading[data-astro-cid-7ixr6fiy]{font-family:Inter,system-ui,sans-serif;font-weight:900;font-size:1.75rem;line-height:1.05;letter-spacing:-.02em;margin:0 0 .75rem;color:var(--void);text-transform:none}.np-blurb[data-astro-cid-7ixr6fiy]{font-size:14px;line-height:1.5;color:#1a1a1ab3;margin:0 0 1.5rem}.np-form[data-astro-cid-7ixr6fiy]{display:flex;flex-direction:column;gap:.5rem}.np-input[data-astro-cid-7ixr6fiy]{font-family:inherit;font-size:15px;padding:.75rem 1rem;border:1px solid var(--void);background:#fff;border-radius:0;color:var(--void)}.np-input[data-astro-cid-7ixr6fiy]:focus{outline:2px solid var(--rand-blue, #0055aa);outline-offset:1px}.np-button[data-astro-cid-7ixr6fiy]{font-family:var(--mono, "Courier Prime", monospace);font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.85rem 1.5rem;background:var(--void);color:var(--paper);border:1px solid var(--void);cursor:pointer;transition:background .15s ease,border-color .15s ease}.np-button[data-astro-cid-7ixr6fiy]:hover{background:var(--rand-blue, #0055aa);border-color:var(--rand-blue, #0055aa)}.np-dismiss[data-astro-cid-7ixr6fiy]{margin-top:1rem;background:none;border:0;font-family:var(--mono, "Courier Prime", monospace);font-size:11px;letter-spacing:.12em;color:#1a1a1a73;cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:.5rem}.np-dismiss[data-astro-cid-7ixr6fiy]:hover{color:var(--void)}@media print{.np-root[data-astro-cid-7ixr6fiy]{display:none!important}}
+</style></head> <body> <header class="site-header"> <div class="site-header-inner"> <a href="/" class="wordmark" aria-label="TheFocus.AI Labs">  <span class="wordmark-glyph" aria-hidden="true"></span> <span class="wordmark-text">TheFocus</span> <span class="wordmark-sub">Labs</span>  </a> <nav class="site-nav" aria-label="Primary">  <a href="/dispatch/">Dispatch</a> <a href="/quarterly/">Quarterly</a> <a href="/reports/">Measurements</a> <a href="/recipes/">Bench</a> <a href="/issues/">Issues</a>  </nav> </div> </header> <main>  <article class="article-page" data-astro-cid-zm77yjld> <div class="article-shell" data-astro-cid-zm77yjld> <header class="article-header" data-astro-cid-zm77yjld> <a class="article-back mono-label" href="/reports/" data-astro-cid-zm77yjld>← Measurements</a> <div class="article-taxonomy mono-label" data-astro-cid-zm77yjld> <span class="tax-pillar" data-astro-cid-zm77yjld>MEASURE</span> <span data-astro-cid-zm77yjld>Brief</span>   </div> <h1 class="article-title" data-astro-cid-zm77yjld>Gemma 4 on Your Machine: How Google’s New Open Weights Stack Up (Model Showdown)</h1> <p class="article-lead" data-astro-cid-zm77yjld>We benchmarked Gemma 4 (e2b, default, 26B MoE, 31B dense) through Ollama against 50+ hosted and local models on reasoning, knowledge, instruction, coding, and TezLab MCP tool use—same Umwelten harness as our other showdowns. Here’s where the new line shines, where frontier models still pull ahead, and how the biggest Gemma handles real EV data tools.</p> <div class="article-meta" data-astro-cid-zm77yjld> <time class="mono-label" data-astro-cid-zm77yjld>April 4, 2026</time> </div> </header> <figure class="article-hero" data-astro-cid-zm77yjld> <img src="/_astro/gemma4-showdown-infographic-v2.LFfRxxjf.png" alt="" loading="eager" data-astro-cid-zm77yjld> </figure> <div class="article-prose" data-astro-cid-zm77yjld> <p class="brief-cta" data-astro-cid-45vxrcc5> <a href="/reports/model-showdown/" data-astro-cid-45vxrcc5>
+Read the full measurement →
+</a> </p><p>Google shipped <strong>Gemma 4</strong> in early April 2026: dense <strong>e2b</strong> / <strong>e4b-class</strong> models, a <strong>26B MoE</strong> (4B active), and a <strong>31B dense</strong> variant, Apache 2.0, multimodal context up to 256K on the larger weights. The practical question for builders is not the press release—it’s how those checkpoints behave on <strong>the same tasks</strong> you already run against GPT, Claude, Gemini, and the open-weights crowd.</p>
+<p>We added all four Gemma 4 sizes to our <strong>Model Showdown</strong> suite in <a href="https://github.com/The-Focus-AI/umwelten">Umwelten</a> and ran them locally via <strong>Ollama</strong> alongside the existing lineup (OpenRouter, Google direct, DeepInfra, and other Ollama models). Same tracks as the full pipeline (including MCP):</p>
+<ul>
+<li><strong>Reasoning</strong> — four classic puzzles, answers scored by a consistent LLM judge (Claude Haiku 4.5).</li>
+<li><strong>Knowledge</strong> — thirty short-answer questions across science, geography, history, tech, and a few “tricky” items, judged for factual correctness.</li>
+<li><strong>Instruction</strong> — six tasks that punish sloppy formatting (JSON, markdown tables, constrained prose).</li>
+<li><strong>Coding</strong> — small deterministic challenges in multiple languages; code is extracted, compiled or interpreted, and checked against fixtures.</li>
+<li><strong>MCP tool use</strong> — one multi-step prompt against the <strong>TezLab</strong> MCP server (real vehicle, battery, charging, and charger data). Scoring is a <strong>deterministic tool checklist</strong> (six expected capabilities, e.g. listing vehicles, battery health, charges, efficiency, “my chargers,” and finding nearby public chargers) plus the same style of <strong>LLM judge</strong> we use elsewhere (quality of synthesis and recommendations).</li>
+</ul>
+<p>Below is what stood out when we compared Gemma 4 to <strong>frontier</strong> APIs and to <strong>open / budget</strong> hosted models—not a replacement for Google’s own benchmarks, but a cross-model slice using <em>our</em> harness and <em>our</em> mix of tasks.</p>
+<h2 id="tldr">TL;DR</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Lens</th><th>Gemma 4 (local, Ollama)</th><th>Frontier (API)</th><th>Open / value (hosted)</th></tr></thead><tbody><tr><td><strong>Reasoning (4 puzzles)</strong></td><td><strong>26B hit the reasoning ceiling (20/20)</strong> in our battery—same top band as Sonnet 4.6, GPT‑OSS 120B, Grok 4.20, etc. 31B scored 17/20; <strong>e2b</strong> struggled on the hardest puzzle (counterfeit-coin style logic).</td><td>Sonnet 4.6 <strong>100% combined</strong> across all four showdown dimensions; Gemini 3 Flash and GPT‑5.4 sat around <strong>~99% combined</strong>. Opus 4.6 still <strong>missed one reasoning puzzle</strong> (18/20) despite perfect coding—showing these small suites can expose surprising weak spots.</td><td>GPT‑OSS <strong>120B</strong> (~98% combined) remains the open-weights hosted reference on this suite; <strong>DeepSeek V3.2</strong>, <strong>Llama 4 Scout/Maverick</strong>, and <strong>Gemma 3 27B</strong> sit in the high 80s–low 90s combined.</td></tr><tr><td><strong>Knowledge (30 questions)</strong></td><td>All Gemma 4 variants clustered around <strong>18–22 / 30</strong> correct—<strong>clearly behind</strong> frontier models at <strong>29–30/30</strong> and behind <strong>GPT‑OSS 120B (28/30)</strong>. Roughly in the band of <strong>Llama 4 Scout (27/30)</strong> on this quiz set.</td><td>Strongest models rarely miss more than one or two items.</td><td>Larger open / mid-price models still beat Gemma 4 on raw fact recall here.</td></tr><tr><td><strong>Instruction (6 tasks)</strong></td><td><strong>26B and 31B: 30/30</strong>—full marks, same ceiling as Sonnet on this track. <strong>Default / e4b-class (<code>latest</code>)</strong>: 28/30. <strong>e2b</strong>: 26/30.</td><td>Top APIs almost all at or near the ceiling.</td><td>Competitive with strong instruction-tuned open models.</td></tr><tr><td><strong>Coding</strong></td><td>The suite combine now uses a <strong>per-task denominator</strong> (7 points per coding cell), so partial runs show <strong>points earned / points possible for the tasks on disk</strong>—e.g. <strong>56/56</strong> when eight cells exist—not a bogus <strong>28/126</strong>. In our April run, <strong>31B</strong> cleared <strong>56/56</strong> on that footprint; <strong>26B</strong>, <strong><code>latest</code></strong>, and <strong>e2b</strong> trailed on the same cells (verification or compile misses). <strong>126/126</strong> still means a <strong>full</strong> 18-cell matrix; use <code>coding-eval.ts --all --new</code> when you want every challenge×language for cross-model breadth.</td><td>Full <strong>126/126</strong> on the complete coding suite for the top finishers.</td><td>GPT‑OSS 120B <strong>126/126</strong>; smaller open models vary by task.</td></tr><tr><td><strong>MCP (TezLab)</strong></td><td><strong>31B: full 6/6 tool checklist + 5/5 judge</strong>—same bar as <strong>Claude Sonnet 4.6</strong> on this prompt (both hit every required tool class including <strong>find/search chargers</strong>, strong narrative). <strong>26B: 5/6 tools</strong> (everything except the nearby/alternative charger search) but still <strong>~4.7/5</strong> judge—excellent synthesis with real kWh, locations, and degradation numbers. <strong><code>latest</code>:</strong> only <strong><code>list_vehicles</code></strong>, then asked the user to pick a VIN instead of continuing—<strong>1/6</strong> tools, judge <strong>1/5</strong>. <strong>e2b:</strong> <strong>no tools</strong>—asked for a VIN without calling <strong><code>list_vehicles</code></strong>—<strong>0/6</strong>, judge <strong>1/5</strong>.</td><td>Sonnet <strong>6/6 + 5/5</strong> on this run; Opus and other top models also cluster at the top of the MCP leaderboard.</td><td><strong>GPT‑OSS 120B</strong> often <strong>misses one or two</strong> checklist items (e.g. efficiency / my chargers) but can still earn a <strong>5/5</strong> judge on prose—<strong>tool discipline</strong> and <strong>narrative</strong> don’t always move together. <strong>Gemma 3 27B</strong> (OpenRouter) <strong>did not execute tools</strong> in our run due to a <strong>provider routing / tool-use</strong> error, so it isn’t comparable to <strong>Gemma 4 31B</strong> on Ollama for MCP.</td></tr></tbody></table>
+<p><strong>Bottom line:</strong> Gemma 4 <strong>26B</strong> still leads the family on <strong>reasoning + instruction</strong>; <strong>31B</strong> is the one to watch if you care about <strong>MCP-style tool orchestration</strong> locally—it <strong>matched Sonnet</strong> on our TezLab battery/charging task. <strong>Knowledge</strong> remains mid-pack versus hosted open weights; <strong>coding</strong> scores in combined reports are now <strong>honest for whichever cells ran</strong>—run a full coding pass when you need the full <strong>126</strong>-point spread; <strong><code>latest</code> and e2b</strong> are not reliable for <strong>multi-step MCP</strong> workflows without more prompting or tooling.</p>
+<h2 id="reasoning-local-26b-next-to-sonnetand-ahead-of-opus-on-this-quiz">Reasoning: local 26B next to Sonnet—and ahead of Opus on this quiz</h2>
+<p>Reasoning scores are the sum of four judge grades (5 points each, max 20). <strong>Gemma 4 26B</strong> achieved <strong>20/20</strong>, in the same cluster as <strong>Claude Sonnet 4.6</strong>, <strong>xAI Grok 4.20</strong>, <strong>OpenAI GPT‑OSS 120B</strong>, and several others.</p>
+<p><strong>Claude Opus 4.6</strong>—despite perfect marks on knowledge and coding in this run—landed <strong>18/20</strong> on reasoning because it <strong>whiffed the surgeon gender riddle</strong> (3/5 on that puzzle). That’s a useful reminder: <em>small, fixed puzzle suites don’t always rank “frontier” models the way aggregate benchmarks do.</em></p>
+<p><strong>Gemma 4 31B</strong> scored <strong>17/20</strong>; <strong>e2b</strong> and <strong><code>latest</code></strong> were lower, with the <strong>bat-and-ball</strong> and <strong>counterfeit coin</strong> puzzles doing the most damage—exactly the classic System‑1 traps you’d expect smaller or less aligned checkpoints to stumble on.</p>
+<h2 id="knowledge-where-hosted-open-weights-still-win">Knowledge: where hosted open weights still win</h2>
+<p>On <strong>30</strong> fact questions, Gemma 4 variants scored <strong>22/30</strong> (26B, 31B, <code>latest</code>) or <strong>18/30</strong> (e2b). For comparison on the <em>same</em> questions:</p>
+<ul>
+<li><strong>Gemini 3 Flash</strong>, <strong>GPT‑5.4</strong>, <strong>Opus</strong>: <strong>30/30</strong> (or 29/30 where noted in the full table).</li>
+<li><strong>GPT‑OSS 120B</strong>: <strong>28/30</strong>.</li>
+<li><strong>Gemma 3 27B</strong> (OpenRouter): <strong>29/30</strong>.</li>
+<li><strong>Llama 4 Scout</strong>: <strong>27/30</strong>.</li>
+</ul>
+<p>So Gemma 4 is a <strong>step up in reasoning discipline</strong> for a local model, but <strong>not yet a step up in broad knowledge</strong> versus the best open-weights <em>hosted</em> checkpoints on this quiz.</p>
+<h2 id="instruction-following-the-surprise-strength">Instruction following: the surprise strength</h2>
+<p><strong>Gemma 4 26B and 31B</strong> both scored <strong>30/30</strong> on the six instruction tasks—perfect alignment with <strong>Claude Sonnet 4.6</strong> on that axis. If you’re building agents that must emit <strong>valid JSON</strong>, <strong>markdown tables</strong>, and <strong>tightly scoped prose</strong>, the larger Gemma 4 checkpoints look <strong>production-viable offline</strong>, at least on this stress test.</p>
+<h2 id="coding-per-cell-scoring-in-the-combine-full-grid-when-you-need-it">Coding: per-cell scoring in the combine, full grid when you need it</h2>
+<p>We fixed the <strong>suite loader</strong> in Umwelten so multi-task dimensions (coding, reasoning, knowledge, instruction, MCP) <strong>add the right denominator per result file</strong> instead of always dividing by the full-run maximum. On the combined leaderboard, coding now reads like <strong>56/56</strong> or <strong>119/126</strong>—never <strong>28/126</strong> when only eight cells were evaluated.</p>
+<p>On the footprint we had in April 2026, <strong>Gemma 4 31B</strong> went <strong>56/56</strong>; the other Gemma 4 sizes showed gaps on the same cells (including a <strong>Go</strong> compile failure on <strong>e2b</strong> in an earlier slice). <strong>Sonnet</strong>-class models still anchor the <strong>126/126</strong> end when the entire 6×3 challenge grid is present.</p>
+<h2 id="mcp-tezlab-31b-matches-sonnet-26b-almost-nails-it-small--default-tiers-stall">MCP (TezLab): 31B matches Sonnet; 26B almost nails it; small / default tiers stall</h2>
+<p>The MCP prompt asks for battery health, charging patterns, efficiency, your usual chargers, and <strong>better public alternatives nearby</strong>—the sort of thing a product assistant would do over <a href="https://www.tezlabapp.com/mcp">TezLab’s MCP server</a> (same stack we described in the <a href="/posts/mcp-tool-eval-mercury-umwelten">Mercury / MCP tool eval post</a>).</p>
+<p>On the <strong>April 2026</strong> run artifacts:</p>
+<ul>
+<li>
+<p><strong>Gemma 4 31B (Ollama)</strong> called <strong><code>list_vehicles</code></strong>, <strong><code>get_battery_health</code></strong>, <strong><code>get_charges</code></strong>, <strong><code>get_efficiency</code></strong>, <strong><code>get_my_chargers</code></strong>, and <strong><code>find_nearby_chargers</code></strong> with sensible coordinates—<strong>6/6</strong> on the rubric—and the judge scored it <strong>5/5</strong> for synthesis, grounding, and actionable advice (specific <strong>%</strong> degradation, kWh, cycle counts, home vs DC patterns, and honest “no 50 kW+ public options within 15 km” style conclusions when the tools return that). That’s the <strong>same tool + judge ceiling</strong> as <strong>Claude Sonnet 4.6</strong> on this task.</p>
+</li>
+<li>
+<p><strong>Gemma 4 26B</strong> did strong multi-vehicle work (both VINs for battery, charges, efficiency, my chargers) but <strong>never invoked</strong> the nearby / search charger tool—<strong>5/6</strong> tools. The judge still rated it <strong>~4.7/5</strong>: the write-up was detailed and grounded, but the rubric treats missing the charger-discovery step as a real gap for a user who explicitly asked for alternatives.</p>
+</li>
+<li>
+<p><strong><code>gemma4:latest</code> (e4b-tier default)</strong> listed both vehicles correctly then <strong>stopped</strong> and asked the user which VIN to analyze—<strong>1/6</strong> tools, <strong>1/5</strong> judge: the failure mode is “polite deferral” instead of driving the toolchain to completion.</p>
+</li>
+<li>
+<p><strong><code>gemma4:e2b</code></strong> <strong>did not call tools at all</strong> and asked the user for a VIN—<strong>0/6</strong> tools, <strong>1/5</strong> judge. That’s the harshest split in the family: the smallest checkpoint didn’t latch onto <strong><code>list_vehicles</code></strong> even though the tools were available.</p>
+</li>
+</ul>
+<p>For <strong>open-weights hosted</strong> contrast on the same harness: <strong>GPT‑OSS 120B</strong> can <strong>skip</strong> checklist items (e.g. <strong>efficiency</strong> / <strong>my chargers</strong>) while still getting a <strong>5/5</strong> narrative judge—useful prose, incomplete tool coverage. <strong>Gemma 3 27B</strong> on OpenRouter <strong>never reached the tools</strong> in our run (provider error: no tool-capable endpoint with our routing), so treat that row as <strong>infra</strong>, not capability; <strong>Gemma 4 31B</strong> on Ollama is the meaningful <strong>Gemma-line</strong> MCP data point here.</p>
+<p><code>run-all</code> in Umwelten now <strong>always</strong> runs this MCP suite after the four core evals (TezLab OAuth must be set up once; we also keep a small <strong><code>examples/mcp-chat/test-connection.ts</code></strong> smoke test).</p>
+<h2 id="cost-and-latency-narrative">Cost and latency narrative</h2>
+<p>All Ollama numbers above are <strong>$0 API cost</strong>; you pay <strong>GPU time and electricity</strong> instead. Wall-clock on local hardware varies widely; in our run, Gemma 4 <strong>e2b</strong> was the fastest local Gemma on several steps, while <strong>26B/31B</strong> traded time for quality—still <strong>orders of magnitude cheaper</strong> than multi-dollar frontier rollups if you batch offline.</p>
+<h2 id="how-to-reproduce">How to reproduce</h2>
+<ol>
+<li>Install weights from <a href="https://ollama.com/library/gemma4">Ollama’s Gemma 4 library</a> (<code>gemma4:e2b</code>, <code>gemma4:latest</code>, <code>gemma4:26b</code>, <code>gemma4:31b</code>).</li>
+<li>Clone <a href="https://github.com/The-Focus-AI/umwelten">Umwelten</a>, configure provider keys for the hosted models you want in the lineup.</li>
+<li>Run the showdown (example):<br>
+<code>dotenvx run -- pnpm exec tsx examples/model-showdown/run-all.ts --all</code><br>
+That includes <strong>MCP</strong> after reasoning, knowledge, instruction, and coding. Use <strong><code>--new</code></strong> when you want a fresh run directory; omit it to <strong>resume</strong> and reuse caches.</li>
+<li>Optional: <code>dotenvx run -- pnpm exec tsx examples/mcp-chat/test-connection.ts</code> to verify TezLab MCP before a long run.</li>
+</ol>
+<hr>
+<p><em>Reasoning, knowledge, instruction, and coding numbers are from the April 2026 Model Showdown (reasoning run 007, knowledge/instruction runs 002, coding run 006). <strong>MCP</strong> findings are from the same campaign’s TezLab eval artifacts (<code>model-showdown-mcp</code> run 001, per-model <code>results/*.json</code>): we quote <strong>tool checklist + judge</strong> explicitly for Gemma 4 and a few reference models. If you publish this post, swap the hero <code>image</code> / <code>ogImage</code> in frontmatter for a Gemma-specific graphic when you have one.</em></p>  </div> </div> </article>  </main> <footer class="site-footer"> <div class="site-footer-inner"> <span>Published by <a href="https://thefocus.ai">TheFocus.AI</a></span> <span> <a href="https://courses.thefocus.ai">Courses</a>
+·
+<a href="https://standards.thefocus.ai">Standards</a>
+·
+<a href="https://github.com/The-Focus-AI/labs">Source</a> </span> </div> </footer> <div id="newsletter-popup" class="np-root" hidden data-astro-cid-7ixr6fiy> <div class="np-backdrop" id="np-backdrop" data-astro-cid-7ixr6fiy></div> <div class="np-modal-wrap" data-astro-cid-7ixr6fiy> <div class="np-modal" role="dialog" aria-modal="true" aria-labelledby="np-heading" data-astro-cid-7ixr6fiy> <button id="np-close" class="np-close" aria-label="Close" data-astro-cid-7ixr6fiy>×</button> <div class="np-eyebrow" data-astro-cid-7ixr6fiy>Don't miss out</div> <h3 id="np-heading" class="np-heading" data-astro-cid-7ixr6fiy>Stay ahead of the curve.</h3> <p class="np-blurb" data-astro-cid-7ixr6fiy>
+Field reports from AI engineering — what's shipping, what's
+        breaking, what's about to change. One email per issue.
+</p> <form action="https://buttondown.com/api/emails/embed-subscribe/thefocusai" method="post" class="np-form" data-astro-cid-7ixr6fiy> <input type="email" name="email" id="np-email" required placeholder="you@domain.com" class="np-input" data-astro-cid-7ixr6fiy> <button type="submit" class="np-button" data-astro-cid-7ixr6fiy>Subscribe →</button> </form> <button id="np-dismiss" class="np-dismiss" data-astro-cid-7ixr6fiy>No thanks, I'll pass</button> </div> </div> </div>  <script>
+  (function () {
+    const KEY = 'focus_newsletter_dismissed';
+    if (typeof window === 'undefined') return;
+
+    function init() {
+      const root = document.getElementById('newsletter-popup');
+      const closeBtn = document.getElementById('np-close');
+      const dismissBtn = document.getElementById('np-dismiss');
+      const backdrop = document.getElementById('np-backdrop');
+      if (!root) return;
+      if (localStorage.getItem(KEY)) return;
+
+      function show() {
+        root.hidden = false;
+        document.body.style.overflow = 'hidden';
+      }
+      function hide(persist) {
+        root.hidden = true;
+        document.body.style.overflow = '';
+        if (persist) {
+          try { localStorage.setItem(KEY, 'true'); } catch (_) {}
+        }
+      }
+
+      const t = setTimeout(show, 30000);
+
+      closeBtn && closeBtn.addEventListener('click', () => hide(true));
+      dismissBtn && dismissBtn.addEventListener('click', () => hide(true));
+      backdrop && backdrop.addEventListener('click', () => hide(false));
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !root.hidden) hide(false);
+      });
+      window.addEventListener('beforeunload', () => clearTimeout(t));
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script> </body></html>  
