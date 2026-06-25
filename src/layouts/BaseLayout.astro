@@ -7,19 +7,20 @@ import NewsletterPopup from '../components/NewsletterPopup.astro';
 interface Props {
   title: string;
   description?: string;
-  theme?: 'ledger' | 'magazine';
   bodyClass?: string;
+  /** Hide newsletter popup on long-form reading surfaces (e.g. issues). */
+  hideNewsletter?: boolean;
 }
 
 const {
   title,
   description = 'TheFocus.AI Labs — dispatch, measurements, bench recipes, and publication issues from the front of AI engineering.',
-  theme = 'ledger',
   bodyClass = '',
+  hideNewsletter = false,
 } = Astro.props;
 ---
 <!doctype html>
-<html lang="en" data-theme={theme}>
+<html lang="en" data-theme="ledger">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,21 +30,21 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;900&family=Courier+Prime:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;900&family=Courier+Prime:wght@400;700&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&display=swap"
       rel="stylesheet"
     />
     <title>{title}</title>
     <slot name="head" />
   </head>
   <body class:list={[bodyClass]}>
-    <SiteHeader theme={theme} />
+    <SiteHeader />
 
     <main>
       <slot />
     </main>
 
-    <SiteFooter theme={theme} />
+    <SiteFooter />
 
-    {theme === 'ledger' && <NewsletterPopup />}
+    {!hideNewsletter && <NewsletterPopup />}
   </body>
 </html>

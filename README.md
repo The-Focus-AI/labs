@@ -39,7 +39,7 @@ scripts/
 
 The Labs hub uses **The Ledger** — dark operational surface, drab-olive signal color, Inter + IBM Plex Mono. See `docs/design.md`.
 
-Publication **issues** keep the light Bell Labs memo aesthetic (`theme="magazine"`).
+Publication **issues** keep the light Bell Labs memo aesthetic inside the issue body (`[data-mag]`); site chrome (header/footer) is shared with the rest of Labs.
 
 ## Local dev
 

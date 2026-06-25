@@ -1,40 +1,19 @@
 ---
-interface Props {
-  theme?: 'ledger' | 'magazine';
-}
-
-const { theme = 'ledger' } = Astro.props;
+/** Single site header — same chrome on every page. */
 ---
 <header class="site-header">
   <div class="site-header-inner">
     <a href="/" class="wordmark" aria-label="TheFocus.AI Labs">
-      {theme === 'ledger' ? (
-        <>
-          <span class="wordmark-glyph" aria-hidden="true"></span>
-          <span class="wordmark-text">TheFocus</span>
-          <span class="wordmark-sub">Labs</span>
-        </>
-      ) : (
-        <>
-          <span class="wordmark-block" aria-hidden="true"></span>
-          <span class="wordmark-text">THEFOCUS.AI</span>
-          <span class="wordmark-divider" aria-hidden="true">·</span>
-          <span class="wordmark-sub">MAGAZINE</span>
-        </>
-      )}
+      <span class="wordmark-glyph" aria-hidden="true"></span>
+      <span class="wordmark-text">TheFocus</span>
+      <span class="wordmark-sub">Labs</span>
     </a>
     <nav class="site-nav" aria-label="Primary">
-      {theme === 'ledger' ? (
-        <>
-          <a href="/dispatch/">Dispatch</a>
-          <a href="/quarterly/">How AI</a>
-          <a href="/reports/">Measurements</a>
-          <a href="/recipes/">Bench</a>
-          <a href="/issues/">Issues</a>
-        </>
-      ) : (
-        <a href="/">← Labs</a>
-      )}
+      <a href="/dispatch/">Dispatch</a>
+      <a href="/quarterly/">How AI</a>
+      <a href="/reports/">Measurements</a>
+      <a href="/recipes/">Bench</a>
+      <a href="/issues/">Issues</a>
     </nav>
   </div>
 </header>

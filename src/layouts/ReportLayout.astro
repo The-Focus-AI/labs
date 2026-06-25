@@ -20,7 +20,7 @@ const ogUrl = openGraphImage
   ? new URL(openGraphImage, site).href
   : new URL('/favicon.svg', site).href;
 ---
-<BaseLayout title={pageTitle} description={description} theme="ledger" bodyClass={bodyClass}>
+<BaseLayout title={pageTitle} description={description} bodyClass={bodyClass}>
   <Fragment slot="head">
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
